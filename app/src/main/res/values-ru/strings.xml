@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Evvoli Каталог</string>
+    <string name="select_language">Выберите язык</string>
+
+    <string name="about_us">О нас</string>
+    <string name="proceed_to_checkout">Перейти к оформлению заказа</string>
+    <string name="cash">Наличные</string>
+    <string name="card_terminal">Банковская платежная карта</string>
+    <string name="payment_option">Вариант оплаты</string>
+    <string name="name">Ваше имя</string>
+    <string name="name_is_required">Пожалуйста, введите ваше имя</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="invalid_phone_number">Пожалуйста, введите правильный номер телефона</string>
+    <string name="shipping_address">Адрес доставки</string>
+    <string name="address_is_required">Пожалуйста, введите ваш адрес доставки</string>
+    <string name="select_date_and_time">Время доставки</string>
+    <string name="delivery_date_is_required">Пожалуйста, укажите дату и время доставки</string>
+    <string name="total">ИТОГО</string>
+    <string name="submit_order">Подтвердить заказ</string>
+
+    <string name="order_success">Успешный заказ</string>
+    <string name="order_successful">Заказ успешен!</string>
+    <string name="thank_you_for_your_order_you_will_be_contacted_soon">
+        Спасибо за ваш заказ.\nС вами скоро свяжутся.
+    </string>
+
+    <string name="search">Поиск</string>
+    <string name="search_icon">Иконка Поиска</string>
+    <string name="close_icon">Иконка Закрыть</string>
+
+    <string name="add_to_shopping_cart">Добавить в корзину</string>
+    <string name="your_cart_is_empty">Ваша корзина пуста</string>
+    <string name="haven_t_added_anything_to_your_cart_yet">
+        Похоже, вы еще ничего не добавили в корзину.
+    </string>
+    <string name="start_shopping">Начать покупки</string>
+
+    <string name="categories">Категории</string>
+    <string name="products">Товары</string>
+    <string name="products_search">Поиск товаров</string>
+    <string name="product_details">Информация о товаре</string>
+    <string name="cart">Корзина</string>
+    <string name="order">Заказ</string>
+    <string name="success">Успех</string>
+    <string name="evvoli_turkmenistan">Evvoli Туркменистан</string>
+    <string name="settings">Настройки</string>
+
+    <string name="no_results_found">Результатов поиска не найдено</string>
+    <string name="search_not_found_icon">Значок поиск не найден</string>
+    <string name="couldn_t_find_any_products">
+        Мы не смогли найти ни одного товара, соответствующего вашему запросу.
+    </string>
+    <string name="evvoli_company_description">Evvoli - ведущий поставщик инновационных технологических решений. Наша миссия - расширять возможности цифровых технологий с помощью передовых продуктов и услуг.</string>
+    <string name="refresh">Refresh</string>
+    <string name="error_loading_data_please_refresh">Error loading data. Please refresh.</string>
+    <string name="connection_error">connection error</string>
+
+
+</resources>

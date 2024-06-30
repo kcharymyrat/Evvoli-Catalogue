@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Evvoli Katalog</string>
+    <string name="select_language">Dil Saýlaň</string>
+
+    <string name="about_us">Biz Barada</string>
+    <string name="proceed_to_checkout">Sargydy taýýarlamak</string>
+    <string name="cash">Nagt</string>
+    <string name="card_terminal">Bank Karty</string>
+    <string name="payment_option">Töleg Şekili</string>
+    <string name="name">Adyňyz</string>
+    <string name="name_is_required">Adyňyzy yazmagyňyzy haýyş edýäris</string>
+    <string name="phone_number">Telefon belgiňiz</string>
+    <string name="invalid_phone_number">Dogry telefon belgiňizi yazmagyňyzy haýyş edýäris</string>
+    <string name="shipping_address">Salgyňyz</string>
+    <string name="address_is_required">Salgyňyzy yazmagyňyzy haýyş edýäris</string>
+    <string name="select_date_and_time">Eltip berme wagty</string>
+    <string name="delivery_date_is_required">Eltip berme senesini we wagtyny bellemegiňizi haýyş edýäris</string>
+    <string name="total">JEMI</string>
+    <string name="submit_order">Sargyt et</string>
+
+    <string name="order_success">Üstünlikli sargyt</string>
+    <string name="order_successful">Sargyt üstünlikli kabul edildi!</string>
+    <string name="thank_you_for_your_order_you_will_be_contacted_soon">
+        Sargyt üçin köp sag boluň.\nGyzga wagtda siz bilen habarlaşylar.
+    </string>
+
+    <string name="search">Gözläň</string>
+    <string name="search_icon">Gözleg nyşany</string>
+    <string name="close_icon">Ýapyň nyşany</string>
+
+    <string name="add_to_shopping_cart">Sebede goşuň</string>
+    <string name="your_cart_is_empty">Siziň sebetiňiz boş</string>
+    <string name="haven_t_added_anything_to_your_cart_yet">
+        Arabaňyza entek hiç zat goşmadyk ýaly.
+    </string>
+    <string name="start_shopping">Söwda edip başlaň</string>
+
+    <string name="categories">Kategoriýalar</string>
+    <string name="products">Harytlar</string>
+    <string name="products_search">Haryt gözlegi</string>
+    <string name="product_details">Haryt maglumatlary</string>
+    <string name="cart">Sebet</string>
+    <string name="order">Заказ</string>
+    <string name="success">Sargyt</string>
+    <string name="evvoli_turkmenistan">Evvoli Türkmenistan</string>
+    <string name="settings">Sazlamalar</string>
+
+    <string name="no_results_found">Gözleg harytlary tapylmady</string>
+    <string name="search_not_found_icon">Gözleg tapylmady nyşany</string>
+    <string name="couldn_t_find_any_products">
+        Islegiňize laýyk haryt tapyp bilmedik.
+    </string>
+    <string name="evvoli_company_description">“Evvoli” innowasion tehnologiýa çözgütleriniň öňdebaryjy üpjünçisidir. Biziň wezipämiz, häzirki zaman önümleri we hyzmatlary arkaly sanly tehnologiýany güýçlendirmek.</string>
+    <string name="refresh">Refresh</string>
+    <string name="error_loading_data_please_refresh">Error loading data. Please refresh.</string>
+    <string name="connection_error">connection error</string>
+
+</resources>
