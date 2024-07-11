@@ -17,8 +17,8 @@ import com.example.evvolicatalogue.data.models.category.CategoryEntity
     ]
 )
 data class ProductEntity(
-    @PrimaryKey val id: String,
-    val categoryId: Long,
+    @PrimaryKey val id: Int,
+    val categoryId: Int,
     val type: String,
     val typeEn: String,
     val typeRu: String,

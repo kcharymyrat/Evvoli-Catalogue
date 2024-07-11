@@ -24,13 +24,13 @@ interface CategoryDao {
     suspend fun getCategories(): List<CategoryEntity>
 
     @Query("SELECT * FROM categories WHERE id = :id")
-    suspend fun getCategoryById(id: String): CategoryEntity?
+    suspend fun getCategoryById(id: Int): CategoryEntity?
 
     @Query("DELETE FROM categories")
     suspend fun deleteAllCategories()
 
     @Query("DELETE FROM categories WHERE id = :id")
-    suspend fun deleteCategoryById(id: String)
+    suspend fun deleteCategoryById(id: Int)
 
     @Query("SELECT * FROM categories ORDER BY :orderBy ASC")
     suspend fun getOrderedCategories(orderBy: String): List<CategoryEntity>
@@ -44,17 +44,8 @@ interface CategoryDao {
     @Query("SELECT * FROM categories WHERE :columnName LIKE :query || '%'")
     suspend fun filterCategories(columnName: String, query: String): List<CategoryEntity>
 
-    // Relationship queries (assuming a Product entity with categoryId foreign key)
     @Transaction
     @Query("SELECT * FROM categories")
     suspend fun getCategoriesWithProducts(): List<CategoryWithProducts>
 }
 
-data class CategoryWithProducts(
-    val category: CategoryEntity,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "categoryId"
-    )
-    val products: List<ProductEntity>
-)

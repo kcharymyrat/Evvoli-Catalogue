@@ -18,10 +18,10 @@ interface ProductImageDao {
     suspend fun updateProductImage(image: ProductImageEntity)
 
     @Query("SELECT * FROM product_images WHERE productId = :productId")
-    suspend fun getProductImagesByProductId(productId: String): List<ProductImageEntity>
+    suspend fun getProductImagesByProductId(productId: Int): List<ProductImageEntity>
 
     @Query("SELECT * FROM product_images WHERE id = :id")
-    suspend fun getProductImageById(id: String): ProductImageEntity?
+    suspend fun getProductImageById(id: Int): ProductImageEntity?
 
     @Query("DELETE FROM product_images")
     suspend fun deleteAllProductImages()
