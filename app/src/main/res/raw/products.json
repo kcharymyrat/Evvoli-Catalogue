@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "categoryId": 2,
+    "code": "EVFS-36K-J",
+    "title": "Kondisioner",
+    "titleRu": "Кондиционер",
+    "description": "Sowadyjy güýji : 36000 BTU  Ýyladyjy güýji: 36400 BTU Sowadyjy iş togy :15 A Ýyladyjy iş togy: 13 A. Giriş güýji: 4500 W Giriş tok 13A  Sowadyjy görnüşi: R410 / 2000gr Boşatma basyşy 4,3 MPa Sorujy basyş:1,15 MPa Howa akymynnyň göwrümi: 1900 m3/sag  Içki blogynyň ses derejesi: 56 dB Daşky blogynyň ses derejesi: 58 dB Içki blogynyň agramy (netto): 65 kg Daşky blogynyň agramy (netto): 74 kg",
+    "descriptionRu": "Номинальная мощность: Охлаждение: 36000 BTU  Обогрев: 36400 BTU   Номинальный рабочий ток Охлаждение: 15 А  Обогрев:  13 А.  Входная мощность: 4500 Вт Макс.  Входной ток:  13 А  Хладагент: R410A / 2000 г   Давление нагнетания: МПа 4,3 Макс.  Давление всасывания:  1,15 МПа  Объем воздушного потока:  1900 м3/ч  Уровень шума внутреннего блока:  56  дБ(А)  Уровень шума наружного блока:  58  дБ(А)  Вес внутреннего блока (нетто): 65 кг    Вес наружного блока (нетто): 74 кг",
+    "imageUrl": "file:///android_asset/ac/36KJ/evvoli-Floor-Standing-AC-EVFS-32K-36K-60K-J0109e0.png"
+  },
+  {
+    "id": 2,
+    "categoryId": 2,
+    "code": "EVCIS-9K-MD-2",
+    "title": "Kondisioner",
+    "titleRu": "Кондиционер",
+    "description": "Elektrik üpjünçiligi 220 - 240 Wolt, 1F, 50Ghz Sowadyjy güýji : 9000 BTU Giriş güýji: 1200 W Giriş tok 3,6 A Ýyladyjy güýji: 9000 BTU   Sowadyjy görnüşi: R410 / 475gr  Içki blogynyň ses derejesi: 42 dB Daşky blogynyň ses derejesi: 51 dB",
+    "descriptionRu": "Электропитание  220-240В, 1Ф, 50Гц\nОхлаждение  Производительность 9000 BTU/ч \nВходная мощность: 1200 Вт\nНоминальный ток: 3,6 А. Обогрев Производительность 9000  BTU/ч \nХладагент Тип  R410A/475гр\nВНУТРЕННИЙ БЛОК:\nУровень шума в помещении  дБ(А) 42\nНАРУЖНЫЙ БЛОК:\nУровень наружного шума дБ(А) 51\n",
+    "imageUrl": "file:///android_asset/ac/9K/EVT3-MD-2GC-0109e0.png"
+  },
+  {
+    "id": 3,
+    "categoryId": 2,
+    "code": "EVCIS-18KMD1",
+    "title": "Kondisioner",
+    "titleRu": "Кондиционер",
+    "description": "Elektrik üpjünçiligi 220 - 240 Wolt, 1F, 50Ghz Sowadyjy güýji : 18000 BTU Giriş güýji: 1643 W Giriş tok 7,1 A Ýyladyjy güýji: 18500 BTU   Sowadyjy görnüşi: R410 / 1200 gr  Içki blogynyň ses derejesi (P/O/G): 42,5/36/30 dB Daşky blogynyň ses derejesi: 59 dB",
+    "descriptionRu": "Электропитание  220-240В, 1Ф, 50Гц\nОхлаждение  Производительность 18000 BTU/ч \nВходная мощность: 1643 Вт\nНоминальный ток: 7,1 А. Обогрев Производительность 18500  BTU/ч \nХладагент Тип  R410A/1200гр\nВНУТРЕННИЙ БЛОК:\nУровень шума в помещении (Hi/Mi/Lo) дБ(А) 42,5/36/30\nНАРУЖНЫЙ БЛОК:\nУровень наружного шума дБ(А) 59\n",
+    "imageUrl": "file:///android_asset/ac/18K-MD/EVDC-MD-2-0209e0.png"
+  },
+  {
+    "id": 4,
+    "categoryId": 2,
+    "code": "EVCIS-24KMD1",
+    "title": "Kondisioner",
+    "titleRu": "Кондиционер",
+    "description": "Elektrik üpjünçiligi 220 - 240 Wolt, 1F, 50Ghz Sowadyjy güýji : 24000 BTU Giriş güýji: 2503 W Giriş tok 10,9 A Ýyladyjy güýji: 2600 BTU   Sowadyjy görnüşi: R410 / 1800 gr  Içki blogynyň ses derejesi (P/O/G): 46,5/43/39,5 dB Daşky blogynyň ses derejesi: 59 dB",
+    "descriptionRu": "Электропитание  220-240В, 1Ф, 50Гц\nОхлаждение  Производительность 24000 BTU/ч \nВходная мощность: 2503 Вт\nНоминальный ток: 10,9 А. Обогрев Производительность 26000  BTU/ч \nХладагент Тип  R410A/1800гр\nВНУТРЕННИЙ БЛОК:\nУровень шума в помещении (Hi/Mi/Lo) дБ(А) 46,5/43/39,5\nНАРУЖНЫЙ БЛОК:\nУровень наружного шума дБ(А) 59\n",
+    "imageUrl": "file:///android_asset/ac/24K-MD/EVDC-MD-2-0209e0.png"
+  },
+  {
+    "id": 5,
+    "categoryId": 5,
+    "code": "EVDW-6MS",
+    "title": "Gap-gaç ýuwujy maşyn",
+    "titleRu": "Посудомоечная машина",
+    "description": "Reňk : Kümüş; Göwrümi : 6 adamlyk; Ses: 49 dB; Doladyrylşy : Sensor  Doladyryş fuksiýalary: gijikdirme, zolaklaýyn ýuwmak, başlamak, duruzmak, çagalardan gorag gulpy; Elektrik üpjünçiligi 220 - 240 Wolt; Kuwwaty 1170-1380 W; Gyzdyryjy elementiniň kuwwaty : 1200W; Önümiň ölçegi: 550x515x438 mm; Agramy (netto):20,5 kg",
+    "descriptionRu": "Цвет:серый;\nВместимость (настройки места): 6;\nШум: (дБ(А)) 49;\nТип управления: Сенсорное;\nФункции управления:  задержка, промывка зоны, блокировка от детей,запуск/пауза;\nНапряжение: В 220-240В;\nНоминальная мощность: 1170~1380 Вт;\nМощность нагревательного элемента: Вт 1200;\nРазмер продукта: 550x515x438 мм;\nВес нетто: 20,5 кг;",
+    "imageUrl": "file:///android_asset/dwm/6MS/evvoli-Mini-Dishwasher-EVDW-6MS-0109e0.png"
+  },
+  {
+    "id": 6,
+    "categoryId": 5,
+    "code": "EVDW-153HS",
+    "title": "Gap-gaç ýuwujy maşyn",
+    "titleRu": "Посудомоечная машина",
+    "description": "Reňk : Kümüş; Göwrümi : 15 adamlyk; Ses: 47 dB; Doladyrylşy : Sensor  Doladyryş fuksiýalary: gijikdirme, zolaklaýyn ýuwmak, başlamak, duruzmak, çagalardan gorag gulpy; Elektrik üpjünçiligi 220 - 240 Wolt; Kuwwaty 1760-2100 W; Gyzdyryjy elementiniň kuwwaty : 1800W; Önümiň ölçegi: 598x600x845 mm; Agramy (netto):45,5 kg",
+    "descriptionRu": "Цвет:серый;\nВместимость (настройки места): 15;\nШум: (дБ(А)) 47;\nТип управления: Сенсорное;\nФункции управления: задержка, промывка зоны, блокировка от детей, функция, запуск/пауза;\nНапряжение: В 220-240В;\nНоминальная мощность: 1760~2100 Вт;\nМощность нагревательного элемента: Вт 1800;\nРазмер продукта: 598x600x845 мм;\nВес нетто: 45,5 кг;",
+    "imageUrl": "file:///android_asset/dwm/153HS-W/evvoli-Dishwasher-EVDW-153HS0109e0.png"
+  },
+  {
+    "id": 7,
+    "categoryId": 5,
+    "code": "EVDW-153HW",
+    "title": "Gap-gaç ýuwujy maşyn",
+    "titleRu": "Посудомоечная машина",
+    "description": "Reňk : Ak; Göwrümi : 15 adamlyk; Ses: 47 dB; Doladyrylşy : Sensor  Doladyryş fuksiýalary: gijikdirme, zolaklaýyn ýuwmak, başlamak, duruzmak, çagalardan gorag gulpy; Elektrik üpjünçiligi 220 - 240 Wolt; Kuwwaty 1760-2100 W; Gyzdyryjy elementiniň kuwwaty : 1800W; Önümiň ölçegi: 598x600x845 mm; Agramy (netto):45,5 kg",
+    "descriptionRu": "Цвет: белый;\nВместимость (настройки места): 15;\nШум: (дБ(А)) 47;\nТип управления: Сенсорное;\nФункции управления: задержка, промывка зоны, блокировка от детей, функция, запуск/пауза;\nНапряжение: В 220-240В;\nНоминальная мощность: 1760~2100 Вт;\nМощность нагревательного элемента: Вт 1800;\nРазмер продукта: 598x600x845 мм;\nВес нетто: 45,5 кг;",
+    "imageUrl": "file:///android_asset/dwm/153HS-W/evvoli-Dishwasher-EVDW-153HS0309e0.png"
+  }
+]

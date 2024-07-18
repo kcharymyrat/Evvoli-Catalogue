@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "productId": 2,
+    "imageUrl": "file:///android_asset/ac/9K/EVT3-MD-2GC-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 2,
+    "productId": 3,
+    "imageUrl": "file:///android_asset/ac/18K-MD/EVDC-T3-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 3,
+    "productId": 4,
+    "imageUrl": "file:///android_asset/ac/24K-MD/EVDC-T3-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 4,
+    "productId": 6,
+    "imageUrl": "file:///android_asset/dwm/153HS-W/evvoli-Dishwasher-EVDW-153HS0309e0.png",
+    "description": "With dishes view"
+  },
+  {
+    "id": 5,
+    "productId": 6,
+    "imageUrl": "file:///android_asset/dwm/153HS-W/evvoli-Dishwasher-EVDW-153HS0409e0.png",
+    "description": "Side view"
+  }
+]

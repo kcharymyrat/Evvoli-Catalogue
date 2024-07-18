@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Telewizor",
+    "nameRu": "Телевизор",
+    "imageUrl": "file:///android_asset/tv/tv.webp"
+  },
+  {
+    "id": 2,
+    "name": "Kondisioner",
+    "nameRu": "Кондиционер",
+    "imageUrl": "file:///android_asset/ac/ac.png"
+  },
+  {
+    "id": 3,
+    "name": "Kir ýuwujy maşyn",
+    "nameRu": "Стиральная машина",
+    "imageUrl": "file:///android_asset/wm/wm.png"
+  },
+  {
+    "id": 4,
+    "name": "Sowadyjy",
+    "nameRu": "Холодильник",
+    "imageUrl": "file:///android_asset/fridge/fridge.png"
+  },
+  {
+    "id": 5,
+    "name": "Gap-gaç ýuwujy maşyn",
+    "nameRu": "Посудомоечная машина",
+    "imageUrl": "file:///android_asset/dwm/dwm.png"
+  },
+  {
+    "id": 6,
+    "name": "Boýler",
+    "nameRu": "Бойлер",
+    "imageUrl": "file:///android_asset/boiler/boiler.png"
+  },
+  {
+    "id": 7,
+    "name": "Howa arassalaýjy",
+    "nameRu": "Очиститель воздуха",
+    "imageUrl": "file:///android_asset/purifier/purifier.png"
+  },
+  {
+    "id": 8,
+    "name": "Aşhana enjamlary",
+    "nameRu": "Кухонные приборы",
+    "imageUrl": "file:///android_asset/kitchen/kitchen.png"
+  },
+  {
+    "id": 9,
+    "name": "Ideg-bezeg enjamlar",
+    "nameRu": "Приборы для ухода",
+    "imageUrl": "file:///android_asset/grooming/grooming.png"
+  },
+  {
+    "id": 10,
+    "name": "Ses enjamlar",
+    "nameRu": "Аудио",
+    "imageUrl": "file:///android_asset/audio/audio.png"
+  },
+  {
+    "id": 11,
+    "name": "Beýleki enjamlar",
+    "nameRu": "Другие",
+    "imageUrl": "file:///android_asset/others/iron.png"
+  }
+]
