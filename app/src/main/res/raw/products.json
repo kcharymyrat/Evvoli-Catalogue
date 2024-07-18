@@ -68,5 +68,85 @@
     "description": "Reňk : Ak; Göwrümi : 15 adamlyk; Ses: 47 dB; Doladyrylşy : Sensor  Doladyryş fuksiýalary: gijikdirme, zolaklaýyn ýuwmak, başlamak, duruzmak, çagalardan gorag gulpy; Elektrik üpjünçiligi 220 - 240 Wolt; Kuwwaty 1760-2100 W; Gyzdyryjy elementiniň kuwwaty : 1800W; Önümiň ölçegi: 598x600x845 mm; Agramy (netto):45,5 kg",
     "descriptionRu": "Цвет: белый;\nВместимость (настройки места): 15;\nШум: (дБ(А)) 47;\nТип управления: Сенсорное;\nФункции управления: задержка, промывка зоны, блокировка от детей, функция, запуск/пауза;\nНапряжение: В 220-240В;\nНоминальная мощность: 1760~2100 Вт;\nМощность нагревательного элемента: Вт 1800;\nРазмер продукта: 598x600x845 мм;\nВес нетто: 45,5 кг;",
     "imageUrl": "file:///android_asset/dwm/153HS-W/evvoli-Dishwasher-EVDW-153HS0309e0.png"
+  },
+  {
+    "id": 8,
+    "categoryId": 5,
+    "code": "EVDW-143MW",
+    "title": "Gap-gaç ýuwujy maşyn",
+    "titleRu": "Посудомоечная машина",
+    "description": "Reňk : Ak; Göwrümi : 14 adamlyk; Ses: 49 dB; Doladyrylşy : Sensor  Doladyryş fuksiýalary: gijikdirme, zolaklaýyn ýuwmak, başlamak, duruzmak, çagalardan gorag gulpy; Elektrik üpjünçiligi 220 - 240 Wolt; Kuwwaty 1760-2100 W; Gyzdyryjy elementiniň kuwwaty : 1800W; Önümiň ölçegi: 598x600x845 mm; Agramy (netto):47,5 kg",
+    "descriptionRu": "Цвет: белый;\nВместимость (настройки места): 14;\nШум: (дБ(А)) 49;\nТип управления: Сенсорное;\nФункции управления: задержка, промывка зоны, блокировка от детей, функция, запуск/пауза;\nНапряжение: В 220-240В;\nНоминальная мощность: 1760~2100 Вт;\nМощность нагревательного элемента: Вт 1800;\nРазмер продукта: 598x600x845 мм;\nВес нетто: 47,5 кг;",
+    "imageUrl": "file:///android_asset/dwm/143MS-W/evvoli-Dishwasher-EVDW-143MW-White0109e0.png"
+  },
+  {
+    "id": 9,
+    "categoryId": 5,
+    "code": "EVDW-143MS",
+    "title": "Gap-gaç ýuwujy maşyn",
+    "titleRu": "Посудомоечная машина",
+    "description": "Reňk : Kümüş; Göwrümi : 14 adamlyk; Ses: 49 dB; Doladyrylşy : Sensor  Doladyryş fuksiýalary: gijikdirme, zolaklaýyn ýuwmak, başlamak, duruzmak, çagalardan gorag gulpy; Elektrik üpjünçiligi 220 - 240 Wolt; Kuwwaty 1760-2100 W; Gyzdyryjy elementiniň kuwwaty : 1800W; Önümiň ölçegi: 598x600x845 mm; Agramy (netto):47,5 kg",
+    "descriptionRu": "Цвет: серый;\nВместимость (настройки места): 14;\nШум: (дБ(А)) 49;\nТип управления: Сенсорное;\nФункции управления:  задержка, промывка зоны, блокировка от детей, функция, запуск/пауза;\nНапряжение: В 220-240В;\nНоминальная мощность: 1760~2100 Вт;\nМощность нагревательного элемента: Вт 1800;\nРазмер продукта: 598x600x845 мм;\nВес нетто: 47,5 кг;",
+    "imageUrl": "file:///android_asset/dwm/143MS-W/evvoli-Dishwasher-EVDW-143MS-Silver0109e0.png"
+  },
+  {
+    "id": 10,
+    "categoryId": 4,
+    "code": "EEVRFH-S532-HW",
+    "title": "Sowadyjy",
+    "titleRu": "Холодильник",
+    "description": "Reňk: Ak;Elektrik üpjünçiligi 220 - 240 Wolt 50Hz;   Peýdaly Göwrümi: 532 lt(Sag: 365lt, çep: 167 lt); Doňdurma güýji: 12 kg/24 sag;  Ses: 43dB;  Sowadyjy görnüşi: R600a, 72 gr;  Agramy netto: 110 kg; Ölçegi:  910×686,5×1793 mm;",
+    "descriptionRu": "Белый цвет;\nНапряжение/частота:   220~240В/50Гц;\nПолезный объем:   532 л (правый: 365 л, левый: 167 л);\nМощность замораживания:   12 кг/24ч;\nМаксимальный уровень шума:   дБ(А) 43;\nТип хладагента/заправки :  R600a/72;\nВес нетто:   кг 110;\nРазмеры изделия (Ш*Г*В):  мм 910×686,5×1793;",
+    "imageUrl": "file:///android_asset/fridge/S532-W-S/evvoli-SIDE-BY-SIDE-FRIDGE-EVRFH-S532HW-109e0.png"
+  },
+  {
+    "id": 10,
+    "categoryId": 4,
+    "code": "EEVRFH-S532-HW",
+    "title": "Sowadyjy",
+    "titleRu": "Холодильник",
+    "description": "Reňk: Ak;Elektrik üpjünçiligi 220 - 240 Wolt 50Hz;   Peýdaly Göwrümi: 532 lt(Sag: 365lt, çep: 167 lt); Doňdurma güýji: 12 kg/24 sag;  Ses: 43dB;  Sowadyjy görnüşi: R600a, 72 gr;  Agramy netto: 110 kg; Ölçegi:  910×686,5×1793 mm;",
+    "descriptionRu": "Белый цвет;\nНапряжение/частота:   220~240В/50Гц;\nПолезный объем:   532 л (правый: 365 л, левый: 167 л);\nМощность замораживания:   12 кг/24ч;\nМаксимальный уровень шума:   дБ(А) 43;\nТип хладагента/заправки :  R600a/72;\nВес нетто:   кг 110;\nРазмеры изделия (Ш*Г*В):  мм 910×686,5×1793;",
+    "imageUrl": "file:///android_asset/fridge/S532-W-S/evvoli-SIDE-BY-SIDE-FRIDGE-EVRFH-S532HW-109e0.png"
+  },
+  {
+    "id": 11,
+    "categoryId": 4,
+    "code": "EVRFM-225W",
+    "title": "Sowadyjy",
+    "titleRu": "Холодильник",
+    "description": "Reňk: Ak; Kuwwaty: 80 Watt; Iş togy: 2,1 A;  Jemi Göwrümi: 204 lt; Doňduryjy Göwrümi: 41 lt; Sowadyjy Göwrümi: 163 lt; Sowadyjy görnüşi: R600a, 45 gr;  Agramy netto: 36kg; Ölçegi:  550x550x1430 mm;",
+    "descriptionRu": "Белый цвет\nНоминальная мощность Вт 80\nНоминальный ток А 0,5\nОбщий объем хранения л 204\nОбъем морозильной камеры: л 41;\nХранение в холодильнике Объем: л 163;\nХладагент, Количество R600a, 45г\nВес нетто кг 36\nРазмеры продукта (Ш*Г*В) мм 550x550x1430",
+    "imageUrl": "file:///android_asset/fridge/225W-S/evvoli-Refrigerator-EVRFM-225W-White-109e0.png"
+  },
+  {
+    "id": 12,
+    "categoryId": 1,
+    "code": "32EV100",
+    "title": "Telewizor",
+    "titleRu": "Телевизор",
+    "description": "Önümiň görnüşi: LED Telewizor; Telewizor ulgamy: PAL B/G, D/K, I SECAM B/G, D/K;  AV-ulgamy :  PAL, NTSC, SECAM; Elektrik üpjünçiligi 220 - 240 Wolt 50/60 Hz; Wideo: MPEG2, MPEG4_HD, MPEG4, MPEG4_SD, H.264, H.265; Wideo formaty: HDMI: 1080P çenli; Görkeziş ölçegi:  1366*768; Tazelenme tizligi: 60 Hz; Ses: oturdylan kolokalar",
+    "descriptionRu": "Тип продукта: LED телевизор;\nТелевизионная система: PAL B/G, D/K, I SECAM B/G, D/K;\nAV-система: PAL, NTSC, SECAM;\nИсточник питания: 110–240 В  50/60 Гц;\nВидео: MPEG2, MPEG4_HD, MPEG4, MPEG4_SD, H.264, H.265;\nФормат видео HDMI: до 1080P;\nРазрешение дисплея: 1366*768;\nЧастота обновления: 60 Гц;\nДинамики: встроенные динамики ",
+    "imageUrl": "file:///android_asset/tv/32EV100_ATV/285x285/32EV100_ATV_F09e0.png"
+  },
+  {
+    "id": 13,
+    "categoryId": 1,
+    "code": "32EV100D",
+    "title": "Telewizor",
+    "titleRu": "Телевизор",
+    "description": "Önümiň görnüşi: LED Telewizor; Telewizor ulgamy: PAL B/G, D/K, I SECAM B/G, D/K\nDWB-Т/К/Т2/С2/К+;;  AV-ulgamy :  PAL, NTSC, SECAM; Elektrik üpjünçiligi 110 - 240 Wolt 50/60 Hz; Wideo: H.264, MPEG4, MPEG2, HEVC FHD, XVID, MKV  Divx; Wideo formaty: HDMI: 1080P çenli; Görkeziş ölçegi:  1366*768; Tazelenme tizligi: 60 Гц; Ses: oturdylan kolokalar DD/DD+ (Dolby Digital);",
+    "descriptionRu": "Тип продукта LED TV\nТелевизионная система PAL B/G, D/K, I SECAM B/G, D/K\nДВБ-Т/К/Т2/С2/КИ+;\nAV-система PAL, NTSC, SECAM;\nИсточник питания переменного тока 110–240 В, 50/60 Гц;\nВидео: H.264, MPEG4, MPEG2, HEVC FHD, XVID, MKV  Divx;\nФормат видео DMI до 1080P;\nРазрешение дисплея 1366*768;\nЧастота обновления 60 Гц;\nДинамики: Встроенные динамики \nDD/DD+ (Dolby Digital);",
+    "imageUrl": "file:///android_asset/tv/32EV100D_T2S2/285x285/evvoli-SAT-TV-32EV110D-0109e0.png"
+  },
+  {
+    "id": 14,
+    "categoryId": 1,
+    "code": "43EV100",
+    "title": "Telewizor",
+    "titleRu": "Телевизор",
+    "description": "Önümiň görnüşi: LED Telewizor; Telewizor ulgamy: PAL B/G, D/K, I SECAM B/G, D/K;  AV-ulgamy :  PAL, NTSC, SECAM; Elektrik üpjünçiligi 110 - 240 Wolt 50/60 Hz; Wideo: MPEG2, MPEG4_HD, MPEG4, MPEG4_SD, H.264, H.265; Wideo formaty: HDMI: 1080P çenli; Görkeziş ölçegi:  1920*1080; Tazelenme tizligi: 60 Гц; Ses: oturdylan kolokalar",
+    "descriptionRu": "Тип продукта: LED-телевизор;\nТелевизионная система: PAL B/G, D/K, I SECAM B/G, D/K;\nAV-система: PAL, NTSC, SECAM;\nИсточник питания: 110–240 В переменного тока, 50/60 Гц;\nВидео: MPEG2, MPEG4_HD, MPEG4, MPEG4_SD, H.264, H.265;\nФормат видео HDMI: до 1080P;\nРазрешение дисплея: 1920*1080;\nЧастота обновления: 60 Гц;\nДинамики: встроенные динамики ;\n",
+    "imageUrl": "file:///android_asset/tv/43EV100_ATV/285x285/43EV100_ATV_F09e0.png"
   }
 ]

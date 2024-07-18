@@ -28,5 +28,109 @@
     "productId": 6,
     "imageUrl": "file:///android_asset/dwm/153HS-W/evvoli-Dishwasher-EVDW-153HS0409e0.png",
     "description": "Side view"
+  },
+  {
+    "id": 6,
+    "productId": 9,
+    "imageUrl": "file:///android_asset/dwm/143MS-W/evvoli-Dishwasher-EVDW-143MS-Silver0109e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 7,
+    "productId": 9,
+    "imageUrl": "file:///android_asset/dwm/143MS-W/evvoli-Dishwasher-EVDW-143MS-Silver0309e0.png",
+    "description": "With dishes view"
+  },
+  {
+    "id": 8,
+    "productId": 10,
+    "imageUrl": "file:///android_asset/fridge/S532-W-S/evvoli-SIDE-BY-SIDE-FRIDGE-EVRFH-S532HW-309e0.png",
+    "description": "Open view"
+  },
+  {
+    "id": 9,
+    "productId": 11,
+    "imageUrl": "file:///android_asset/fridge/225W-S/evvoli-Refrigerator-EVRFM-225W-White-209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 10,
+    "productId": 11,
+    "imageUrl": "file:///android_asset/fridge/225W-S/evvoli-Refrigerator-EVRFM-225W-White-309e0.png",
+    "description": "Open view"
+  },
+  {
+    "id": 11,
+    "productId": 11,
+    "imageUrl": "file:///android_asset/fridge/225W-S/evvoli-Refrigerator-EVRFM-225W-White-409e0.png",
+    "description": "Open filled view"
+  },
+  {
+    "id": 12,
+    "productId": 12,
+    "imageUrl": "file:///android_asset/tv/32EV100_ATV/285x285/32EV100_ATV_P09e0.png",
+    "description": "Angle view"
+  },
+  {
+    "id": 13,
+    "productId": 12,
+    "imageUrl": "file:///android_asset/tv/32EV100_ATV/285x285/32EV100_ATV_S09e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 14,
+    "productId": 12,
+    "imageUrl": "file:///android_asset/tv/32EV100_ATV/285x285/32EV100_ATV_B09e0.png",
+    "description": "Back view"
+  },
+  {
+    "id": 15,
+    "productId": 12,
+    "imageUrl": "file:///android_asset/tv/32EV100_ATV/43ev100d_t2s2_photoid_remote09e0.png",
+    "description": "Remote controller"
+  },
+  {
+    "id": 16,
+    "productId": 13,
+    "imageUrl": "file:///android_asset/tv/32EV100D_T2S2/285x285/32EV100D_T2S2_B09e0.png",
+    "description": "Back view"
+  },
+  {
+    "id": 17,
+    "productId": 13,
+    "imageUrl": "file:///android_asset/tv/32EV100D_T2S2/285x285/32EV100D_T2S2_S09e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 18,
+    "productId": 13,
+    "imageUrl": "file:///android_asset/tv/32EV100D_T2S2/43ev100d_t2s2_photoid_remote09e0.png",
+    "description": "Remote controller"
+  },
+  {
+    "id": 19,
+    "productId": 14,
+    "imageUrl": "file:///android_asset/tv/43EV100_ATV/285x285/43EV100_ATV_P09e0.png",
+    "description": "Angle View"
+  },
+  {
+    "id": 20,
+    "productId": 14,
+    "imageUrl": "file:///android_asset/tv/43EV100_ATV/285x285/43EV100_ATV_S09e0.png",
+    "description": "Side View"
+  },
+  {
+    "id": 21,
+    "productId": 14,
+    "imageUrl": "file:///android_asset/tv/43EV100_ATV/285x285/43EV100_ATV_B09e0.png",
+    "description": "Back View"
+  },
+  {
+    "id": 22,
+    "productId": 14,
+    "imageUrl": "file:///android_asset/tv/43EV100_ATV/19EV10024EV10024EV100D-Remote-control-e154885120442009e0.png",
+    "description": "Remote controller"
   }
 ]
+
+
