@@ -130,6 +130,258 @@
     "productId": 14,
     "imageUrl": "file:///android_asset/tv/43EV100_ATV/19EV10024EV10024EV100D-Remote-control-e154885120442009e0.png",
     "description": "Remote controller"
+  },
+  {
+    "id": 23,
+    "productId": 15,
+    "imageUrl": "file:///android_asset/tv/50EV350QA/evvoli-TV-EV350QA-50-inch-55-inch-65-inch-75-inch-0209e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 24,
+    "productId": 15,
+    "imageUrl": "file:///android_asset/tv/50EV350QA/evvoli-TV-EV350QA-50-inch-55-inch-65-inch-75-inch-0309e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 25,
+    "productId": 15,
+    "imageUrl": "file:///android_asset/tv/50EV350QA/55ev800us_4k-edge-smart_rc8a86.png",
+    "description": "Remote controller"
+  },
+  {
+    "id": 26,
+    "productId": 16,
+    "imageUrl": "file:///android_asset/tv/55EV200US/55ev800us_4k-edge-smart_remotec9f2.png",
+    "description": "Remote controller"
+  },
+  {
+    "id": 27,
+    "productId": 17,
+    "imageUrl": "file:///android_asset/tv/65EV350QA/evvoli-TV-EV350QA-50-inch-55-inch-65-inch-75-inch-0209e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 28,
+    "productId": 17,
+    "imageUrl": "file:///android_asset/tv/65EV350QA/evvoli-TV-EV350QA-50-inch-55-inch-65-inch-75-inch-0309e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 29,
+    "productId": 17,
+    "imageUrl": "file:///android_asset/tv/65EV350QA/55ev800us_4k-edge-smart_rc8a86.png",
+    "description": "Remote controller"
+  },
+  {
+    "id": 30,
+    "productId": 18,
+    "imageUrl": "file:///android_asset/tv/86EV600QA/55ev800us_4k-edge-smart_rc8a86.png",
+    "description": "Remote controller"
+  },
+  {
+    "id": 31,
+    "productId": 19,
+    "imageUrl": "file:///android_asset/boiler/CM26/evvoli-Gas-Bolier-EVGB-CM260209e0.png",
+    "description": "Controller"
+  },
+  {
+    "id": 32,
+    "productId": 20,
+    "imageUrl": "file:///android_asset/boiler/CM28/evvoli-Gas-Boiler-EVGB-CM28-32-36-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 33,
+    "productId": 22,
+    "imageUrl":  "file:///android_asset/purifier/27W/evvoli-Air-Purifier-EVAP-27W-0209e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 34,
+    "productId": 23,
+    "imageUrl":  "file:///android_asset/purifier/27UW/evvoli-Air-Purifier-EVAP-27UW-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 35,
+    "productId": 23,
+    "imageUrl":  "file:///android_asset/purifier/27UW/evvoli-Air-Purifier-EVAP-27UW-0309e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 36,
+    "productId": 23,
+    "imageUrl":  "file:///android_asset/purifier/27UW/evvoli-Air-Purifier-EVAP-27UW-0409e0.png",
+    "description": "Back view"
+  },
+  {
+    "id": 37,
+    "productId": 24,
+    "imageUrl": "file:///android_asset/purifier/50W/evvoli-Bladeless-Fan-EVPF-50W-0509e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 38,
+    "productId": 24,
+    "imageUrl": "file:///android_asset/purifier/50W/evvoli-Bladeless-Fan-EVPF-50W-0609e0.png",
+    "description": "Fan view"
+  },
+  {
+    "id": 39,
+    "productId": 24,
+    "imageUrl": "file:///android_asset/purifier/50W/evvoli-Bladeless-Fan-EVPF-50W-0709e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 39,
+    "productId": 28,
+    "imageUrl": "file:///android_asset/kitchen/HOBS/EVKA-CH604B/evvoli-Ceramic-HOB-EVBI-CH604B-02.png",
+    "description": "Controller"
+  },
+  {
+    "id": 40,
+    "productId": 29,
+    "imageUrl": "file:///android_asset/kitchen/AIRFRIER/PC6010S/evvoli-Pressure-Cooker-Air-Fryer-EVKA-COM6015S-0709e0.png",
+    "description": "Opened view"
+  },
+  {
+    "id": 41,
+    "productId": 32,
+    "imageUrl": "file:///android_asset/kitchen/AIRFRIER/AF4008D/evvoli-Air-Fryer-EVKA-AF4008D-209e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 42,
+    "productId": 32,
+    "imageUrl": "file:///android_asset/kitchen/AIRFRIER/AF4008D/evvoli-Air-Fryer-EVKA-AF4008D-309e0.png",
+    "description": "Controller"
+  },
+  {
+    "id": 43,
+    "productId": 33,
+    "imageUrl": "file:///android_asset/kitchen/AIRFRIER/AF8008D/evvoli-Air-Fryer-EVKA-AF8008D-209e0.png",
+    "description": "Back view"
+  },
+  {
+    "id": 44,
+    "productId": 34,
+    "imageUrl": "file:///android_asset/kitchen/AIRFRIER/AF4001BS/evvoli-Air-Fryer-EVKA-AF4001BS-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 45,
+    "productId": 34,
+    "imageUrl": "file:///android_asset/kitchen/AIRFRIER/AF4001BS/evvoli-Air-Fryer-EVKA-AF4001BS-0309e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 46,
+    "productId": 34,
+    "imageUrl": "file:///android_asset/kitchen/AIRFRIER/AF4001BS/evvoli-Air-Fryer-EVKA-AF4001BS-0409e0.png",
+    "description": "Inside view"
+  },
+  {
+    "id": 47,
+    "productId": 37,
+    "imageUrl": "file:///android_asset/kitchen/GR1660B/evvoli-Grill-EVKA-GR1660B-0109e0.png",
+    "description": "Front view"
+  },
+  {
+    "id": 48,
+    "productId": 37,
+    "imageUrl": "file:///android_asset/kitchen/GR1660B/evvoli-Grill-EVKA-GR1660B-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 49,
+    "productId": 37,
+    "imageUrl": "file:///android_asset/kitchen/GR1660B/evvoli-Grill-EVKA-GR1660B-0409e0.png",
+    "description": "Controller"
+  },
+  {
+    "id": 50,
+    "productId": 38,
+    "imageUrl": "file:///android_asset/kitchen/BLENDER/CBL20B/EVKA-CBL20B-109e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 51,
+    "productId": 41,
+    "imageUrl": "file:///android_asset/iron/CS1600P/EVIR-CS1600P-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 52,
+    "productId": 42,
+    "imageUrl": "file:///android_asset/iron/5MB/evvoli-Iron-EVIR-5MB-0209e0.png",
+    "description": "Front view"
+  },
+  {
+    "id": 53,
+    "productId": 42,
+    "imageUrl": "file:///android_asset/iron/5MB/evvoli-Iron-EVIR-5MB-0409e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 54,
+    "productId": 44,
+    "imageUrl": "file:///android_asset/iron/H2400W/evvoli-Iron-EVIR-H2400B-0209e0.png",
+    "description": "Bottom view"
+  },
+  {
+    "id": 55,
+    "productId": 45,
+    "imageUrl": "file:///android_asset/iron/H2400B/evvoli-Iron-EVIR-H2400B-0209e0.png",
+    "description": "Bottom view"
+  },
+  {
+    "id": 56,
+    "productId": 45,
+    "imageUrl": "file:///android_asset/iron/H2400B/evvoli-Iron-EVIR-H2400B-0309e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 57,
+    "productId": 46,
+    "imageUrl": "file:///android_asset/iron/HS1750G/evvoli-Hand-Steamer-EVIR-HS1750G-209e0.png",
+    "description": "Back view"
+  },
+  {
+    "id": 58,
+    "productId": 46,
+    "imageUrl": "file:///android_asset/iron/HS1750G/evvoli-Hand-Steamer-EVIR-HS1750G-309e0.png",
+    "description": "Front view"
+  },
+  {
+    "id": 59,
+    "productId": 46,
+    "imageUrl": "file:///android_asset/iron/HS1750G/evvoli-Hand-Steamer-EVIR-HS1750G-409e0.png",
+    "description": "Controller"
+  },
+  {
+    "id": 60,
+    "productId": 47,
+    "imageUrl": "file:///android_asset/iron/GS1750G/evvoli-Garment-Steamer-EVIR-GS1750G-209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 61,
+    "productId": 47,
+    "imageUrl": "file:///android_asset/iron/GS1750G/evvoli-Garment-Steamer-EVIR-GS1750G-309e0.png",
+    "description": "Controller"
+  },
+  {
+    "id": 62,
+    "productId": 47,
+    "imageUrl": "file:///android_asset/iron/GS1750G/evvoli-Garment-Steamer-EVIR-GS1750G-409e0.png",
+    "description": "Container"
+  },
+  {
+    "id": 63,
+    "productId": 48,
+    "imageUrl": "file:///android_asset/grooming/HS54W/evvoli-Grooming-Appliance-EVHC-HS54W-0209e0.png",
+    "description": "Top view"
   }
 ]
 

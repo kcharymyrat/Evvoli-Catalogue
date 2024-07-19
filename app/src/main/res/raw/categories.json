@@ -61,8 +61,14 @@
   },
   {
     "id": 11,
+    "name": "Ütük",
+    "nameRu": "Утюг",
+    "imageUrl": "file:///android_asset/iron/iron.png"
+  },
+  {
+    "id": 12,
     "name": "Beýleki enjamlar",
     "nameRu": "Другие",
-    "imageUrl": "file:///android_asset/others/iron.png"
+    "imageUrl": "file:///android_asset/others/evvoli-Scale-EVSC-5HB-01-875x565.webp"
   }
 ]
