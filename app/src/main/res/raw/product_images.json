@@ -382,6 +382,90 @@
     "productId": 48,
     "imageUrl": "file:///android_asset/grooming/HS54W/evvoli-Grooming-Appliance-EVHC-HS54W-0209e0.png",
     "description": "Top view"
+  },
+  {
+    "id": 64,
+    "productId": 52,
+    "imageUrl": "file:///android_asset/grooming/AS1200B/evvoli-Grooming-Appliance-EVHC-AS1200B-0209e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 65,
+    "productId": 53,
+    "imageUrl": "file:///android_asset/grooming/HB1200R/evvoli-Grooming-Appliance-EVHC-HB-66B09e0.png",
+    "description": "Top view"
+  },
+  {
+    "id": 66,
+    "productId": 54,
+    "imageUrl": "file:///android_asset/audio/MB5A/evvoli-bluetooth-speaker-EVAUD-MB5A-Black-0209e0.png",
+    "description": "Black back view"
+  },
+  {
+    "id": 67,
+    "productId": 54,
+    "imageUrl": "file:///android_asset/audio/MB5A/evvoli-bluetooth-speaker-EVAUD-MB5A-Red-0409e0.png",
+    "description": "Red"
+  },
+  {
+    "id": 68,
+    "productId": 54,
+    "imageUrl": "file:///android_asset/audio/MB5A/evvoli-bluetooth-speaker-EVAUD-MB5A-Gray-0309e0.png",
+    "description": "Gray"
+  },
+  {
+    "id": 69,
+    "productId": 55,
+    "imageUrl": "file:///android_asset/audio/MB10A/evvoli-bluetooth-speaker-EVAUD-MB10A-Gray-0209e0.png",
+    "description": "Gray"
+  },
+  {
+    "id": 70,
+    "productId": 55,
+    "imageUrl": "file:///android_asset/audio/MB10A/evvoli-bluetooth-speaker-EVAUD-MB10A-Gray-0309e0.png",
+    "description": "Gray top view"
+  },
+  {
+    "id": 71,
+    "productId": 55,
+    "imageUrl": "file:///android_asset/audio/MB10A/evvoli-bluetooth-speaker-EVAUD-MB10A-Red-0409e0.png",
+    "description": "Gray"
+  },
+  {
+    "id": 72,
+    "productId": 56,
+    "imageUrl": "file:///android_asset/audio/SB120B/evvoli-soundbar-EVAUD-SB120B-0209e0.png",
+    "description": "Side view"
+  },
+  {
+    "id": 73,
+    "productId": 56,
+    "imageUrl": "file:///android_asset/audio/SB120B/evvoli-soundbar-EVAUD-SB120B-0309e0.png",
+    "description": "Back side view"
+  },
+  {
+    "id": 74,
+    "productId": 56,
+    "imageUrl": "file:///android_asset/audio/SB120B/evvoli-soundbar-EVAUD-SB120B-0409e0.png",
+    "description": "Remote controller"
+  },
+  {
+    "id": 75,
+    "productId": 57,
+    "imageUrl": "file:///android_asset/audio/SB241B/evvoli-shoundbar-EVAUD-SB241B-0209e0.png",
+    "description": "Speaker front view"
+  },
+  {
+    "id": 77,
+    "productId": 57,
+    "imageUrl": "file:///android_asset/audio/SB241B/evvoli-shoundbar-EVAUD-SB241B-0309e0.png",
+    "description": "Speaker side view"
+  },
+  {
+    "id": 78,
+    "productId": 57,
+    "imageUrl": "file:///android_asset/audio/SB241B/evvoli-shoundbar-EVAUD-SB241B-0409e0.png",
+    "description": ""
   }
 ]
 

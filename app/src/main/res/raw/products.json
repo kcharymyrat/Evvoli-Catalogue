@@ -495,12 +495,102 @@
   },
   {
     "id": 48,
-    "categoryId": 10,
+    "categoryId": 9,
     "code": "EVHC-HS54W",
     "title": "Saç ütük",
     "titleRu": "Выпрямитель",
     "description": "Elektrik üpjünçiligi: 220-240V; Kuwwat: 50-54W ; Reňk: Ak we gülgüne altyn;  Agramy: 403g; PTC gyzdyryjy;  Ion aýratynlygy;  Uzyn keramiki örtükli ýyladyş plitalary (25 x 110mm); Ak LCD ekrany;  Awtomatiki temperatura gulpy funksiýasy;  10 ° C dereje aralykly  130 ° C-den 230 ° C gyzgynlyk sazlama düwme;   Temperaturanyň gulp funksiýasy; Gulply tutawaç;  60 minutdan soň awtomatik öçme funksiýasy;",
     "descriptionRu": "Электропитание: В 220-240  Номинальная мощность: Вт 50-54 Цвет: белое и розовое золото Вес нетто: г 403 PTC-нагреватель Ионная особенность  Сверхдлинные  нагревательные пластины с керамическим покрытием (25 x 110 мм) ЖК-дисплей белого цвета  Функция автоматической блокировки температуры От 130°C до 230°C с шагом 10°C с кнопками +/- для выбора  ;  Функция блокировки температуры  Запираемая ручка  Автоотключение через 60 минут",
     "imageUrl": "file:///android_asset/grooming/HS54W/evvoli-Grooming-Appliance-EVHC-HS54W-0109e0.png"
+  },
+  {
+    "id": 49,
+    "categoryId": 9,
+    "code": "EVHC-HD1500B",
+    "title": "Fen",
+    "titleRu": "Скалдной фен",
+    "description": "Elektrik üpjünçiligi:  120 / 220-240V; Kuwwat: 1000W / 1260-1500W;  Reňk: Gara; Agramy:405g ýylylygy we sowadyşy sazlamak üçin  4 tizlikli wyklýuçatel; DC hereketlendiriji; Eplenýän tutawaç.",
+    "descriptionRu": "Электропитание: В 120/220-240  Номинальная  мощность: 1000 Вт/1260-1500 Вт   Черный цвет  ;    Вес нетто: г 405 ;   4 скорости переключатель для настройки тепла и охлаждения   Стандартный концентратор Складная ручка   Двигатель постоянного тока",
+    "imageUrl": "file:///android_asset/grooming/HD1500B/evvoli-Grooming-Appliance-EVHC-HD1500B09e0.png"
+  },
+  {
+    "id": 50,
+    "categoryId": 9,
+    "code": "EVHC-HD2300R",
+    "title": "Fen",
+    "titleRu": "Фен для волос",
+    "description": "Elektrik üpjünçiligi: 220-240V;\nKuwwat: 1930-2300W;\nAgramy: 553g;\n2 roker wyklýuçatel; 2 tizlik we 3 ýylylyk dereje sazlaýjy düwmeler;\nÝokary derejeli gurşaw üçin IONIC QUATTRO tehnologiýasy.",
+    "descriptionRu": "Электропитание: 220-240В\nНоминальная мощность: 1930-2300 Вт\nВес нетто: 553 г\n2 кулисных переключателя обеспечивают 2 скорости и 3 режима нагрева.\nТехнология IONIC QUATTRO для максимального покрытия",
+    "imageUrl": "file:///android_asset/grooming/HD2300R/evvoli-Grooming-Appliance-EVHC-HD2300R09e0.png"
+  },
+  {
+    "id": 51,
+    "categoryId": 9,
+    "code": "EVHC-HD2200W",
+    "title": "Fen",
+    "titleRu": "Фен для волос",
+    "description": "Elektrik üpjünçiligi: 220-240V DC motor;\nKuwwat: 1850-2200W;\nAgramy: 553g;\nIon funksiýasy;\n2 tizlik we 3 temperatura sazlamasy.",
+    "descriptionRu": "Электропитание: 220-240В Двигатель постоянного тока\nНоминальная мощность: 1850-2200 Вт\nВес нетто: 553 г\nИонная функция \n2 скорости и 3 температурных режима",
+    "imageUrl": "file:///android_asset/grooming/HD2200W/evvoli-Grooming-Appliance-EVHC-HD2200Weeb7.png"
+  },
+  {
+    "id": 52,
+    "categoryId": 9,
+    "code": "EVHC-AS1200B",
+    "title": "Fen toplum",
+    "titleRu": "Фен для волос (комплект)",
+    "description": "Elektrik üpjünçiligi: V 220-240;  Kuwwat: W 1000-1200;  Reňk:Gara; Agramy: g 421;  2  tizlik wyklýuçatel; 3 ýyladyş tertibi; Ion funksiýasy Oval ergonomiki dizaýny; Arassalamak üçin ýeňilligi;  Temperatura gulpy funksiýasy",
+    "descriptionRu": "Электропитание: В 220-240  Номинальная мощность: Вт 1000-1200  Черный цвет  Вес нетто: г 421  2 скорости переключателя  3 режима нагрева. Ионная функция  Торцевая крышка шарнирного типа для легкой очистки  Овальный эргономичный дизайн Кнопка освобождения сменных насадок  Функция блокировки температуры",
+    "imageUrl": "file:///android_asset/grooming/AS1200B/evvoli-Grooming-Appliance-EVHC-AS1200B-0109e0.png"
+  },
+  {
+    "id": 53,
+    "categoryId": 9,
+    "code": "EVHC-HB1200R",
+    "title": "Fen darak",
+    "titleRu": "Фен расческа для сушки и придания объема",
+    "description": "Elektrik üpjünçiligi: 220-240;  Kuwwat: W 1000-1200;  Reňk: gara we gülgüne altyn;  Agramy : 556 g;    Sazlamalar üçin  wyklýuçateli  okary / pes / sowuk / öçürilen;  Quattro Ionic funksiýasy;  Ionic On / Off wyklýuçatel;  köp funksiýaly : saç guradyjy, saç gönleýji we darak; Owal ergonomiki dizaýn; DC motor;",
+    "descriptionRu": "Электропитание: В 220-240  Номинальная мощность: Вт 1000-1200  Цвет: черный и розовое золото  Вес нетто: г 556  Поворотный переключатель для настроек  Высокий/Низкий/Холодный/Выкл. Quattro ионная функция Переключатель Ionic On/Off и световой индикатор  Многофункциональное устройство 3-в-1: идеальное сочетание фена, выпрямитель и щетка Овальный эргономичный дизайн   Двигатель постоянного тока",
+    "imageUrl": "file:///android_asset/grooming/HB1200R/evvoli-Grooming-Appliance-EVHC-HB1200R09e0.png"
+  },
+  {
+    "id": 54,
+    "categoryId": 10,
+    "code": "EVAUD-MB5A",
+    "title": "Bluetooth kolonka",
+    "titleRu": "Bluetooth динамик",
+    "description": "Mata reňki: Gara, çal, gyzyl; Suw geçirmeýän; Bluetooth 5.0 + EDR batareýasy 3,7V 1800mA; Bluetooth geçiriş aralygy: 10m ;Kuwwat: 10W ; Ýygylygy: 90Hz-20KHz Sesi:> = 80dB; Agramy: 0.374 kg",
+    "descriptionRu": "Цвет ткани: черный, серый, красный  Водонепроницаемый Bluetooth-динамик Bluetooth 5.0 + ЭДР Аккумуляторная батарея 3,7 В 1800 мА  Диапазон передачи Bluetooth: 10 м  Номинальная мощность: 5 Вт  Частота: 90 Гц-20 кГц Сигнал/шум: >=80 дБ Вес нетто: 0,374 кг",
+    "imageUrl": "file:///android_asset/audio/MB5A/evvoli-bluetooth-speaker-EVAUD-MB5A-Black-0109e0.png"
+  },
+  {
+    "id": 55,
+    "categoryId": 10,
+    "code": "EVAUD-MB10A",
+    "title": "Bluetooth kolonka",
+    "titleRu": "Bluetooth динамик",
+    "description": "Mata reňki: Gara, çal, gyzyl; Suw geçirmeýän; Bluetooth 5.0 + EDR batareýasy 7.4V 2200mA; Bluetooth geçiriş aralygy: 10m ;Kuwwat: 10W ; Ýygylygy: 50Hz-18KHz Sesi:> = 70dB; Agramy: 0.505 kg",
+    "descriptionRu": "Цвет ткани: черный, серый, красный Водонепроницаемый Bluetooth-динамик Bluetooth 5.0 + ЭДР  Аккумуляторная батарея 7,4 В 2200 мА  Диапазон передачи Bluetooth: 10 м  Номинальная мощность: 10 Вт  Частота: 50 Гц-18 кГц шум: >=70 дБ Диапазон  Вес нетто: 0,505 кг",
+    "imageUrl": "file:///android_asset/audio/MB10A/evvoli-bluetooth-speaker-EVAUD-MB10A-Black-0109e0.png"
+  },
+  {
+    "id": 56,
+    "categoryId": 10,
+    "code": "EVAUD-SB120B",
+    "title": "Ses panel",
+    "titleRu": "Звуковая панель",
+    "description": "Material: mat gara plastmassa korpus, metaldan ýasalan; Funksiýa: 2.0 kanal stereo, AUX, Bluetooth, USB, LED displeý, EQ, DSP, HDMI (ARC), optiki, uzakdan dolandyryş funksiýa; Dinamikler: 4 x HiFi 2.25 ″ / 15 W; + 2x10 W + 2  kanallary Bluetooth : 5.0 + EDR 15 metre çenli; Elektrik üpjünçiligi: AC100-240V  50/60 Hz; Çykyş güýji: 60 Watt; Ýokary güýji: 120 Watt;",
+    "descriptionRu": "Материал: матовый черный пластиковый корпус, металлическая сетка Функция: 2.0-канальное стерео, AUX, Bluetooth, USB, светодиодный дисплей, эквалайзер, DSP, HDMI (ARC), оптический, дистанционное управление Драйверы динамиков: 4 динамика HiFi 2,25″/15 Вт; + 2x10 Вт + 2 воздуховода  Версия Bluetooth: 5.0 + EDR  до 15 м  Электропитание: AC100-240V  Частота: 50/60 Гц  Выходная мощность: Вт 60  Пиковая мощность: Вт 120",
+    "imageUrl": "file:///android_asset/audio/SB120B/evvoli-soundbar-EVAUD-SB120B-0109e0.png"
+  },
+  {
+    "id": 57,
+    "categoryId": 10,
+    "code": "EVAUD-SB241B",
+    "title": "Ses panel",
+    "titleRu": "Звуковая панель",
+    "description": "Material: mat gara plastmassa, korpus metaldan ýasalan;  Funksiýa: 2.1 kanal stereo, AUX, Bluetooth, USB; LED displeý; EQ, DSP, HDMI (ARC), optiki uzakdan dolandyryş funksiýasy; Dinamikleri: 4 x HiFi 2.15 ″ / 15 W + 1 simli subwoofer 6.5 ″ / 60 W Bluetooth: 5.0 +  EDR 15 metre çenli;  Elektrik üpjünçiligi: AC100-240V ýygylygy: 50/60 Hz; Çykyş güýji: 120 W Ýokary güýji: 240 W",
+    "descriptionRu": "Материал: матовый черный пластиковый корпус, металлическая сетка Функция: 2.1-канальное стерео, AUX, Bluetooth, USB, светодиодный дисплей,  эквалайзер, DSP, HDMI (ARC), оптический, дистанционное управление Драйверы динамиков: 4 динамика HiFi 2,15″/15 Вт + 1 проводной сабвуфер 6,5″/60 Вт  Версия Bluetooth: 5.0 + EDR  до 15 м  Электропитание: AC100-240V  Частота: 50/60 Гц   Выходная мощность: 120 Вт  Пиковая мощность: Вт 240",
+    "imageUrl": "file:///android_asset/audio/SB241B/evvoli-shoundbar-EVAUD-SB241B-0109e0.png"
   }
 ]
