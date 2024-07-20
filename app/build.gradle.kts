@@ -68,6 +68,11 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
 
+    // Moshi - JSON Parsing
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.adapters)
+
     // AppCompat
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.appcompat.resources)
@@ -94,6 +99,9 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose)
+
+    // Paging
+    implementation(libs.androidx.paging.runtime)
 
     // system UI Controller
     implementation(libs.accompanist.systemuicontroller)

@@ -15,7 +15,12 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.evvolicatalogue.ui.EvvoliCatalogueScreensContainer
 import com.example.evvolicatalogue.ui.theme.EvvoliCatalogueTheme
+import com.example.evvolicatalogue.utils.Screen
+import com.example.evvolicatalogue.viewmodel.CategoryViewModel
+import com.example.evvolicatalogue.viewmodel.ProductImageViewModel
+import com.example.evvolicatalogue.viewmodel.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,18 +31,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             EvvoliCatalogueTheme {
 
-                val mainViewModel = hiltViewModel<MainViewModel>()
+                val categoryViewModel = hiltViewModel<CategoryViewModel>()
+                val productViewModel = hiltViewModel<ProductViewModel>()
+                val productImageViewModel = hiltViewModel<ProductImageViewModel>()
                 val navController: NavHostController = rememberNavController()
 
-                val startDestination =
+                val startDestination = Screen.CategoriesScreen.route
 
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GreetingText(
-                        message = "Android",
-                        from = "Chary",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                EvvoliCatalogueScreensContainer(
+                    categoryViewModel = categoryViewModel,
+                    productViewModel = productViewModel,
+                    productImageViewModel = productImageViewModel,
+                    navController = navController,
+                    startDestination = startDestination
+                )
+
             }
         }
     }

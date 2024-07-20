@@ -1,6 +1,8 @@
 package com.example.evvolicatalogue.data.local.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -11,6 +13,9 @@ import com.example.evvolicatalogue.data.local.entities.CategoryWithProducts
 
 @Dao
 interface CategoryDao {
+    @Query("SELECT * FROM categories")
+    fun getCategories(): PagingSource<Int, CategoryEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCategoryList(categoryList: List<CategoryEntity>)
 
@@ -20,8 +25,8 @@ interface CategoryDao {
     @Update
     suspend fun updateCategoryItem(categoryEntity: CategoryEntity)
 
-    @Query("SELECT * FROM categories")
-    suspend fun getCategories(): List<CategoryEntity>
+    @Delete
+    suspend fun deleteCategoryItem(categoryEntity: CategoryEntity)
 
     @Query("SELECT * FROM categories WHERE id = :id")
     suspend fun getCategoryById(id: Int): CategoryEntity?
