@@ -31,26 +31,42 @@ interface CategoryDao {
     @Query("SELECT * FROM categories WHERE id = :id")
     suspend fun getCategoryById(id: Int): CategoryEntity?
 
-    @Query("DELETE FROM categories")
-    suspend fun deleteAllCategories()
-
     @Query("DELETE FROM categories WHERE id = :id")
     suspend fun deleteCategoryById(id: Int)
 
     @Query("SELECT * FROM categories ORDER BY :orderBy ASC")
-    suspend fun getOrderedCategories(orderBy: String): List<CategoryEntity>
+    fun getOrderedCategories(orderBy: String): PagingSource<Int, CategoryEntity>
 
     @Query("SELECT * FROM categories ORDER BY :orderBy DESC")
-    suspend fun getOrderedCategoriesDesc(orderBy: String): List<CategoryEntity>
+    fun getOrderedCategoriesDesc(orderBy: String): PagingSource<Int, CategoryEntity>
 
-    @Query("SELECT * FROM categories WHERE name LIKE :query || '%'")
-    suspend fun searchCategories(query: String): List<CategoryEntity>
+    @Query("""
+        SELECT DISTINCT * FROM categories
+        WHERE name LIKE :query || '%' OR
+              nameRu LIKE :query || '%'
+    """)
+    fun searchCategories(query: String): PagingSource<Int, CategoryEntity>
 
     @Query("SELECT * FROM categories WHERE :columnName LIKE :query || '%'")
-    suspend fun filterCategories(columnName: String, query: String): List<CategoryEntity>
+    fun filterCategories(columnName: String, query: String): PagingSource<Int, CategoryEntity>
+
+
+    @Query("""
+        SELECT * FROM categories 
+        WHERE (:name IS NULL OR name LIKE :name || '%') 
+        AND (:nameRu IS NULL OR nameRu LIKE :nameRu || '%')
+    """)
+    fun filterCategories(
+        name: String?,
+        nameRu: String?
+    ): PagingSource<Int, CategoryEntity>
 
     @Transaction
     @Query("SELECT * FROM categories")
-    suspend fun getCategoriesWithProducts(): List<CategoryWithProducts>
+    fun getCategoriesWithProducts(): PagingSource<Int, CategoryWithProducts>
+
+    @Transaction
+    @Query("SELECT * FROM categories WHERE id = :categoryId")
+    suspend fun getCategoryWithProducts(categoryId: Int): CategoryWithProducts
 }
 

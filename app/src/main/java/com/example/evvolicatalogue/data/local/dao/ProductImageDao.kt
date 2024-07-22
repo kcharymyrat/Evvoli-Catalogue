@@ -12,6 +12,9 @@ import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
 
 @Dao
 interface ProductImageDao {
+    @Query("SELECT * FROM product_image WHERE productId = :productId")
+    fun getProductImagesByProductId(productId: Int): PagingSource<Int, ProductImageEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProductImage(image: ProductImageEntity)
 
@@ -23,12 +26,6 @@ interface ProductImageDao {
 
     @Delete
     suspend fun deleteProductImage(image: ProductImageEntity)
-
-    @Query("SELECT * FROM product_images")
-    suspend fun getProductImages(): PagingSource<Int, ProductImageEntity>
-
-    @Query("SELECT * FROM product_images WHERE productId = :productId")
-    suspend fun getProductImagesByProductId(productId: Int): List<ProductImageEntity>
 
     @Query("SELECT * FROM product_images WHERE id = :id")
     suspend fun getProductImageById(id: Int): ProductImageEntity?
