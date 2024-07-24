@@ -18,9 +18,12 @@ import com.example.evvolicatalogue.data.local.entities.CategoryWithProducts
 import com.example.evvolicatalogue.data.local.entities.ProductEntity
 import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
 import com.example.evvolicatalogue.data.local.entities.ProductWithImages
-import com.example.evvolicatalogue.ui.screens.AddNewProductForm
+import com.example.evvolicatalogue.ui.screens.AboutScreen
+import com.example.evvolicatalogue.ui.screens.CreateProductScreen
 import com.example.evvolicatalogue.ui.screens.CategoriesScreen
 import com.example.evvolicatalogue.ui.screens.CategoryProductsScreen
+import com.example.evvolicatalogue.ui.screens.CreateCategoryScreen
+import com.example.evvolicatalogue.ui.screens.LanguageSelectionScreen
 import com.example.evvolicatalogue.ui.screens.ProductDetailScreen
 import com.example.evvolicatalogue.ui.screens.SearchProductsScreen
 import com.example.evvolicatalogue.utils.Screen
@@ -114,15 +117,28 @@ fun Navigation(
 
 
         composable(
-            route = Screen.NewProductScreen.route
+            route = Screen.CreateProductScreen.route
         ) {
-            AddNewProductForm(
-                navController = navController,
-                orderStatus = orderStatus,
-                createOrder = mainViewModel::createOrder,
-                resetOrderStatus = mainViewModel::resetOrderStatusAndCartState,
-                cartScreenState = cartScreenState,
-                onCreateNewCardScreenState = mainViewModel::createCartScreenState,
+            CreateProductScreen(
+                navHostController = navHostController,
+                productViewModel = productViewModel,
+                categoryViewModel = categoryViewModel,
+                productImageViewModel = productImageViewModel,
+                createNewProduct = { newProduct ->
+                    productViewModel.insertProduct(newProduct)
+                },
+                modifier = Modifier,
+            )
+        }
+
+
+        composable(
+            route = Screen.CreateCategoryScreen.route
+        ) {
+            CreateCategoryScreen(
+                navHostController = navHostController,
+                categoryViewModel = categoryViewModel,
+                modifier = Modifier,
             )
         }
 
@@ -135,7 +151,7 @@ fun Navigation(
         composable(
             route = Screen.SettingsScreen.route
         ) {
-            LanguageSelectionScreen(navController = navController)
+            LanguageSelectionScreen(navHostController = navHostController)
         }
     }
 

@@ -1,9 +1,11 @@
 package com.example.evvolicatalogue.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.data.local.entities.ProductEntity
 import com.example.evvolicatalogue.data.local.entities.ProductWithImages
 import com.example.evvolicatalogue.data.local.repositories.ProductRepository
@@ -22,6 +24,15 @@ class ProductViewModel @Inject constructor(
 
     private val _productWithImages = MutableStateFlow<ProductWithImages?>(null)
     val productWithImages: StateFlow<ProductWithImages?> get() = _productWithImages
+
+    private val _productName = MutableStateFlow("")
+    val productName: StateFlow<String> get() = _productName
+
+    private val _selectedCategory = MutableStateFlow<CategoryEntity?>(null)
+    val selectedCategory: StateFlow<CategoryEntity?> get() = _selectedCategory
+
+    private val _imageUri = MutableStateFlow<Uri?>(null)
+    val imageUri: StateFlow<Uri?> get() = _imageUri
 
     init {
         fetchProducts()
@@ -134,6 +145,18 @@ class ProductViewModel @Inject constructor(
         viewModelScope.launch {
             _productWithImages.value = productRepository.getProductWithImages(id)
         }
+    }
+
+    fun onProductNameChange(newName: String) {
+        _productName.value = newName
+    }
+
+    fun onCategorySelected(category: CategoryEntity) {
+        _selectedCategory.value = category
+    }
+
+    fun onImageUriSelected(uri: Uri) {
+        _imageUri.value = uri
     }
 }
 

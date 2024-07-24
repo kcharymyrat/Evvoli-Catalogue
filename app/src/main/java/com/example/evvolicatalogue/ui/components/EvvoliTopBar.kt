@@ -68,9 +68,9 @@ fun EvvoliTopBar(
                 stringResource(R.string.products_search)
             } else if (currentRoute?.split("/")?.first() == Screen.ProductDetailScreen.route) {
                 stringResource(R.string.product_details)
-            } else if (currentRoute == Screen.NewCategoryScreen.route) {
+            } else if (currentRoute == Screen.CreateCategoryScreen.route) {
                 stringResource(R.string.new_category)
-            } else if (currentRoute == Screen.NewProductScreen.route) {
+            } else if (currentRoute == Screen.CreateProductScreen.route) {
                 stringResource(R.string.new_product)
             } else if (currentRoute == Screen.NewProductImageScreen.route) {
                 stringResource(R.string.new_product_image)

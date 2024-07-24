@@ -17,7 +17,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class ProductImageEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val productId: Int,
     val imageUrl: String,
     val thumbnailUrl: String,

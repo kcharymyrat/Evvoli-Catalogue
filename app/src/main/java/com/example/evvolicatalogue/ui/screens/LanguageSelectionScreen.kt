@@ -25,15 +25,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavHostController
-import com.example.evvolitm.R
-import com.example.evvolitm.util.Screen
+import com.example.evvolicatalogue.R
+import com.example.evvolicatalogue.utils.Screen
 
 @Composable
-fun LanguageSelectionScreen(navController: NavHostController) {
+fun LanguageSelectionScreen(navHostController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -52,10 +51,10 @@ fun LanguageSelectionScreen(navController: NavHostController) {
             Icons.Default.Language
         ){
             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"))
-            if (navController.previousBackStackEntry != null) {
-                navController.popBackStack() // Navigate back if there's a previous entry
+            if (navHostController.previousBackStackEntry != null) {
+                navHostController.popBackStack() // Navigate back if there's a previous entry
             } else {
-                navController.navigate(Screen.EvvoliAndVelutoScreen.route) { // Navigate to CategoriesScreen if it's the first screen
+                navHostController.navigate(Screen.CategoriesScreen.route) { // Navigate to CategoriesScreen if it's the first screen
                     popUpTo(Screen.SettingsScreen.route) { inclusive = true } // Removes LanguageSelectionScreen from the stack
                 }
             }
@@ -66,10 +65,10 @@ fun LanguageSelectionScreen(navController: NavHostController) {
             Icons.Default.Language
         ) {
             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("ru"))
-            if (navController.previousBackStackEntry != null) {
-                navController.popBackStack()
+            if (navHostController.previousBackStackEntry != null) {
+                navHostController.popBackStack()
             } else {
-                navController.navigate(Screen.EvvoliAndVelutoScreen.route) {
+                navHostController.navigate(Screen.CategoriesScreen.route) {
                     popUpTo(Screen.SettingsScreen.route) { inclusive = true }
                 }
             }
@@ -80,10 +79,10 @@ fun LanguageSelectionScreen(navController: NavHostController) {
             Icons.Default.Language
         ) {
             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("tk"))
-            if (navController.previousBackStackEntry != null) {
-                navController.popBackStack()
+            if (navHostController.previousBackStackEntry != null) {
+                navHostController.popBackStack()
             } else {
-                navController.navigate(Screen.EvvoliAndVelutoScreen.route) {
+                navHostController.navigate(Screen.CategoriesScreen.route) {
                     popUpTo(Screen.SettingsScreen.route) { inclusive = true }
                 }
             }

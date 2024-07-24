@@ -1,5 +1,6 @@
 package com.example.evvolicatalogue.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -22,6 +23,22 @@ class CategoryViewModel @Inject constructor(
 
     private val _categoriesWithProducts = MutableStateFlow<PagingData<CategoryWithProducts>>(PagingData.empty())
     val categoriesWithProducts: StateFlow<PagingData<CategoryWithProducts>> get() = _categoriesWithProducts
+
+    private val _categoryName = MutableStateFlow("")
+    val categoryName: StateFlow<String> get() = _categoryName
+
+    private val _categoryNameRu = MutableStateFlow("")
+    val categoryNameRu: StateFlow<String> get() = _categoryNameRu
+
+    private val _categoryDescription = MutableStateFlow("")
+    val categoryDescription: StateFlow<String> get() = _categoryDescription
+
+    private val _categoryDescriptionRu = MutableStateFlow("")
+    val categoryDescriptionRu: StateFlow<String> get() = _categoryDescriptionRu
+
+
+    private val _categoryImageUri = MutableStateFlow<Uri?>(null)
+    val categoryImageUri: StateFlow<Uri?> get() = _categoryImageUri
 
     init {
         fetchCategories()
@@ -115,6 +132,26 @@ class CategoryViewModel @Inject constructor(
                     _categoriesWithProducts.value = it
                 }
         }
+    }
+
+    fun onCategoryNameChange(newName: String) {
+        _categoryName.value = newName
+    }
+
+    fun onCategoryNameRuChange(newNameRu: String) {
+        _categoryNameRu.value = newNameRu
+    }
+
+    fun onCategoryDescriptionChange(newDescription: String) {
+        _categoryDescription.value = newDescription
+    }
+
+    fun onCategoryDescriptionRuChange(newDescriptionRu: String) {
+        _categoryDescriptionRu.value = newDescriptionRu
+    }
+
+    fun onCategoryImageUriSelected(uri: Uri) {
+        _categoryImageUri.value = uri
     }
 }
 
