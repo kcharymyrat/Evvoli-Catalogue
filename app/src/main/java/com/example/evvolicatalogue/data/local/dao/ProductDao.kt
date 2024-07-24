@@ -17,6 +17,9 @@ interface ProductDao {
     @Query("SELECT * FROM products")
     fun getProducts(): PagingSource<Int, ProductEntity>
 
+    @Query("SELECT * FROM products WHERE categoryId = :categoryId")
+    fun getProductsByCategoryId(categoryId: Int): PagingSource<Int, ProductEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProduct(product: ProductEntity)
 
@@ -41,7 +44,15 @@ interface ProductDao {
     @Query("SELECT * FROM products ORDER BY :orderBy DESC")
     fun getOrderedProductsDesc(orderBy: String): PagingSource<Int, ProductEntity>
 
-    @Query("SELECT * FROM products WHERE title LIKE :query || '%'")
+    @Query("""
+        SELECT DISTINCT * FROM products
+        WHERE title LIKE :query || '%' OR
+              titleRu LIKE :query || '%' OR
+              code LIKE :query || '%' OR
+              model LIKE :query || '%' OR
+              type LIKE :query || '%' OR
+              typeRu LIKE :query || '%'
+    """)
     fun searchProducts(query: String): PagingSource<Int, ProductEntity>
 
     @Query("SELECT * FROM products WHERE :columnName LIKE :query || '%'")

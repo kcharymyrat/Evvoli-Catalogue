@@ -40,6 +40,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
@@ -60,70 +61,61 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.media3.common.MediaItem
-import androidx.media3.common.Player
-import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.ui.PlayerView
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.evvolitm.R
-import com.example.evvolitm.data.remote.EvvoliTmApi
-import com.example.evvolitm.domain.model.CartItemProduct
-import com.example.evvolitm.domain.model.ProductDetail
-import com.example.evvolitm.presentation.ProductImageScreenState
-import com.example.evvolitm.ui.theme.Shapes
-import com.example.evvolitm.util.Screen
+import com.example.evvolicatalogue.R
+import com.example.evvolicatalogue.data.local.entities.ProductWithImages
+import com.example.evvolicatalogue.utils.Screen
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.StateFlow
 
-fun getProductDetailTitle(productDetail: ProductDetail): String {
+fun getProductDetailTitle(productDetail: ProductWithImages): String {
     return when (AppCompatDelegate.getApplicationLocales()[0]?.language) {
-        "tk" -> productDetail.title
-        "ru" -> productDetail.titleRu
-        else -> productDetail.titleEn
+        "tk" -> productDetail.product.title
+        "ru" -> productDetail.product.titleRu
+        else -> productDetail.product.title
     }
 }
 
-fun getProductDetailDescription(productDetail: ProductDetail): String {
+fun getProductDetailDescription(productDetail: ProductWithImages): String {
     return when (AppCompatDelegate.getApplicationLocales()[0]?.language) {
-        "tk" -> productDetail.description
-        "ru" -> productDetail.descriptionRu
-        else -> productDetail.descriptionEn
-    } ?: productDetail.description.toString()
+        "tk" -> productDetail.product.description
+        "ru" -> productDetail.product.descriptionRu
+        else -> productDetail.product.description
+    } ?: productDetail.product.description.toString()
 }
 
-fun getProductDetailType(productDetail: ProductDetail): String {
+fun getProductDetailType(productDetail: ProductWithImages): String {
     return when (AppCompatDelegate.getApplicationLocales()[0]?.language) {
-        "tk" -> productDetail.type
-        "ru" -> productDetail.typeEn
-        else -> productDetail.typeRu
-    } ?: productDetail.type.toString()
+        "tk" -> productDetail.product.type
+        "ru" -> productDetail.product.typeRu
+        else -> productDetail.product.type
+    } ?: productDetail.product.type.toString()
 }
 
 
 @Composable
 fun ProductDetailScreen(
-    navController: NavHostController,
-    productDetailScreenState: ProductImageScreenState,
-    cartScreenState: CartScreenState,
-    onUpdateCartAndItsState: (CartItemProduct, Boolean) -> Unit,
+    navHostController: NavHostController,
+    product: StateFlow<ProductWithImages?>,
     modifier: Modifier = Modifier
 ) {
+
     var showRedirectButton by remember {
         mutableStateOf(false)
     }
 
-    val productDetail: ProductDetail? = productDetailScreenState.productDetail
+    val productDetail: ProductWithImages? = product.collectAsState().value
 
     // Get screen width
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
 
     // Determine the total number of items
-    var totalItems = productDetailScreenState.productImageList.size
-    if (productDetail?.videoUrl != null) totalItems++ // +1 for video item
-    if (productDetail?.imageUrl != null) totalItems++
+    var totalItems = productDetail?.images?.size ?: 0
+    if (productDetail?.product?.imageUrl != null) totalItems++
 
     // State to track the current visible item index
     val listState = rememberLazyListState()
@@ -161,7 +153,7 @@ fun ProductDetailScreen(
                         text = "Seem that there is an error with the this product!",
                         modifier = Modifier.padding(16.dp)
                     )
-                    Button(onClick = { navController.navigate(Screen.CategoriesScreen.route)}) {
+                    Button(onClick = { navHostController.navigate(Screen.CategoriesScreen.route)}) {
                         Text("Home Screen")
                     }
                 }
@@ -191,38 +183,27 @@ fun ProductDetailScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
 
+
                         item {
-                            if (productDetail.videoUrl != null) {
-                                Column(
-                                    verticalArrangement = Arrangement.Center,
-                                    horizontalAlignment = Alignment.CenterHorizontally,
+                            if (productDetail.product.imageUrl.isNotBlank()) {
+                                ProductDetailImage(
+                                    productDetail = productDetail,
+                                    imageUrl = productDetail.product.imageUrl,
                                     modifier = Modifier
                                         .width(screenWidth) // Full screen width
                                         .height(300.dp)
-                                ) {
-                                    VideoPlayerComposable(videoUrl = productDetail.videoUrl)
-                                }
+                                )
                             }
                         }
 
-                        item {
-                            ProductDetailImage(
-                                productDetail = productDetail,
-                                imageUrl = productDetail.imageUrl,
-                                modifier = Modifier
-                                    .width(screenWidth) // Full screen width
-                                    .height(300.dp)
-                            )
-                        }
-
-                        items(items = productDetailScreenState.productImageList) { image ->
+                        items(items = productDetail.images) { image ->
                             // Replace this with your custom composable item
                             val imageUrl = image.imageUrl
                             ProductDetailImage(
                                 productDetail = productDetail,
                                 imageUrl = imageUrl,
                                 modifier = Modifier
-                                    .width(screenWidth) // Full screen width
+                                    .width(screenWidth)
                                     .height(300.dp)
                             )
                         }
@@ -240,8 +221,6 @@ fun ProductDetailScreen(
                 ) {
                     ProductDetailInformation(
                         productDetail = productDetail,
-                        cartScreenState = cartScreenState,
-                        onUpdateCartAndItsState = onUpdateCartAndItsState,
                         modifier = Modifier
                             .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
                     )
@@ -254,13 +233,13 @@ fun ProductDetailScreen(
 
 @Composable
 fun ProductDetailImage(
-    productDetail: ProductDetail,
+    productDetail: ProductWithImages,
     imageUrl: String,
     modifier: Modifier = Modifier
 ) {
 
     val imageModel = ImageRequest.Builder(context = LocalContext.current)
-        .data(EvvoliTmApi.BASE_URL + imageUrl)
+        .data(imageUrl)
         .crossfade(true)
         .build()
 
@@ -290,9 +269,7 @@ fun ProductDetailImage(
 
 @Composable
 fun ProductDetailInformation(
-    productDetail: ProductDetail,
-    cartScreenState: CartScreenState,
-    onUpdateCartAndItsState: (CartItemProduct, Boolean) -> Unit,
+    productDetail: ProductWithImages,
     modifier: Modifier
 ) {
     Column(
@@ -307,7 +284,7 @@ fun ProductDetailInformation(
                 text = getProductDetailTitle(productDetail),
                 style = MaterialTheme.typography.titleLarge,
             )
-            if (productDetail.type != null) {
+            if (productDetail.product.type != null) {
                 Text(
                     text = getProductDetailType(productDetail),
                     style = MaterialTheme.typography.titleLarge,
@@ -316,42 +293,8 @@ fun ProductDetailInformation(
             }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            if (productDetail.salePrice < productDetail.price) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        text = productDetail.salePrice.toString() + " m.",
-                        style = MaterialTheme.typography.titleLarge,
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = productDetail.price.toString() + " m.",
-                        color = Color.Gray,
-                        style = MaterialTheme.typography.labelMedium,
-                        textDecoration = TextDecoration.LineThrough,
-                        modifier = Modifier.align(alignment = Alignment.CenterVertically)
-                    )
-                }
-            } else {
-                Text(
-                    text = productDetail.price.toString() + " m.",
-                    style = MaterialTheme.typography.titleLarge,
-                )
-            }
-            ProductDetailToCartButtons(
-                cartScreenState = cartScreenState,
-                onUpdateCartAndItsState = onUpdateCartAndItsState,
-                productDetail = productDetail
-            )
-        }
         Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text = getProductDetailDescription(productDetail),
             color = Color.Gray,
@@ -361,249 +304,6 @@ fun ProductDetailInformation(
 
     }
 }
-
-@Composable
-fun VideoPlayerComposable(videoUrl: String) {
-    val context = LocalContext.current
-    val isLoading = remember { mutableStateOf(true) }
-
-    // Save and restore the playback position and play state
-    var playbackPosition by rememberSaveable { mutableLongStateOf(0L) }
-    var isPlaying by rememberSaveable { mutableStateOf(true) }
-
-    val exoPlayer = remember {
-        ExoPlayer.Builder(context).build().apply {
-            val mediaItem = MediaItem.fromUri(EvvoliTmApi.BASE_URL + videoUrl)
-            setMediaItem(mediaItem)
-            seekTo(playbackPosition)
-            playWhenReady = isPlaying
-            prepare()
-            addListener(object : Player.Listener {
-                override fun onPlaybackStateChanged(playbackState: Int) {
-                    isLoading.value = playbackState == Player.STATE_BUFFERING || playbackState == Player.STATE_IDLE
-                }
-            })
-        }
-    }
-
-    DisposableEffect(exoPlayer) {
-        onDispose {
-            // Save the current playback position and state before disposing of the player
-            playbackPosition = exoPlayer.currentPosition
-            isPlaying = exoPlayer.isPlaying
-            exoPlayer.release()
-        }
-    }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        AndroidView(
-            factory = { ctx ->
-                PlayerView(ctx).apply {
-                    player = exoPlayer
-                    layoutParams = FrameLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                    )
-                }
-            },
-            modifier = Modifier.fillMaxSize()
-        )
-        if (isLoading.value) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-        }
-    }
-}
-
-
-@Composable
-fun ProductDetailToCartButtons(
-    cartScreenState: CartScreenState,
-    onUpdateCartAndItsState: (CartItemProduct, Boolean) -> Unit,
-    productDetail: ProductDetail,
-    modifier: Modifier = Modifier
-) {
-
-    val productQty = remember { mutableIntStateOf(0) }
-    LaunchedEffect(cartScreenState) {
-        productQty.intValue = cartScreenState.cartItems.find {
-            it.product.id == productDetail.id
-        }?.cartItem?.quantity ?: 0
-    }
-
-    Box(
-        modifier = Modifier
-            .background(
-                color = MaterialTheme.colorScheme.primary,
-                shape = Shapes.medium
-            )
-    ) {
-        Row(
-            modifier = Modifier
-        ) {
-            if (productQty.intValue > 0) {
-                DetailMinusQtyPlus(
-                    cartScreenState = cartScreenState,
-                    onUpdateCartAndItsState = onUpdateCartAndItsState,
-                    productDetail = productDetail,
-                    cartProductQty = productQty.intValue,
-                    modifier = modifier
-                )
-            } else {
-                ProductDetailAddButton(
-                    cartScreenState = cartScreenState,
-                    onUpdateCartAndItsState = onUpdateCartAndItsState,
-                    productDetail = productDetail,
-                    modifier = modifier
-                )
-            }
-        }
-    }
-}
-
-
-@Composable
-fun ProductDetailAddButton(
-    cartScreenState: CartScreenState,
-    onUpdateCartAndItsState: (CartItemProduct, Boolean) -> Unit,
-    productDetail: ProductDetail,
-    modifier: Modifier = Modifier
-) {
-    val newCartItemProduct = CartItemProduct(
-        id = productDetail.id,
-        title = productDetail.title,
-        titleEn = productDetail.titleEn,
-        titleRu = productDetail.titleRu,
-        model = productDetail.model,
-        slug = productDetail.slug,
-        imageUrl = productDetail.imageUrl,
-        price = productDetail.price.toDouble(),
-        salePrice = productDetail.salePrice.toDouble(),
-    )
-
-    IconButton(
-        onClick = {
-            onUpdateCartAndItsState(newCartItemProduct, false)
-        },
-        colors = IconButtonDefaults.iconButtonColors(
-            contentColor = Color.White
-        )
-    ) {
-        Icon(
-            imageVector = Icons.Default.ShoppingCart,
-            contentDescription = stringResource(id = R.string.add_to_shopping_cart)
-        )
-    }
-}
-
-@Composable
-fun DetailMinusQtyPlus(
-    cartScreenState: CartScreenState,
-    onUpdateCartAndItsState: (CartItemProduct, Boolean) -> Unit,
-    productDetail: ProductDetail,
-    cartProductQty: Int,
-    modifier: Modifier = Modifier,
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceAround,
-        modifier = modifier,
-    ) {
-        DetailMinusClickable(
-            cartScreenState = cartScreenState,
-            onUpdateCartAndItsState = onUpdateCartAndItsState,
-            productDetail = productDetail
-        )
-
-        ProductDetailQty(
-            cartScreenState = cartScreenState,
-            productDetail = productDetail,
-            cartProductQty = cartProductQty
-        )
-
-        DetailPlusClickable(
-            cartScreenState = cartScreenState,
-            onUpdateCartAndItsState = onUpdateCartAndItsState,
-            productDetail = productDetail
-        )
-    }
-}
-
-@Composable
-fun ProductDetailQty(
-    cartScreenState: CartScreenState,
-    productDetail: ProductDetail,
-    cartProductQty: Int,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        text = cartProductQty.toString(),
-        modifier = modifier,
-        color = Color.White,
-        style = MaterialTheme.typography.bodyLarge
-    )
-}
-
-@Composable
-fun DetailPlusClickable(
-    cartScreenState: CartScreenState,
-    onUpdateCartAndItsState: (CartItemProduct, Boolean) -> Unit,
-    productDetail: ProductDetail,
-    modifier: Modifier = Modifier
-) {
-    val newCartItemProduct = CartItemProduct(
-        id = productDetail.id,
-        title = productDetail.title,
-        titleEn = productDetail.titleEn,
-        titleRu = productDetail.titleRu,
-        model = productDetail.model,
-        slug = productDetail.slug,
-        imageUrl = productDetail.imageUrl,
-        price = productDetail.price.toDouble(),
-        salePrice = productDetail.salePrice.toDouble(),
-    )
-    IconButton(
-        onClick = {
-            onUpdateCartAndItsState(newCartItemProduct, false)
-        },
-        colors = IconButtonDefaults.iconButtonColors(
-            contentColor = Color.White
-        )
-    ) {
-        Icon(Icons.Default.Add, contentDescription = "Decrease")
-    }
-}
-
-@Composable
-fun DetailMinusClickable(
-    cartScreenState: CartScreenState,
-    onUpdateCartAndItsState: (CartItemProduct, Boolean) -> Unit,
-    productDetail: ProductDetail,
-    modifier: Modifier = Modifier
-) {
-    val newCartItemProduct = CartItemProduct(
-        id = productDetail.id,
-        title = productDetail.title,
-        titleEn = productDetail.titleEn,
-        titleRu = productDetail.titleRu,
-        model = productDetail.model,
-        slug = productDetail.slug,
-        imageUrl = productDetail.imageUrl,
-        price = productDetail.price.toDouble(),
-        salePrice = productDetail.salePrice.toDouble(),
-    )
-
-    IconButton(
-        onClick = {
-            onUpdateCartAndItsState(newCartItemProduct,true)
-        },
-        colors = IconButtonDefaults.iconButtonColors(
-            contentColor = Color.White
-        )
-    ) {
-        Icon(Icons.Default.Remove, contentDescription = "Increase")
-    }
-}
-
 
 @Composable
 fun DotIndicators(totalItems: Int, currentIndex: Int) {

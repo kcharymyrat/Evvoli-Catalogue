@@ -20,8 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.evvolitm.R
-import com.example.evvolitm.util.Screen
+import com.example.evvolicatalogue.R
+import com.example.evvolicatalogue.utils.Screen
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

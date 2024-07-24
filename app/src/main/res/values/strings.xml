@@ -42,9 +42,11 @@
     <string name="products">Products</string>
     <string name="products_search">Products Search</string>
     <string name="product_details">Product Details</string>
-    <string name="cart">Cart</string>
-    <string name="order">Order</string>
-    <string name="success">Success</string>
+
+    <string name="new_category">Add New Category</string>
+    <string name="new_product">Add New Product</string>
+    <string name="new_product_image">Add New Product Image</string>
+
     <string name="evvoli_turkmenistan">Evvoli Turkmenistan</string>
     <string name="settings">Settings</string>
 

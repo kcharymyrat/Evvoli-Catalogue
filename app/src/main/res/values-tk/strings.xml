@@ -40,9 +40,11 @@
     <string name="products">Harytlar</string>
     <string name="products_search">Haryt gözlegi</string>
     <string name="product_details">Haryt maglumatlary</string>
-    <string name="cart">Sebet</string>
-    <string name="order">Заказ</string>
-    <string name="success">Sargyt</string>
+
+    <string name="new_category">Add New Category</string>
+    <string name="new_product">Add New Product</string>
+    <string name="new_product_image">Add New Product Image</string>
+
     <string name="evvoli_turkmenistan">Evvoli Türkmenistan</string>
     <string name="settings">Sazlamalar</string>
 

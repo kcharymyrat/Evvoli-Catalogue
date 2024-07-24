@@ -4,13 +4,8 @@ package com.example.evvolicatalogue.ui.screens
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.widget.Toast
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,8 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -53,10 +45,13 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.evvolitm.R
-import com.example.evvolitm.data.remote.respond.order_dtos.OrderDto
-import com.example.evvolitm.ui.theme.Shapes
-import com.example.evvolitm.util.Screen
+import androidx.paging.PagingData
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.evvolicatalogue.R
+import com.example.evvolicatalogue.data.local.entities.CategoryEntity
+import com.example.evvolicatalogue.data.local.entities.ProductEntity
+import com.example.evvolicatalogue.viewmodel.ProductViewModel
+import kotlinx.coroutines.flow.StateFlow
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -67,39 +62,25 @@ enum class PaymentOption(val value: String) {
 }
 
 @Composable
-fun OrderForm(
+fun AddNewProductForm(
     navController: NavHostController,
-    orderStatus: OrderStatus,
-    createOrder: (OrderDto) -> Unit,
-    resetOrderStatus: () -> Unit,
-    cartScreenState: CartScreenState,
-    onCreateNewCardScreenState: () -> Unit,
+    productViewModel: ProductViewModel,
+    categories: StateFlow<PagingData<CategoryEntity>>,
+    createNewProduct: (ProductEntity) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val paymentOptions = listOf(
-        stringResource(R.string.cash),
-        stringResource(R.string.card_terminal)
-    )
-    val countryCode = stringResource(R.string.tkm_country_code) // example country code
-
-
-    if (cartScreenState.id == null) {
-        onCreateNewCardScreenState()
-    }
-
-    val cartQty = cartScreenState.cartQty
-    val cartPrice = cartScreenState.cartTotalPrice
-    val cartItems = cartScreenState.cartItems
-
     val focusManager = LocalFocusManager.current
+    val lazyPagingItems = categories.collectAsLazyPagingItems()
 
-    var customerName by remember { mutableStateOf("") }
-    var phone by remember { mutableStateOf("") }
-    var address by remember { mutableStateOf("") }
-    var selectedPaymentOption by remember { mutableStateOf(paymentOptions[0]) }
+    val categoryEntities = categories.value
+
+    var productTitle by remember { mutableStateOf("") }
+    var productTitleRu by remember { mutableStateOf("") }
+    var productDescription by remember { mutableStateOf("") }
+    var productDescriptionRu by remember { mutableStateOf("") }
+    val selectedCategory by remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
-    var selectedDate by remember { mutableStateOf<Date?>(null) }
 
     var isValid by remember { mutableStateOf(true) }
 
@@ -122,7 +103,7 @@ fun OrderForm(
                         modifier = modifier.padding(horizontal = 16.dp)
                     ) {
                         Text(
-                            text = stringResource(R.string.payment_option),
+                            text = selectedCategory ?: "Select Category",
                             style = MaterialTheme.typography.titleSmall,
                         )
                         paymentOptions.forEach { option ->

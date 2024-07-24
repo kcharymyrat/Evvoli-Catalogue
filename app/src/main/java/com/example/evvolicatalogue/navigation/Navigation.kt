@@ -1,7 +1,5 @@
 package com.example.evvolicatalogue.navigation
 
-import com.example.evvolitm.ui.screens.CategoriesScreen
-//import com.example.evvolitm.ui.screens.CategoryProductsScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,76 +12,64 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.evvolitm.presentation.CategoryScreenState
-import com.example.evvolitm.presentation.MainViewModel
-import com.example.evvolitm.presentation.ProductImageScreenState
-import com.example.evvolitm.presentation.ProductScreenState
-import com.example.evvolitm.ui.screens.AboutScreen
-import com.example.evvolitm.ui.screens.CartItemsScreen
-import com.example.evvolitm.ui.screens.CategoryProductsScreen
-import com.example.evvolitm.ui.screens.EvvoliVelutoScreen
-import com.example.evvolitm.ui.screens.LanguageSelectionScreen
-import com.example.evvolitm.ui.screens.OrderForm
-import com.example.evvolitm.ui.screens.ProductDetailScreen
-import com.example.evvolitm.ui.screens.SearchProductsScreen
-import com.example.evvolitm.ui.screens.SuccessScreen
-import com.example.evvolitm.util.Screen
+import androidx.paging.PagingData
+import com.example.evvolicatalogue.data.local.entities.CategoryEntity
+import com.example.evvolicatalogue.data.local.entities.CategoryWithProducts
+import com.example.evvolicatalogue.data.local.entities.ProductEntity
+import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
+import com.example.evvolicatalogue.data.local.entities.ProductWithImages
+import com.example.evvolicatalogue.ui.screens.AddNewProductForm
+import com.example.evvolicatalogue.ui.screens.CategoriesScreen
+import com.example.evvolicatalogue.ui.screens.CategoryProductsScreen
+import com.example.evvolicatalogue.ui.screens.ProductDetailScreen
+import com.example.evvolicatalogue.ui.screens.SearchProductsScreen
+import com.example.evvolicatalogue.utils.Screen
+import com.example.evvolicatalogue.viewmodel.CategoryViewModel
+import com.example.evvolicatalogue.viewmodel.ProductImageViewModel
+import com.example.evvolicatalogue.viewmodel.ProductViewModel
+import kotlinx.coroutines.flow.StateFlow
+
 
 @Composable
 fun Navigation(
-    navController: NavHostController,
-    mainViewModel: MainViewModel,
+    navHostController: NavHostController,
+    categoryViewModel: CategoryViewModel,
+    productViewModel: ProductViewModel,
+    productImageViewModel: ProductImageViewModel,
     startDestination: String,
-    categoryScreenState: CategoryScreenState,
-    productScreenState: ProductScreenState,
-    searchProductScreenState: ProductScreenState,
-    productDetailScreenState: ProductImageScreenState,
-    cartScreenState: CartScreenState,
-    orderStatus: OrderStatus,
+    categories: StateFlow<PagingData<CategoryEntity>>,
+    categoryWithProducts: PagingData<CategoryWithProducts>,
+    products: StateFlow<PagingData<ProductEntity>>,
+    productWithImages: StateFlow<ProductWithImages?>,
+    productImages: PagingData<ProductImageEntity>
 ) {
     var query by remember { mutableStateOf("") }
 
-    NavHost(navController = navController, startDestination = startDestination) {
-
-        composable(route = Screen.EvvoliAndVelutoScreen.route) {
-            EvvoliVelutoScreen(
-                navController = navController,
-                modifier = Modifier
-            )
-        }
-
+    NavHost(navController = navHostController, startDestination = startDestination) {
         composable(route = Screen.CategoriesScreen.route) {
             CategoriesScreen(
-                navController = navController,
-                categoryScreenState = categoryScreenState,
-                onEvent = mainViewModel::onCategoryScreenEvent,
+                navController = navHostController,
+                categories = categories,
                 modifier = Modifier
             )
         }
 
         composable(
             route = "${Screen.CategoryProductsScreen.route}/{categoryId}",
-            arguments = listOf(navArgument("categoryId") { type = NavType.StringType })
+            arguments = listOf(navArgument("categoryId") { type = NavType.IntType })
         ) { backStackEntry ->
-            val categoryId = backStackEntry.arguments?.getString("categoryId")
+            val categoryId = backStackEntry.arguments?.getInt("categoryId")
 
             LaunchedEffect(categoryId) {
-                if (categoryId != null && categoryId != mainViewModel.productCategoryId) {
+                if (categoryId != null) {
                     println("In - LaunchedEffect(categoryId = $categoryId)")
-                    productScreenState.productList = emptyList()
-                    productScreenState.page = 1
-                    mainViewModel.loadCategoryProducts(categoryId = categoryId, true)
-                    mainViewModel.productCategoryId = categoryId
+                    productViewModel.getProductsByCategoryId(categoryId = categoryId)
                 }
             }
 
             CategoryProductsScreen(
-                navController = navController,
-                categoryId = categoryId ?: "",
-                productScreenState = productScreenState,
-                onScreenProductEvent = mainViewModel::onProductScreenEvent,
-                cartScreenState = cartScreenState,
-                onUpdateCartAndItsState = mainViewModel::updateCart,
+                navHostController = navHostController,
+                products = products,
                 modifier = Modifier,
             )
         }
@@ -94,22 +80,16 @@ fun Navigation(
         ) { backStackEntry ->
             val q = backStackEntry.arguments?.getString("q").toString()
 
+
             LaunchedEffect(q) {
-                if (searchProductScreenState.query.isEmpty() || q.toString() != query) {
-                    query = q.toString()
-                    searchProductScreenState.productList = emptyList()
-                    searchProductScreenState.page = 1
-                    searchProductScreenState.query = q ?: ""
-                    mainViewModel.loadSearchProducts(q ?: "",true)
+                if (q.toString().isNotBlank()) {
+                    productViewModel.searchProducts(q)
                 }
             }
 
             SearchProductsScreen(
-                navController = navController,
-                searchProductScreenState = searchProductScreenState,
-                onSearchProductScreenEvent = mainViewModel::onSearchProductScreenEvent,
-                cartScreenState = cartScreenState,
-                onUpdateCartAndItsState = mainViewModel::updateCart,
+                navHostController = navHostController,
+                products = products,
                 modifier = Modifier,
             )
         }
@@ -118,41 +98,25 @@ fun Navigation(
             route = "${Screen.ProductDetailScreen.route}/{productId}",
             arguments = listOf(navArgument("productId") { type = NavType.StringType })
         ) { backStackEntry ->
-            val productId = backStackEntry.arguments?.getString("productId")
+            val productId = backStackEntry.arguments?.getInt("productId")
 
             LaunchedEffect(productId) {
                 if (productId != null) {
-                    productDetailScreenState.productDetail = null
-                    productDetailScreenState.productImageList = emptyList()
-                    productDetailScreenState.productSpecList = emptyList()
-                    mainViewModel.loadProductDetail(productId = productId, true)
+                    productViewModel.getProductWithImages(id = productId)
                 }
             }
 
             ProductDetailScreen(
-                navController = navController,
-                productDetailScreenState = productDetailScreenState,
-                cartScreenState = cartScreenState,
-                onUpdateCartAndItsState = mainViewModel::updateCart,
+                navHostController = navHostController,
+                product = productWithImages
             )
         }
 
 
         composable(
-            route = Screen.CartScreen.route
+            route = Screen.NewProductScreen.route
         ) {
-            CartItemsScreen(
-                navController = navController,
-                cartScreenState = cartScreenState,
-                onUpdateCartAndItsState = mainViewModel::updateCart,
-                onCreateNewCardScreenState = mainViewModel::createCartScreenState,
-            )
-        }
-
-        composable(
-            route = Screen.OrderScreen.route
-        ) {
-            OrderForm(
+            AddNewProductForm(
                 navController = navController,
                 orderStatus = orderStatus,
                 createOrder = mainViewModel::createOrder,
@@ -160,12 +124,6 @@ fun Navigation(
                 cartScreenState = cartScreenState,
                 onCreateNewCardScreenState = mainViewModel::createCartScreenState,
             )
-        }
-
-        composable(
-            route = Screen.SuccessOrderScreen.route
-        ) {
-            SuccessScreen()
         }
 
         composable(
@@ -180,4 +138,5 @@ fun Navigation(
             LanguageSelectionScreen(navController = navController)
         }
     }
+
 }

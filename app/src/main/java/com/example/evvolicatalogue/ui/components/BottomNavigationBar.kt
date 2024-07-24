@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -31,25 +32,26 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.evvolicatalogue.R
 import com.example.evvolicatalogue.utils.Screen
 
 
 const val CATEGORIES = "Categories"
-const val CART = "Cart"
+const val ADD_NEW_PRODUCT = "Add new product"
 const val ABOUT_US = "About Us"
 
 sealed class BottomNavItem(val screen: Screen, val icon: ImageVector, val label: String) {
     data object Categories : BottomNavItem(Screen.CategoriesScreen, Icons.Default.Home, CATEGORIES)
-    data object Cart : BottomNavItem(Screen.CartScreen, Icons.Default.ShoppingCart, CART)
+    data object AddNewProduct : BottomNavItem(Screen.NewProductScreen, Icons.Default.Add, ADD_NEW_PRODUCT)
     data object About : BottomNavItem(Screen.AboutScreen, Icons.Default.Info, ABOUT_US)
 }
 
 
 @Composable
-fun BottomNavigationBar(navController: NavHostController, cartScreenState: CartScreenState) {
+fun BottomNavigationBar(navController: NavHostController) {
     val items = listOf(
         BottomNavItem.Categories,
-        BottomNavItem.Cart,
+        BottomNavItem.AddNewProduct,
         BottomNavItem.About
     )
 
@@ -58,45 +60,16 @@ fun BottomNavigationBar(navController: NavHostController, cartScreenState: CartS
         items.forEach { item ->
             NavigationBarItem(
                 icon = {
-                    if ("cart" in item.screen.route.toString().lowercase()) {
-                        Box(
-                            modifier = Modifier.size(24.dp)  // Adjust the size to match other icons
-                        ) {
-                            Icon(
-                                item.icon,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.matchParentSize()  // Make the icon fill the Box
-                            )
-                            if (cartScreenState.cartQty > 0) {
-                                Text(
-                                    text = cartScreenState.cartQty.toString(),
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.White,
-                                    modifier = Modifier
-                                        .align(Alignment.TopStart)
-                                        .offset(x = (12).dp, y = (-12).dp)  // Adjust the position
-                                        .background(
-                                            color = MaterialTheme.colorScheme.secondary,
-                                            shape = CircleShape
-                                        )
-                                        .padding(horizontal = 4.dp, vertical = 2.dp)
-                                )
-                            }
-                        }
-                    } else {
-                        Icon(
-                            item.icon,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary,
-                        )
-                    }
+                    Icon(
+                        item.icon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                    )
                 },
                 label = {
                     when (item.label) {
                         CATEGORIES -> Text(text = stringResource(id = R.string.categories))
-                        CART -> Text(text = stringResource(id = R.string.cart))
+                        ADD_NEW_PRODUCT -> Text(text = stringResource(id = R.string.new_product))
                         ABOUT_US -> Text(text = stringResource(id = R.string.about_us))
                     }
                 },

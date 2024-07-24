@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 val categoryViewModel = hiltViewModel<CategoryViewModel>()
                 val productViewModel = hiltViewModel<ProductViewModel>()
                 val productImageViewModel = hiltViewModel<ProductImageViewModel>()
-                val navController: NavHostController = rememberNavController()
+                val navHostController: NavHostController = rememberNavController()
 
                 val startDestination = Screen.CategoriesScreen.route
 
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     categoryViewModel = categoryViewModel,
                     productViewModel = productViewModel,
                     productImageViewModel = productImageViewModel,
-                    navController = navController,
+                    navHostController = navHostController,
                     startDestination = startDestination
                 )
 

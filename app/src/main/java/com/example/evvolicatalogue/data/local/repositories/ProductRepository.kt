@@ -11,52 +11,46 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ProductRepository @Inject constructor(private val productDao: ProductDao) {
+    private val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)
+
     fun getProducts(): Flow<PagingData<ProductEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { productDao.getProducts() }
+        ).flow
+    }
+
+    fun getProductsByCategoryId(categoryId: Int): Flow<PagingData<ProductEntity>> {
+        return Pager(
+            config = pagingConfig,
+            pagingSourceFactory = { productDao.getProductsByCategoryId(categoryId) }
         ).flow
     }
 
     fun getOrderedProducts(orderBy: String): Flow<PagingData<ProductEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { productDao.getOrderedProducts(orderBy) }
         ).flow
     }
 
     fun getOrderedProductsDesc(orderBy: String): Flow<PagingData<ProductEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { productDao.getOrderedProductsDesc(orderBy) }
         ).flow
     }
 
     fun searchProducts(query: String): Flow<PagingData<ProductEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { productDao.searchProducts(query) }
         ).flow
     }
 
     fun filterProducts(columnName: String, query: String): Flow<PagingData<ProductEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { productDao.filterProducts(columnName, query) }
         ).flow
     }
@@ -71,10 +65,7 @@ class ProductRepository @Inject constructor(private val productDao: ProductDao) 
         titleRu: String?
     ): Flow<PagingData<ProductEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = {
                 productDao.filterProducts(
                     categoryId, type, typeRu, code, model, title, titleRu
@@ -85,10 +76,7 @@ class ProductRepository @Inject constructor(private val productDao: ProductDao) 
 
     fun getProductsWithImages(): Flow<PagingData<ProductWithImages>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { productDao.getProductsWithImages() }
         ).flow
     }
@@ -105,7 +93,7 @@ class ProductRepository @Inject constructor(private val productDao: ProductDao) 
         productDao.deleteProductItem(product)
     }
 
-    suspend fun getProductWithImages(id: Int) {
-        productDao.getProductWithImages(id)
+    suspend fun getProductWithImages(id: Int): ProductWithImages {
+        return productDao.getProductWithImages(id)
     }
 }

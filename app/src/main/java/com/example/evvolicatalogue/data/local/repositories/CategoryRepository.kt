@@ -10,22 +10,18 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CategoryRepository @Inject constructor(private val categoryDao: CategoryDao) {
+    private val pagingConfig = PagingConfig(pageSize = 20, enablePlaceholders = false)
+
     fun getCategories(): Flow<PagingData<CategoryEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { categoryDao.getCategories() }
         ).flow
     }
 
     fun getOrderedCategories(orderBy: String): Flow<PagingData<CategoryEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { categoryDao.getOrderedCategories(orderBy) }
         ).flow
     }
@@ -42,20 +38,14 @@ class CategoryRepository @Inject constructor(private val categoryDao: CategoryDa
 
     fun searchCategories(query: String): Flow<PagingData<CategoryEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { categoryDao.searchCategories(query) }
         ).flow
     }
 
     fun filterCategories(columnName: String, query: String): Flow<PagingData<CategoryEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { categoryDao.filterCategories(columnName, query) }
         ).flow
     }
@@ -65,20 +55,14 @@ class CategoryRepository @Inject constructor(private val categoryDao: CategoryDa
         nameRu: String?
     ): Flow<PagingData<CategoryEntity>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { categoryDao.filterCategories(name, nameRu) }
         ).flow
     }
 
     fun getCategoriesWithProducts(): Flow<PagingData<CategoryWithProducts>> {
         return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
+            config = pagingConfig,
             pagingSourceFactory = { categoryDao.getCategoriesWithProducts() }
         ).flow
     }
@@ -101,9 +85,5 @@ class CategoryRepository @Inject constructor(private val categoryDao: CategoryDa
 
     suspend fun deleteCategoryById(id: Int) {
         categoryDao.deleteCategoryById(id)
-    }
-
-    suspend fun getCategoryWithProducts(id: Int) {
-        categoryDao.getCategoryWithProducts(id)
     }
 }
