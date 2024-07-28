@@ -86,6 +86,7 @@ fun Navigation(
 
             LaunchedEffect(q) {
                 if (q.toString().isNotBlank()) {
+                    println("In - LaunchedEffect(q.toString = ${q.toString()})")
                     productViewModel.searchProducts(q)
                 }
             }
@@ -101,11 +102,12 @@ fun Navigation(
             route = "${Screen.ProductDetailScreen.route}/{productId}",
             arguments = listOf(navArgument("productId") { type = NavType.StringType })
         ) { backStackEntry ->
-            val productId = backStackEntry.arguments?.getInt("productId")
+            val productId = backStackEntry.arguments?.getString("productId")
 
             LaunchedEffect(productId) {
                 if (productId != null) {
-                    productViewModel.getProductWithImages(id = productId)
+                    println("In - LaunchedEffect(productId = ${productId.toInt()})")
+                    productViewModel.getProductWithImages(id = productId.toInt())
                 }
             }
 

@@ -22,7 +22,7 @@ fun SearchProductsScreen(
     products: StateFlow<PagingData<ProductEntity>>,
     modifier: Modifier = Modifier,
 ) {
-
+    println("products = $products")
     SearchProductListDisplay(
         navHostController = navHostController,
         products = products,
@@ -41,20 +41,20 @@ fun SearchProductListDisplay(
     val lazyPagingItems = products.collectAsLazyPagingItems()
 
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(90.dp),
+        columns = GridCells.Adaptive(150.dp),
         modifier = modifier,
-        contentPadding = PaddingValues(4.dp)
     ) {
 
         items(lazyPagingItems.itemCount) {index ->
             val product = lazyPagingItems[index]
+            println("product = $product")
             if (product != null) {
                 ProductItem(
                     navHostController = navHostController,
                     product = product,
                     modifier = Modifier
                         .padding(
-                            horizontal = dimensionResource(id = R.dimen.padding_medium),
+                            horizontal = dimensionResource(id = R.dimen.padding_small),
                             vertical = dimensionResource(id = R.dimen.padding_small)
                         )
                 )
