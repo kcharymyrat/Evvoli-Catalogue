@@ -36,9 +36,11 @@ class CategoryViewModel @Inject constructor(
     private val _categoryDescriptionRu = MutableStateFlow("")
     val categoryDescriptionRu: StateFlow<String> get() = _categoryDescriptionRu
 
-
     private val _categoryImageUri = MutableStateFlow<Uri?>(null)
     val categoryImageUri: StateFlow<Uri?> get() = _categoryImageUri
+
+    private val _maxCategoryId = MutableStateFlow(0)
+    val maxCategoryId: StateFlow<Int> get() = _maxCategoryId
 
     init {
         fetchCategories()
@@ -84,9 +86,9 @@ class CategoryViewModel @Inject constructor(
         }
     }
 
-    fun filterCategories(columnName: String, query: String) {
+    fun filterCategoriesByColumn(columnName: String, query: String) {
         viewModelScope.launch {
-            categoryRepository.filterCategories(columnName, query)
+            categoryRepository.filterCategoriesByColumn(columnName, query)
                 .cachedIn(viewModelScope)
                 .collectLatest {
                     _categories.value = it
@@ -152,6 +154,10 @@ class CategoryViewModel @Inject constructor(
 
     fun onCategoryImageUriSelected(uri: Uri) {
         _categoryImageUri.value = uri
+    }
+
+    fun getMaxCategoryId() = viewModelScope.launch {
+        _maxCategoryId.value  = categoryRepository.getMaxCategoryId()
     }
 }
 

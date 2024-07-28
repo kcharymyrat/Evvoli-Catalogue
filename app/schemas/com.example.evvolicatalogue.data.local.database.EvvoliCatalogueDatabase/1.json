@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "88639cbd29f10570fa009fe3dbcad396",
+    "identityHash": "94c72e71709cd3320156d7a9fe76b287",
     "entities": [
       {
         "tableName": "categories",
@@ -186,7 +186,7 @@
       },
       {
         "tableName": "product_images",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `productId` INTEGER NOT NULL, `imageUrl` TEXT NOT NULL, `thumbnailUrl` TEXT NOT NULL, `description` TEXT, PRIMARY KEY(`id`), FOREIGN KEY(`productId`) REFERENCES `products`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `productId` INTEGER NOT NULL, `imageUrl` TEXT NOT NULL, `description` TEXT, PRIMARY KEY(`id`), FOREIGN KEY(`productId`) REFERENCES `products`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -203,12 +203,6 @@
           {
             "fieldPath": "imageUrl",
             "columnName": "imageUrl",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "thumbnailUrl",
-            "columnName": "thumbnailUrl",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -244,7 +238,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '88639cbd29f10570fa009fe3dbcad396')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94c72e71709cd3320156d7a9fe76b287')"
     ]
   }
 }

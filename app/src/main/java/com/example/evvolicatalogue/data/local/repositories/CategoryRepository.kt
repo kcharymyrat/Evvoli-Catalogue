@@ -43,10 +43,10 @@ class CategoryRepository @Inject constructor(private val categoryDao: CategoryDa
         ).flow
     }
 
-    fun filterCategories(columnName: String, query: String): Flow<PagingData<CategoryEntity>> {
+    fun filterCategoriesByColumn(columnName: String, query: String): Flow<PagingData<CategoryEntity>> {
         return Pager(
             config = pagingConfig,
-            pagingSourceFactory = { categoryDao.filterCategories(columnName, query) }
+            pagingSourceFactory = { categoryDao.filterCategoriesByColumn(columnName, query) }
         ).flow
     }
 
@@ -85,5 +85,9 @@ class CategoryRepository @Inject constructor(private val categoryDao: CategoryDa
 
     suspend fun deleteCategoryById(id: Int) {
         categoryDao.deleteCategoryById(id)
+    }
+
+    suspend fun getMaxCategoryId(): Int {
+        return categoryDao.getMaxCategoryId()
     }
 }

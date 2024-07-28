@@ -1,6 +1,7 @@
 package com.example.evvolicatalogue.data.local.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -17,10 +18,8 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 
-
 class DatabaseInitializer(
-    private val context: Context,
-    private val databaseClass: Class<out RoomDatabase>
+    private val context: Context
 ) : RoomDatabase.Callback() {
 
     override fun onCreate(db: SupportSQLiteDatabase) {
@@ -33,17 +32,55 @@ class DatabaseInitializer(
     private suspend fun populateDatabase() {
         val database = Room.databaseBuilder(
             context,
-            databaseClass,
+            EvvoliCatalogueDatabase::class.java,
             "evvoli_catalogue.db"
-        ).build() as EvvoliCatalogueDatabase
+        ).build()
 
         val categories = readJsonData<CategoryEntity>(R.raw.categories)
         val products = readJsonData<ProductEntity>(R.raw.products)
         val productImages = readJsonData<ProductImageEntity>(R.raw.product_images)
 
+
         database.categoryDao.insertCategoryList(categories)
+        val allCategories = database.categoryDao.getCategories()
+        Log.d("DatabaseInitializer", "All Categories from DB: $allCategories")
+        for (i in 1..12) {
+            val cat = database.categoryDao.getCategoryById(i)
+            Log.d(
+                "DatabaseInitializer",
+                "Created Category Entity: ${cat?.id} - ${cat?.name}"
+            )
+        }
+
         database.productDao.insertProductList(products)
+        val allProducts = database.productDao.getProducts()
+        Log.d("DatabaseInitializer", "All Products from DB: $allProducts")
+        for (i in 1..57) {
+            if (i == 24) {
+                continue
+            }
+            val pr =  database.productDao.getProductById(i)
+            Log.d(
+                "DatabaseInitializer",
+                "Created Product Entity: ${pr.id} - ${pr.title}"
+            )
+        }
+
         database.productImageDao.insertProductImageList(productImages)
+        val allProductImages = database.productImageDao.getProductImages()
+        Log.d(
+            "DatabaseInitializer",
+            "All ProductImages from DB: $allProductImages"
+        )
+        for (i in 1..77) {
+            val prI = database.productImageDao.getProductImagesByPId(i)
+            Log.d(
+                "DatabaseInitializer",
+                "Created ProductImage Entity: ${prI.id}}"
+            )
+        }
+
+        Log.d("DatabaseInitializer", "END!")
     }
 
     private inline fun <reified T> readJsonData(resId: Int): List<T> {
@@ -63,3 +100,7 @@ class DatabaseInitializer(
         }
     }
 }
+
+
+
+

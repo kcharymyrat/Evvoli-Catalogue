@@ -218,17 +218,11 @@
   {
     "id": 37,
     "productId": 24,
-    "imageUrl": "file:///android_asset/purifier/50W/evvoli-Bladeless-Fan-EVPF-50W-0509e0.png",
-    "description": "Top view"
-  },
-  {
-    "id": 38,
-    "productId": 24,
     "imageUrl": "file:///android_asset/purifier/50W/evvoli-Bladeless-Fan-EVPF-50W-0609e0.png",
     "description": "Fan view"
   },
   {
-    "id": 39,
+    "id": 38,
     "productId": 24,
     "imageUrl": "file:///android_asset/purifier/50W/evvoli-Bladeless-Fan-EVPF-50W-0709e0.png",
     "description": "Side view"
@@ -456,16 +450,16 @@
     "description": "Speaker front view"
   },
   {
-    "id": 77,
+    "id": 76,
     "productId": 57,
     "imageUrl": "file:///android_asset/audio/SB241B/evvoli-shoundbar-EVAUD-SB241B-0309e0.png",
     "description": "Speaker side view"
   },
   {
-    "id": 78,
+    "id": 77,
     "productId": 57,
     "imageUrl": "file:///android_asset/audio/SB241B/evvoli-shoundbar-EVAUD-SB241B-0409e0.png",
-    "description": ""
+    "description": "view"
   }
 ]
 

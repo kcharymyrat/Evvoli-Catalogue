@@ -19,6 +19,9 @@ class ProductImageViewModel @Inject constructor(
     private val _productImages = MutableStateFlow<PagingData<ProductImageEntity>>(PagingData.empty())
     val productImages: StateFlow<PagingData<ProductImageEntity>> get() = _productImages
 
+    private val _maxProductImageId = MutableStateFlow(0)
+    val maxProductImageId: StateFlow<Int> get() = _maxProductImageId
+
     fun fetchProductImages(productId: Int) {
         viewModelScope.launch {
             productImageRepository.getProductImagesByProductId(productId)
@@ -42,5 +45,9 @@ class ProductImageViewModel @Inject constructor(
     fun deleteProductImage(image: ProductImageEntity) = viewModelScope.launch {
         productImageRepository.deleteProductImage(image)
         fetchProductImages(image.productId)
+    }
+
+    fun getMaxProductImageId() = viewModelScope.launch {
+        _maxProductImageId.value  = productImageRepository.getMaxProductImageId()
     }
 }

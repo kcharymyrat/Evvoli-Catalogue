@@ -12,6 +12,9 @@ import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
 
 @Dao
 interface ProductImageDao {
+    @Query("SELECT * FROM product_images")
+    fun getProductImages(): PagingSource<Int, ProductImageEntity>
+
     @Query("SELECT * FROM product_images WHERE productId = :productId")
     fun getProductImagesByProductId(productId: Int): PagingSource<Int, ProductImageEntity>
 
@@ -26,4 +29,10 @@ interface ProductImageDao {
 
     @Delete
     suspend fun deleteProductImage(image: ProductImageEntity)
+
+    @Query("SELECT MAX(id) FROM product_images")
+    suspend fun getMaxProductImageId(): Int
+
+    @Query("SELECT * FROM product_images WHERE id = :id")
+    fun getProductImagesByPId(id: Int): ProductImageEntity
 }

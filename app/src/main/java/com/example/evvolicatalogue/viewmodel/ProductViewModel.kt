@@ -25,14 +25,32 @@ class ProductViewModel @Inject constructor(
     private val _productWithImages = MutableStateFlow<ProductWithImages?>(null)
     val productWithImages: StateFlow<ProductWithImages?> get() = _productWithImages
 
-    private val _productName = MutableStateFlow("")
-    val productName: StateFlow<String> get() = _productName
+    private val _productTitle = MutableStateFlow("")
+    val productTitle: StateFlow<String> get() = _productTitle
+
+    private val _productTitleRu = MutableStateFlow("")
+    val productTitleRu: StateFlow<String> get() = _productTitleRu
+
+    private val _productDescription = MutableStateFlow("")
+    val productDescription: StateFlow<String> get() = _productDescription
+
+    private val _productDescriptionRu = MutableStateFlow("")
+    val productDescriptionRu: StateFlow<String> get() = _productDescriptionRu
+
+    private val _productType = MutableStateFlow("")
+    val productType: StateFlow<String> get() = _productType
+
+    private val _productTypeRu = MutableStateFlow("")
+    val productTypeRu: StateFlow<String> get() = _productTypeRu
 
     private val _selectedCategory = MutableStateFlow<CategoryEntity?>(null)
     val selectedCategory: StateFlow<CategoryEntity?> get() = _selectedCategory
 
     private val _imageUri = MutableStateFlow<Uri?>(null)
     val imageUri: StateFlow<Uri?> get() = _imageUri
+
+    private val _maxProductId = MutableStateFlow(0)
+    val maxProductId: StateFlow<Int> get() = _maxProductId
 
     init {
         fetchProducts()
@@ -93,9 +111,9 @@ class ProductViewModel @Inject constructor(
         }
     }
 
-    fun filterProducts(columnName: String, query: String) {
+    fun filterProductsByColumn(columnName: String, query: String) {
         viewModelScope.launch {
-            productRepository.filterProducts(columnName, query)
+            productRepository.filterProductsByColumn(columnName, query)
                 .cachedIn(viewModelScope)
                 .collectLatest {
                     _products.value = it
@@ -147,8 +165,28 @@ class ProductViewModel @Inject constructor(
         }
     }
 
-    fun onProductNameChange(newName: String) {
-        _productName.value = newName
+    fun onProductTitleChange(newTitle: String) {
+        _productTitle.value = newTitle
+    }
+
+    fun onProductTitleRuChange(newTitleRu: String) {
+        _productTitleRu.value = newTitleRu
+    }
+
+    fun onProductDescriptionChange(newDescription: String) {
+        _productDescription.value = newDescription
+    }
+
+    fun onProductDescriptionRuChange(newDescriptionRu: String) {
+        _productDescriptionRu.value = newDescriptionRu
+    }
+
+    fun onProductTypeChange(newType: String) {
+        _productType.value = newType
+    }
+
+    fun onProductTypeRuChange(newTypeRu: String) {
+        _productTypeRu.value = newTypeRu
     }
 
     fun onCategorySelected(category: CategoryEntity) {
@@ -157,6 +195,10 @@ class ProductViewModel @Inject constructor(
 
     fun onImageUriSelected(uri: Uri) {
         _imageUri.value = uri
+    }
+
+    fun getMaxProductId() = viewModelScope.launch {
+        _maxProductId.value  = productRepository.getMaxProductId()
     }
 }
 

@@ -29,4 +29,8 @@ class ProductImageRepository @Inject constructor(private val productImageDao: Pr
     suspend fun deleteProductImage(image: ProductImageEntity) {
         productImageDao.deleteProductImage(image)
     }
+
+    suspend fun getMaxProductImageId(): Int {
+        return productImageDao.getMaxProductImageId()
+    }
 }

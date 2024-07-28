@@ -56,7 +56,7 @@ interface ProductDao {
     fun searchProducts(query: String): PagingSource<Int, ProductEntity>
 
     @Query("SELECT * FROM products WHERE :columnName LIKE :query || '%'")
-    fun filterProducts(columnName: String, query: String): PagingSource<Int, ProductEntity>
+    fun filterProductsByColumn(columnName: String, query: String): PagingSource<Int, ProductEntity>
 
     @Query("""
         SELECT * FROM products 
@@ -85,5 +85,8 @@ interface ProductDao {
     @Transaction
     @Query("SELECT * FROM products WHERE id = :productId")
     suspend fun getProductWithImages(productId: Int): ProductWithImages
+
+    @Query("SELECT MAX(id) FROM products")
+    suspend fun getMaxProductId(): Int
 }
 

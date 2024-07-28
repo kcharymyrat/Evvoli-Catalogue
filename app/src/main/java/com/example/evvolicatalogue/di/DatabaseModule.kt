@@ -7,6 +7,7 @@ import com.example.evvolicatalogue.data.local.database.EvvoliCatalogueDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -17,14 +18,14 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(
-        app: Context
+        @ApplicationContext context: Context
     ): EvvoliCatalogueDatabase {
         return Room.databaseBuilder(
-            app,
+            context,
             EvvoliCatalogueDatabase::class.java,
             "evvoli_catalogue.db"
         )
-            .addCallback(DatabaseInitializer(app, EvvoliCatalogueDatabase::class.java))
+            .addCallback(DatabaseInitializer(context))
             .build()
     }
 
@@ -37,3 +38,4 @@ object DatabaseModule {
     @Provides
     fun provideProductImageDao(database: EvvoliCatalogueDatabase) = database.productImageDao
 }
+

@@ -22,7 +22,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class ProductEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey val id: Int,
     val categoryId: Int,
     val type: String?,
     val typeRu: String?,

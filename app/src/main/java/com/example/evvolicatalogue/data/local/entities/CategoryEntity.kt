@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
     ]
 )
 data class CategoryEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey val id: Int,
     val name: String,
     val nameRu: String,
     val description: String?,

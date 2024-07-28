@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -24,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -44,11 +46,18 @@ fun CreateProductScreen(
     createNewProduct: (ProductEntity) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val productName by productViewModel.productName.collectAsState()
+    val productTitle by productViewModel.productTitle.collectAsState()
+    val productTitleRu by productViewModel.productTitleRu.collectAsState()
+    val productDescription by productViewModel.productDescription.collectAsState()
+    val productDescriptionRu by productViewModel.productDescriptionRu.collectAsState()
+    val productType by productViewModel.productType.collectAsState()
+    val productTypeRu by productViewModel.productTypeRu.collectAsState()
     val selectedCategory by productViewModel.selectedCategory.collectAsState()
     val imageUri by productViewModel.imageUri.collectAsState()
+    val maxProductId by productViewModel.maxProductId.collectAsState()
 
     val categories = categoryViewModel.categories.collectAsLazyPagingItems()
+    val maxProductImageId by productImageViewModel.maxProductImageId.collectAsState()
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -61,20 +70,15 @@ fun CreateProductScreen(
     }
 
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        TextField(
-            value = productName,
-            onValueChange = productViewModel::onProductNameChange,
-            label = { Text("Product Name") },
+
+        Box(
             modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Box {
+        ) {
             Text(
                 text = selectedCategory?.name ?: "Select Category",
                 modifier = Modifier
@@ -89,9 +93,8 @@ fun CreateProductScreen(
                 onDismissRequest = { expanded = false }
             ) {
                 categories.itemSnapshotList.items.forEach { category ->
-                    print(category)
                     DropdownMenuItem(
-                        text = {Text(text = category.name)},
+                        text = { Text(text = category.name) },
                         onClick = {
                             productViewModel.onCategorySelected(category)
                             expanded = false
@@ -100,7 +103,78 @@ fun CreateProductScreen(
                 }
                 DropdownMenuItem(
                     text = { Text("Create New Category") },
-                    onClick = { navHostController.navigate(Screen.CreateCategoryScreen.route ) }
+                    onClick = { navHostController.navigate(Screen.CreateCategoryScreen.route) }
+                )
+            }
+        }
+
+        OutlinedTextField(
+            value = productTitle,
+            onValueChange = productViewModel::onProductTitleChange,
+            label = { Text("Haryt ady") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = productTitleRu,
+            onValueChange = productViewModel::onProductTitleRuChange,
+            label = { Text("Название продукта") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = productDescription,
+            onValueChange = productViewModel::onProductDescriptionChange,
+            label = { Text("Haryt beýany") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = productDescriptionRu,
+            onValueChange = productViewModel::onProductDescriptionRuChange,
+            label = { Text("Описание продукта") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = productType,
+            onValueChange = productViewModel::onProductTypeChange,
+            label = { Text("Haryt görnüşi") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = productTypeRu,
+            onValueChange = productViewModel::onProductTypeRuChange,
+            label = { Text("Тип продукта") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Box(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = selectedCategory?.name ?: "Select Category",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { expanded = true }
+                    .background(MaterialTheme.colorScheme.surface)
+                    .padding(16.dp)
+            )
+
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                categories.itemSnapshotList.items.forEach { category ->
+                    DropdownMenuItem(
+                        text = { Text(text = category.name) },
+                        onClick = {
+                            productViewModel.onCategorySelected(category)
+                            expanded = false
+                        }
+                    )
+                }
+                DropdownMenuItem(
+                    text = { Text("Create New Category") },
+                    onClick = { navHostController.navigate(Screen.CreateCategoryScreen.route) }
                 )
             }
         }
@@ -108,7 +182,7 @@ fun CreateProductScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         Button(onClick = { launcher.launch("image/*") }) {
-            Text(text = if (imageUri != null) "Change Image" else "Upload Image")
+            Text(text = if (imageUri != null) "Change Image" else "Upload Main Image")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -116,37 +190,39 @@ fun CreateProductScreen(
         Button(
             onClick = {
                 val newProduct = ProductEntity(
+                    id = maxProductId + 1,
                     categoryId = selectedCategory?.id ?: 0,
-                    type = null, // Set other required fields appropriately
-                    typeRu = null,
-                    code = "", // Set appropriate code
-                    model = null,
-                    title = productName,
-                    titleRu = "", // Set appropriate titleRu
-                    description = null,
-                    descriptionRu = null,
+                    type = productType,
+                    typeRu = productTypeRu,
+                    code = "PRODUCT_CODE_${maxProductId + 1}", // Example product code
+                    model = "MODEL_${maxProductId + 1}", // Example model
+                    title = productTitle,
+                    titleRu = productTitleRu,
+                    description = productDescription,
+                    descriptionRu = productDescriptionRu,
                     imageUrl = imageUri.toString()
                 )
                 createNewProduct(newProduct)
+
                 // Add code to upload product image and create ProductImageEntity
                 if (imageUri != null) {
                     val newProductImage = ProductImageEntity(
-                        productId = newProduct.id, // Make sure to get the correct productId after insertion
+                        id = maxProductImageId + 1,
+                        productId = newProduct.id,
                         imageUrl = imageUri.toString(),
-                        thumbnailUrl = imageUri.toString() // Set appropriate thumbnail URL
                     )
                     productImageViewModel.insertProductImage(newProductImage)
                 }
+
                 navHostController.popBackStack()
             },
-            enabled = productName.isNotEmpty() && selectedCategory != null && imageUri != null
+            enabled = productTitle.isNotEmpty() && selectedCategory != null && imageUri != null,
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Text("Add Product")
         }
     }
 }
-
-
 
 
 fun validateForm(

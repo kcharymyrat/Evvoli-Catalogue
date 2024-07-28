@@ -100,16 +100,6 @@
     "imageUrl": "file:///android_asset/fridge/S532-W-S/evvoli-SIDE-BY-SIDE-FRIDGE-EVRFH-S532HW-109e0.png"
   },
   {
-    "id": 10,
-    "categoryId": 4,
-    "code": "EEVRFH-S532-HW",
-    "title": "Sowadyjy",
-    "titleRu": "Холодильник",
-    "description": "Reňk: Ak;Elektrik üpjünçiligi 220 - 240 Wolt 50Hz;   Peýdaly Göwrümi: 532 lt(Sag: 365lt, çep: 167 lt); Doňdurma güýji: 12 kg/24 sag;  Ses: 43dB;  Sowadyjy görnüşi: R600a, 72 gr;  Agramy netto: 110 kg; Ölçegi:  910×686,5×1793 mm;",
-    "descriptionRu": "Белый цвет;\nНапряжение/частота:   220~240В/50Гц;\nПолезный объем:   532 л (правый: 365 л, левый: 167 л);\nМощность замораживания:   12 кг/24ч;\nМаксимальный уровень шума:   дБ(А) 43;\nТип хладагента/заправки :  R600a/72;\nВес нетто:   кг 110;\nРазмеры изделия (Ш*Г*В):  мм 910×686,5×1793;",
-    "imageUrl": "file:///android_asset/fridge/S532-W-S/evvoli-SIDE-BY-SIDE-FRIDGE-EVRFH-S532HW-109e0.png"
-  },
-  {
     "id": 11,
     "categoryId": 4,
     "code": "EVRFM-225W",
@@ -266,7 +256,7 @@
   {
     "id": 25,
     "categoryId": 7,
-    "code": "EVAP-50W",
+    "code": "EVAP-50W1",
     "title": "Howa arassalaýjy",
     "titleRu": "Очиститель воздуха",
     "description": "Elektrik üpjünçiligi 110 - 240 Wolt 50/ 60Hz, 1F;  Kuwwaty: 33Watt; Ulanylýan meýdan: 80 m2;  Ses: (ýokary güýçli işlände) 22-55dB;    Agramy netto: 6,76 kg; Ölçegi:  255x255x1090 mm;",

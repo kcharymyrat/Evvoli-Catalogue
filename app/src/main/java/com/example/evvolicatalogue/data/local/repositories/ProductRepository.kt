@@ -48,10 +48,10 @@ class ProductRepository @Inject constructor(private val productDao: ProductDao) 
         ).flow
     }
 
-    fun filterProducts(columnName: String, query: String): Flow<PagingData<ProductEntity>> {
+    fun filterProductsByColumn(columnName: String, query: String): Flow<PagingData<ProductEntity>> {
         return Pager(
             config = pagingConfig,
-            pagingSourceFactory = { productDao.filterProducts(columnName, query) }
+            pagingSourceFactory = { productDao.filterProductsByColumn(columnName, query) }
         ).flow
     }
 
@@ -95,5 +95,9 @@ class ProductRepository @Inject constructor(private val productDao: ProductDao) 
 
     suspend fun getProductWithImages(id: Int): ProductWithImages {
         return productDao.getProductWithImages(id)
+    }
+
+    suspend fun getMaxProductId(): Int {
+        return productDao.getMaxProductId()
     }
 }

@@ -48,7 +48,7 @@ interface CategoryDao {
     fun searchCategories(query: String): PagingSource<Int, CategoryEntity>
 
     @Query("SELECT * FROM categories WHERE :columnName LIKE :query || '%'")
-    fun filterCategories(columnName: String, query: String): PagingSource<Int, CategoryEntity>
+    fun filterCategoriesByColumn(columnName: String, query: String): PagingSource<Int, CategoryEntity>
 
 
     @Query("""
@@ -68,5 +68,8 @@ interface CategoryDao {
     @Transaction
     @Query("SELECT * FROM categories WHERE id = :categoryId")
     suspend fun getCategoryWithProducts(categoryId: Int): CategoryWithProducts
+
+    @Query("SELECT MAX(id) FROM categories")
+    suspend fun getMaxCategoryId(): Int
 }
 

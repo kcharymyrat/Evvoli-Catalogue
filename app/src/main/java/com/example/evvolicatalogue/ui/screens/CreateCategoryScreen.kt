@@ -32,6 +32,7 @@ fun CreateCategoryScreen(
     val categoryDescription by categoryViewModel.categoryDescription.collectAsState()
     val categoryDescriptionRu by categoryViewModel.categoryDescriptionRu.collectAsState()
     val categoryImageUri by categoryViewModel.categoryImageUri.collectAsState()
+    val maxCategoryId by categoryViewModel.maxCategoryId.collectAsState()
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -91,6 +92,7 @@ fun CreateCategoryScreen(
         Button(
             onClick = {
                 val newCategory = CategoryEntity(
+                    id = maxCategoryId,
                     name = categoryName,
                     nameRu = categoryNameRu,
                     description = categoryDescription,

@@ -52,27 +52,3 @@ class MainActivity : ComponentActivity() {
 }
 
 
-@Composable
-fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
-    Text(
-        text = from,
-        fontSize = 36.sp
-    )
-    Text(
-        text = message,
-        fontSize = 100.sp,
-        lineHeight = 116.sp,
-    )
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true,
-    name = "Default preview"
-)
-@Composable
-fun GreetingPreview() {
-    EvvoliCatalogueTheme {
-        GreetingText("Happy Birthday!", "From Chary")
-    }
-}
