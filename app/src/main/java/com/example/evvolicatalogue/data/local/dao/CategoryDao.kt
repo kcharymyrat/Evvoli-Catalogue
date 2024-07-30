@@ -71,5 +71,11 @@ interface CategoryDao {
 
     @Query("SELECT MAX(id) FROM categories")
     suspend fun getMaxCategoryId(): Int
+
+    @Query("SELECT COUNT(*) FROM categories WHERE name = :name")
+    suspend fun isNameUnique(name: String): Int
+
+    @Query("SELECT COUNT(*) FROM categories WHERE nameRu = :nameRu")
+    suspend fun isNameRuUnique(nameRu: String): Int
 }
 

@@ -90,4 +90,12 @@ class CategoryRepository @Inject constructor(private val categoryDao: CategoryDa
     suspend fun getMaxCategoryId(): Int {
         return categoryDao.getMaxCategoryId()
     }
+
+    suspend fun isNameUnique(name: String): Boolean {
+        return categoryDao.isNameUnique(name) == 0
+    }
+
+    suspend fun isNameRuUnique(nameRu: String): Boolean {
+        return categoryDao.isNameRuUnique(nameRu) == 0
+    }
 }

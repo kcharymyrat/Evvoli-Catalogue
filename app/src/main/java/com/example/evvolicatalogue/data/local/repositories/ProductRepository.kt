@@ -100,4 +100,8 @@ class ProductRepository @Inject constructor(private val productDao: ProductDao) 
     suspend fun getMaxProductId(): Int {
         return productDao.getMaxProductId()
     }
+
+    suspend fun isCodeUnique(code: String): Boolean {
+        return productDao.isCodeUnique(code) == 0
+    }
 }

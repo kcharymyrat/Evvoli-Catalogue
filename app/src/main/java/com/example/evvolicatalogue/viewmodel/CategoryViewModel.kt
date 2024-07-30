@@ -42,6 +42,12 @@ class CategoryViewModel @Inject constructor(
     private val _maxCategoryId = MutableStateFlow(0)
     val maxCategoryId: StateFlow<Int> get() = _maxCategoryId
 
+    private val _isNameUnique = MutableStateFlow(true)
+    val isNameUnique: StateFlow<Boolean> get() = _isNameUnique
+
+    private val _isNameRuUnique = MutableStateFlow(true)
+    val isNameRuUnique: StateFlow<Boolean> get() = _isNameRuUnique
+
     init {
         fetchCategories()
     }
@@ -156,8 +162,22 @@ class CategoryViewModel @Inject constructor(
         _categoryImageUri.value = uri
     }
 
-    fun getMaxCategoryId() = viewModelScope.launch {
-        _maxCategoryId.value  = categoryRepository.getMaxCategoryId()
+    fun getMaxCategoryId() {
+        viewModelScope.launch {
+            _maxCategoryId.value  = categoryRepository.getMaxCategoryId()
+        }
+    }
+
+    fun checkNameUnique(name: String) {
+        viewModelScope.launch {
+            _isNameUnique.value = categoryRepository.isNameUnique(name)
+        }
+    }
+
+    fun checkNameRuUnique(nameRu: String) {
+        viewModelScope.launch {
+            _isNameRuUnique.value = categoryRepository.isNameRuUnique(nameRu)
+        }
     }
 }
 

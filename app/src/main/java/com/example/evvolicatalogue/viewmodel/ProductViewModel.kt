@@ -25,6 +25,18 @@ class ProductViewModel @Inject constructor(
     private val _productWithImages = MutableStateFlow<ProductWithImages?>(null)
     val productWithImages: StateFlow<ProductWithImages?> get() = _productWithImages
 
+    private val _productType = MutableStateFlow("")
+    val productType: StateFlow<String> get() = _productType
+
+    private val _productTypeRu = MutableStateFlow("")
+    val productTypeRu: StateFlow<String> get() = _productTypeRu
+
+    private val _productCode = MutableStateFlow("")
+    val productCode: StateFlow<String> get() = _productCode
+
+    private val _productModel = MutableStateFlow("")
+    val productModel: StateFlow<String> get() = _productModel
+
     private val _productTitle = MutableStateFlow("")
     val productTitle: StateFlow<String> get() = _productTitle
 
@@ -37,12 +49,6 @@ class ProductViewModel @Inject constructor(
     private val _productDescriptionRu = MutableStateFlow("")
     val productDescriptionRu: StateFlow<String> get() = _productDescriptionRu
 
-    private val _productType = MutableStateFlow("")
-    val productType: StateFlow<String> get() = _productType
-
-    private val _productTypeRu = MutableStateFlow("")
-    val productTypeRu: StateFlow<String> get() = _productTypeRu
-
     private val _selectedCategory = MutableStateFlow<CategoryEntity?>(null)
     val selectedCategory: StateFlow<CategoryEntity?> get() = _selectedCategory
 
@@ -51,6 +57,9 @@ class ProductViewModel @Inject constructor(
 
     private val _maxProductId = MutableStateFlow(0)
     val maxProductId: StateFlow<Int> get() = _maxProductId
+
+    private val _isCodeUnique = MutableStateFlow(true)
+    val isCodeUnique: StateFlow<Boolean> get() = _isCodeUnique
 
     init {
         fetchProducts()
@@ -189,6 +198,14 @@ class ProductViewModel @Inject constructor(
         _productTypeRu.value = newTypeRu
     }
 
+    fun onProductCodeChange(newCode: String) {
+        _productCode.value = newCode
+    }
+
+    fun onProductModelChange(newCode: String) {
+        _productModel.value = newCode
+    }
+
     fun onCategorySelected(category: CategoryEntity) {
         _selectedCategory.value = category
     }
@@ -200,6 +217,13 @@ class ProductViewModel @Inject constructor(
     fun getMaxProductId() = viewModelScope.launch {
         _maxProductId.value  = productRepository.getMaxProductId()
     }
+
+    fun checkCodeUnique(code: String) {
+        viewModelScope.launch {
+            _isCodeUnique.value = productRepository.isCodeUnique(code)
+        }
+    }
+
 }
 
 

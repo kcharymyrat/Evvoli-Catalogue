@@ -88,5 +88,8 @@ interface ProductDao {
 
     @Query("SELECT MAX(id) FROM products")
     suspend fun getMaxProductId(): Int
+
+    @Query("SELECT COUNT(*) FROM products WHERE code = :code")
+    suspend fun isCodeUnique(code: String): Int
 }
 
