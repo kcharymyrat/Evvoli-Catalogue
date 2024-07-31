@@ -61,6 +61,9 @@ class ProductViewModel @Inject constructor(
     private val _isCodeUnique = MutableStateFlow(true)
     val isCodeUnique: StateFlow<Boolean> get() = _isCodeUnique
 
+    private val _imageUris = MutableStateFlow<List<Pair<Uri, String>>>(emptyList())
+    val imageUris: StateFlow<List<Pair<Uri, String>>> get() = _imageUris
+
     init {
         fetchProducts()
     }
@@ -214,14 +217,32 @@ class ProductViewModel @Inject constructor(
         _imageUri.value = uri
     }
 
-    fun getMaxProductId() = viewModelScope.launch {
-        _maxProductId.value  = productRepository.getMaxProductId()
+    fun getMaxProductId() {
+        viewModelScope.launch {
+            _maxProductId.value  = productRepository.getMaxProductId()
+        }
     }
 
     fun checkCodeUnique(code: String) {
         viewModelScope.launch {
             _isCodeUnique.value = productRepository.isCodeUnique(code)
         }
+    }
+
+    fun addImageUri(uri: Uri, description: String) {
+        _imageUris.value += (uri to description)
+    }
+
+    fun removeImageUri(uri: Uri) {
+        _imageUris.value = _imageUris.value.filterNot { it.first == uri }
+    }
+
+    fun updateImageUris(updatedList: List<Pair<Uri, String>>) {
+        _imageUris.value = updatedList
+    }
+
+    fun clearImageUris() {
+        _imageUris.value = emptyList()
     }
 
 }
