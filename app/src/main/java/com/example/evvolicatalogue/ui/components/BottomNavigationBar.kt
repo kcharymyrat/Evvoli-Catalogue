@@ -26,7 +26,6 @@ const val ABOUT_US = "About Us"
 
 sealed class BottomNavItem(val screen: Screen, val icon: ImageVector, val label: String) {
     data object Categories : BottomNavItem(Screen.CategoriesScreen, Icons.Default.Home, CATEGORIES)
-    data object CreateNewProduct : BottomNavItem(Screen.ProductCreateScreen, Icons.Default.Add, ADD_NEW_PRODUCT)
     data object About : BottomNavItem(Screen.AboutScreen, Icons.Default.Info, ABOUT_US)
 }
 
@@ -35,7 +34,6 @@ sealed class BottomNavItem(val screen: Screen, val icon: ImageVector, val label:
 fun BottomNavigationBar(navController: NavHostController) {
     val items = listOf(
         BottomNavItem.Categories,
-        BottomNavItem.CreateNewProduct,
         BottomNavItem.About
     )
 
@@ -53,7 +51,6 @@ fun BottomNavigationBar(navController: NavHostController) {
                 label = {
                     when (item.label) {
                         CATEGORIES -> Text(text = stringResource(id = R.string.categories))
-                        ADD_NEW_PRODUCT -> Text(text = stringResource(id = R.string.new_product))
                         ABOUT_US -> Text(text = stringResource(id = R.string.about_us))
                     }
                 },

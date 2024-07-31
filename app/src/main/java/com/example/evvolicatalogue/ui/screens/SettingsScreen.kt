@@ -3,7 +3,6 @@ package com.example.evvolicatalogue.ui.screens
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +13,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -29,9 +30,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavHostController
-import com.example.evvolicatalogue.R
 import com.example.evvolicatalogue.utils.Screen
 
+// navHostController.navigate(Screen.SettingsScreen.route)
 
 @Composable
 fun SettingsScreen(navHostController: NavHostController) {
@@ -44,7 +45,7 @@ fun SettingsScreen(navHostController: NavHostController) {
     ) {
         item {
             Text(
-                text = stringResource(id = R.string.select_language),
+                text = "Select",
                 style = MaterialTheme.typography.headlineMedium
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -52,54 +53,32 @@ fun SettingsScreen(navHostController: NavHostController) {
 
         item {
             SettingOption(
-                "English",
-                "en",
-                Icons.Default.Language
-            ){
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"))
-                if (navHostController.previousBackStackEntry != null) {
-                    navHostController.popBackStack() // Navigate back if there's a previous entry
-                } else {
-                    navHostController.navigate(Screen.CategoriesScreen.route) { // Navigate to CategoriesScreen if it's the first screen
-                        popUpTo(Screen.SettingsScreen.route) { inclusive = true } // Removes LanguageSelectionScreen from the stack
-                    }
+                settingsName = "Languages",
+                icon = Icons.Default.Language,
+                onSettingsSelected = {
+                    navHostController.navigate(Screen.LanguageSettingsScreen.route)
                 }
-            }
+            )
         }
 
         item {
             SettingOption(
-                "Русский",
-                "ru",
-                Icons.Default.Language
-            ) {
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("ru"))
-                if (navHostController.previousBackStackEntry != null) {
-                    navHostController.popBackStack()
-                } else {
-                    navHostController.navigate(Screen.CategoriesScreen.route) {
-                        popUpTo(Screen.SettingsScreen.route) { inclusive = true }
-                    }
+                settingsName = "Add New Product",
+                icon = Icons.Default.Add,
+                onSettingsSelected = {
+                    navHostController.navigate(Screen.ProductCreateScreen.route)
                 }
-            }
+            )
         }
-
 
         item {
             SettingOption(
-                "Türkmen",
-                "tk",
-                Icons.Default.Language
-            ) {
-                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("tk"))
-                if (navHostController.previousBackStackEntry != null) {
-                    navHostController.popBackStack()
-                } else {
-                    navHostController.navigate(Screen.CategoriesScreen.route) {
-                        popUpTo(Screen.SettingsScreen.route) { inclusive = true }
-                    }
+                "Categories Update  Delete",
+                icon = Icons.Default.Category,
+                onSettingsSelected = {
+                    navHostController.navigate(Screen.CategoriesUpdateDeleteScreen.route)
                 }
-            }
+            )
         }
 
     }
@@ -107,30 +86,18 @@ fun SettingsScreen(navHostController: NavHostController) {
 
 @Composable
 fun SettingOption(
-    languageName: String,
-    languageCode: String,
+    settingsName: String,
     icon: ImageVector,
-    onLanguageSelected: () -> Unit
+    onSettingsSelected: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { onLanguageSelected() },
+            .clickable { onSettingsSelected() },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = if (AppCompatDelegate.getApplicationLocales()[0]?.language == languageCode) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                Color.White
-            },
-            contentColor = if (AppCompatDelegate.getApplicationLocales()[0]?.language == languageCode) {
-                Color.White
-            } else {
-                MaterialTheme.colorScheme.primary
-            },
-        )
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary)
     ) {
         Row(
             modifier = Modifier
@@ -141,7 +108,7 @@ fun SettingOption(
         ) {
             Icon(icon, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
-            Text(text = languageName, style = MaterialTheme.typography.bodyLarge)
+            Text(text = settingsName, style = MaterialTheme.typography.bodyLarge)
         }
     }
 }

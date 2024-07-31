@@ -21,11 +21,14 @@ import com.example.evvolicatalogue.data.local.entities.ProductWithImages
 import com.example.evvolicatalogue.ui.screens.AboutScreen
 import com.example.evvolicatalogue.ui.screens.ProductCreateScreen
 import com.example.evvolicatalogue.ui.screens.CategoriesScreen
+import com.example.evvolicatalogue.ui.screens.CategoriesUpdateDeleteScreen
 import com.example.evvolicatalogue.ui.screens.CategoryProductsScreen
 import com.example.evvolicatalogue.ui.screens.CategoryCreateScreen
+import com.example.evvolicatalogue.ui.screens.CategoryUpdateDeleteScreen
 import com.example.evvolicatalogue.ui.screens.LanguageSelectionScreen
 import com.example.evvolicatalogue.ui.screens.ProductDetailScreen
 import com.example.evvolicatalogue.ui.screens.SearchProductsScreen
+import com.example.evvolicatalogue.ui.screens.SettingsScreen
 import com.example.evvolicatalogue.utils.Screen
 import com.example.evvolicatalogue.viewmodel.CategoryViewModel
 import com.example.evvolicatalogue.viewmodel.ProductImageViewModel
@@ -119,22 +122,6 @@ fun Navigation(
 
 
         composable(
-            route = Screen.ProductCreateScreen.route
-        ) {
-            ProductCreateScreen(
-                navHostController = navHostController,
-                productViewModel = productViewModel,
-                categoryViewModel = categoryViewModel,
-                productImageViewModel = productImageViewModel,
-                createNewProduct = { newProduct ->
-                    productViewModel.insertProduct(newProduct)
-                },
-                modifier = Modifier,
-            )
-        }
-
-
-        composable(
             route = Screen.CategoryCreateScreen.route
         ) {
             CategoryCreateScreen(
@@ -153,8 +140,69 @@ fun Navigation(
         composable(
             route = Screen.SettingsScreen.route
         ) {
+            SettingsScreen(navHostController = navHostController)
+        }
+
+        composable(
+            route = Screen.LanguageSettingsScreen.route
+        ) {
             LanguageSelectionScreen(navHostController = navHostController)
         }
+
+        composable(
+            route = Screen.LanguageSettingsScreen.route
+        ) {
+            LanguageSelectionScreen(navHostController = navHostController)
+        }
+
+        composable(
+            route = Screen.ProductCreateScreen.route
+        ) {
+            ProductCreateScreen(
+                navHostController = navHostController,
+                productViewModel = productViewModel,
+                categoryViewModel = categoryViewModel,
+                productImageViewModel = productImageViewModel,
+                createNewProduct = { newProduct ->
+                    productViewModel.insertProduct(newProduct)
+                },
+                modifier = Modifier,
+            )
+        }
+
+        composable(route = Screen.CategoriesUpdateDeleteScreen.route) {
+            CategoriesUpdateDeleteScreen(
+                navController = navHostController,
+                categoryViewModel = categoryViewModel,
+                categories = categories,
+                modifier = Modifier
+            )
+        }
+
+        composable(
+            route = "${Screen.CategoryUpdateDeleteScreen.route}/{categoryId}",
+            arguments = listOf(navArgument("categoryId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val categoryId = backStackEntry.arguments?.getInt("categoryId")
+
+            LaunchedEffect(categoryId) {
+                if (categoryId != null) {
+                    println("In - LaunchedEffect(categoryId = $categoryId)")
+                    productViewModel.getProductsByCategoryId(categoryId = categoryId)
+                }
+            }
+
+            if (categoryId != null) {
+                CategoryUpdateDeleteScreen(
+                    navHostController = navHostController,
+                    categoryViewModel = categoryViewModel,
+                    categoryId = categoryId
+                )
+            }
+
+        }
+
+
     }
 
 }

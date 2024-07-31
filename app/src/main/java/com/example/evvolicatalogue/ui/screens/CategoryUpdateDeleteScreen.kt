@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
@@ -33,7 +35,7 @@ import com.example.evvolicatalogue.viewmodel.CategoryViewModel
 
 @Composable
 fun CategoryUpdateDeleteScreen(
-    navController: NavHostController,
+    navHostController: NavHostController,
     categoryViewModel: CategoryViewModel,
     categoryId: Int,
     modifier: Modifier = Modifier
@@ -123,25 +125,31 @@ fun CategoryUpdateDeleteScreen(
         }
         item {
             Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-                Button(onClick = {
-                    categoryViewModel.updateCategory(
-                        CategoryEntity(
-                            id = categoryId,
-                            name = updatedName,
-                            nameRu = updatedNameRu,
-                            description = updatedDescription.ifBlank { null },
-                            descriptionRu = updatedDescriptionRu.ifBlank { null },
-                            imageUrl = imageUri.toString()
+                Button(
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
+                    onClick = {
+                        categoryViewModel.updateCategory(
+                            CategoryEntity(
+                                id = categoryId,
+                                name = updatedName,
+                                nameRu = updatedNameRu,
+                                description = updatedDescription.ifBlank { null },
+                                descriptionRu = updatedDescriptionRu.ifBlank { null },
+                                imageUrl = imageUri.toString()
+                            )
                         )
-                    )
-                    navController.popBackStack()
-                }) {
+                        navHostController.popBackStack()
+                    }
+                ) {
                     Text("Update Category")
                 }
-                Button(onClick = {
-                    categoryViewModel.deleteCategoryById(categoryId)
-                    navController.popBackStack()
-                }) {
+                Button(
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
+                    onClick = {
+                        categoryViewModel.deleteCategoryById(categoryId)
+                        navHostController.popBackStack()
+                    }
+                ) {
                     Text("Delete Category")
                 }
             }
