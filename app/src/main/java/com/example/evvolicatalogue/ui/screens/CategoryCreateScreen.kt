@@ -29,14 +29,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.viewmodel.CategoryViewModel
 import java.io.File
 import java.io.FileOutputStream
 
 @Composable
-fun CreateCategoryScreen(
+fun CategoryCreateScreen(
     navHostController: NavHostController,
     categoryViewModel: CategoryViewModel,
     modifier: Modifier = Modifier

@@ -10,6 +10,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.data.local.entities.CategoryWithProducts
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
@@ -30,6 +31,9 @@ interface CategoryDao {
 
     @Query("SELECT * FROM categories WHERE id = :id")
     suspend fun getCategoryById(id: Int): CategoryEntity?
+
+    @Query("SELECT * FROM categories WHERE id = :categoryId")
+    fun getCategoryFlowById(categoryId: Int): Flow<CategoryEntity?>
 
     @Query("DELETE FROM categories WHERE id = :id")
     suspend fun deleteCategoryById(id: Int)

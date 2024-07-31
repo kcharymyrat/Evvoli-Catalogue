@@ -125,7 +125,6 @@ fun CategoryItem(
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
-//            CategoryButton(navController=navController, category = category)
         }
     }
 }

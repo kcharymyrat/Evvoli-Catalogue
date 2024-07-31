@@ -19,10 +19,10 @@ import com.example.evvolicatalogue.data.local.entities.ProductEntity
 import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
 import com.example.evvolicatalogue.data.local.entities.ProductWithImages
 import com.example.evvolicatalogue.ui.screens.AboutScreen
-import com.example.evvolicatalogue.ui.screens.CreateProductScreen
+import com.example.evvolicatalogue.ui.screens.ProductCreateScreen
 import com.example.evvolicatalogue.ui.screens.CategoriesScreen
 import com.example.evvolicatalogue.ui.screens.CategoryProductsScreen
-import com.example.evvolicatalogue.ui.screens.CreateCategoryScreen
+import com.example.evvolicatalogue.ui.screens.CategoryCreateScreen
 import com.example.evvolicatalogue.ui.screens.LanguageSelectionScreen
 import com.example.evvolicatalogue.ui.screens.ProductDetailScreen
 import com.example.evvolicatalogue.ui.screens.SearchProductsScreen
@@ -119,9 +119,9 @@ fun Navigation(
 
 
         composable(
-            route = Screen.CreateProductScreen.route
+            route = Screen.ProductCreateScreen.route
         ) {
-            CreateProductScreen(
+            ProductCreateScreen(
                 navHostController = navHostController,
                 productViewModel = productViewModel,
                 categoryViewModel = categoryViewModel,
@@ -135,9 +135,9 @@ fun Navigation(
 
 
         composable(
-            route = Screen.CreateCategoryScreen.route
+            route = Screen.CategoryCreateScreen.route
         ) {
-            CreateCategoryScreen(
+            CategoryCreateScreen(
                 navHostController = navHostController,
                 categoryViewModel = categoryViewModel,
                 modifier = Modifier,

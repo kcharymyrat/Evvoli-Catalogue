@@ -26,7 +26,7 @@ const val ABOUT_US = "About Us"
 
 sealed class BottomNavItem(val screen: Screen, val icon: ImageVector, val label: String) {
     data object Categories : BottomNavItem(Screen.CategoriesScreen, Icons.Default.Home, CATEGORIES)
-    data object CreateNewProduct : BottomNavItem(Screen.CreateProductScreen, Icons.Default.Add, ADD_NEW_PRODUCT)
+    data object CreateNewProduct : BottomNavItem(Screen.ProductCreateScreen, Icons.Default.Add, ADD_NEW_PRODUCT)
     data object About : BottomNavItem(Screen.AboutScreen, Icons.Default.Info, ABOUT_US)
 }
 

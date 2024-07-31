@@ -67,9 +67,14 @@ class CategoryViewModel @Inject constructor(
         fetchCategories()
     }
 
-    fun updateCategory(category: CategoryEntity) = viewModelScope.launch {
-        categoryRepository.updateCategory(category)
-        fetchCategories()
+    fun getCategoryFlowById(id: Int): Flow<CategoryEntity?> {
+        return categoryRepository.getCategoryFlowById(id)
+    }
+
+    fun updateCategory(category: CategoryEntity) {
+        viewModelScope.launch {
+            categoryRepository.updateCategory(category)
+        }
     }
 
     fun deleteCategory(category: CategoryEntity) = viewModelScope.launch {
@@ -77,9 +82,10 @@ class CategoryViewModel @Inject constructor(
         fetchCategories()
     }
 
-    fun deleteCategoryById(id: Int) = viewModelScope.launch {
-        categoryRepository.deleteCategoryById(id)
-        fetchCategories()
+    fun deleteCategoryById(id: Int) {
+        viewModelScope.launch {
+            categoryRepository.deleteCategoryById(id)
+        }
     }
 
     fun searchCategories(query: String) {
