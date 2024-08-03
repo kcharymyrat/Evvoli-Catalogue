@@ -1,28 +1,24 @@
 package com.example.evvolicatalogue.ui.screens
 
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ImageNotSupported
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -108,7 +104,7 @@ fun CategoryItemForUpdateDelete(
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = modifier
-            .height(160.dp),
+            .height(240.dp),
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -129,7 +125,10 @@ fun CategoryItemForUpdateDelete(
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
-            CategoryUpdateDeleteButtons(
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            CategoryUpdateDeleteScreenButtons(
                 navController = navController,
                 categoryViewModel = categoryViewModel,
                 category = category
@@ -179,24 +178,45 @@ fun CategoryImageForUpdateDelete(
 
 
 @Composable
-fun CategoryUpdateDeleteButtons(
+fun CategoryUpdateDeleteScreenButtons(
     navController: NavHostController,
     categoryViewModel: CategoryViewModel,
     category: CategoryEntity,
     modifier: Modifier = Modifier
 ) {
-    Button(
-        colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
-        onClick = {
-            navController.navigate(
-                Screen.CategoryUpdateDeleteScreen.route + "/${category.id}"
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        OutlinedButton(
+            border = BorderStroke(1.dp, Color.Blue),
+            onClick = {
+                navController.navigate(
+                    Screen.ProductsUpdateDeleteScreen.route + "/${category.id}"
+                )
+            }
+        ) {
+            Text(
+                text = "Update Products",
+                fontSize = 12.sp
             )
         }
-    ) {
-        Text(
-            text = "Update",
-            fontSize = 12.sp
-        )
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        OutlinedButton(
+            border = BorderStroke(1.dp, Color.Magenta),
+            onClick = {
+                navController.navigate(
+                    Screen.CategoryUpdateDeleteScreen.route + "/${category.id}"
+                )
+            }
+        ) {
+            Text(
+                text = "Update Category",
+                fontSize = 12.sp
+            )
+        }
     }
 }
 

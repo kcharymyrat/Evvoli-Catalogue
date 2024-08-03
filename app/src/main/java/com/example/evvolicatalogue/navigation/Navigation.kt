@@ -27,6 +27,8 @@ import com.example.evvolicatalogue.ui.screens.CategoryCreateScreen
 import com.example.evvolicatalogue.ui.screens.CategoryUpdateDeleteScreen
 import com.example.evvolicatalogue.ui.screens.LanguageSelectionScreen
 import com.example.evvolicatalogue.ui.screens.ProductDetailScreen
+import com.example.evvolicatalogue.ui.screens.ProductUpdateDeleteScreen
+import com.example.evvolicatalogue.ui.screens.ProductsUpdateDeleteScreen
 import com.example.evvolicatalogue.ui.screens.SearchProductsScreen
 import com.example.evvolicatalogue.ui.screens.SettingsScreen
 import com.example.evvolicatalogue.utils.Screen
@@ -199,10 +201,50 @@ fun Navigation(
                     categoryId = categoryId
                 )
             }
-
         }
 
+        composable(
+            route = "${Screen.ProductsUpdateDeleteScreen.route}/{categoryId}",
+            arguments = listOf(navArgument("categoryId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val categoryId = backStackEntry.arguments?.getInt("categoryId")
+
+            LaunchedEffect(categoryId) {
+                if (categoryId != null) {
+                    println("In - LaunchedEffect(categoryId = $categoryId)")
+                    productViewModel.getProductsByCategoryId(categoryId = categoryId)
+                }
+            }
+
+            ProductsUpdateDeleteScreen(
+                navHostController = navHostController,
+                productViewModel = productViewModel,
+                products = products,
+                modifier = Modifier,
+            )
+        }
+
+        composable(
+            route = "${Screen.ProductUpdateDeleteScreen.route}/{productId}",
+            arguments = listOf(navArgument("productId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val productId = backStackEntry.arguments?.getString("productId")
+
+            LaunchedEffect(productId) {
+                if (productId != null) {
+                    println("In - LaunchedEffect(productId = ${productId.toInt()})")
+                    productViewModel.getProductWithImages(id = productId.toInt())
+                }
+            }
+
+            ProductUpdateDeleteScreen(
+                navHostController = navHostController,
+                productViewModel = productViewModel,
+                categoryViewModel = categoryViewModel,
+                productImageViewModel = productImageViewModel,
+                product = productWithImages,
+            )
+        }
 
     }
-
 }

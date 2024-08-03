@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
@@ -49,6 +50,7 @@ fun CategoryUpdateDeleteScreen(
     var updatedDescription by remember { mutableStateOf("") }
     var updatedDescriptionRu by remember { mutableStateOf("") }
     var imageUri by remember { mutableStateOf<Uri?>(null) }
+    var showDialog by remember { mutableStateOf(false) }
 
     // Launchers for selecting images
     val launcher = rememberLauncherForActivityResult(
@@ -146,13 +148,38 @@ fun CategoryUpdateDeleteScreen(
                 Button(
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                     onClick = {
-                        categoryViewModel.deleteCategoryById(categoryId)
-                        navHostController.popBackStack()
+                        showDialog = true // Show the confirmation dialog
                     }
                 ) {
                     Text("Delete Category")
                 }
             }
         }
+    }
+
+    // Confirmation dialog
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Delete Category") },
+            text = { Text("Are you sure you want to delete this category?") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        categoryViewModel.deleteCategoryById(categoryId)
+                        showDialog = false
+                        navHostController.popBackStack()
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                ) {
+                    Text("Delete")
+                }
+            },
+            dismissButton = {
+                Button(onClick = { showDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
     }
 }
