@@ -64,6 +64,9 @@ class ProductViewModel @Inject constructor(
     private val _imageUris = MutableStateFlow<List<Pair<Uri, String>>>(emptyList())
     val imageUris: StateFlow<List<Pair<Uri, String>>> get() = _imageUris
 
+    private val _imageTriples = MutableStateFlow<List<Triple<Uri, String, Int>>>(emptyList())
+    val imageTriples: StateFlow<List<Triple<Uri, String, Int>>> get() = _imageTriples
+
     init {
         fetchProducts()
     }
@@ -239,6 +242,22 @@ class ProductViewModel @Inject constructor(
 
     fun updateImageUris(updatedList: List<Pair<Uri, String>>) {
         _imageUris.value = updatedList
+    }
+
+    fun addImageTriple(uri: Uri, description: String, id: Int) {
+        _imageTriples.value += Triple(uri, description, id)
+    }
+
+    fun removeImageTriple(uri: Uri) {
+        _imageTriples.value = _imageTriples.value.filterNot { it.first == uri }
+    }
+
+    fun updateImageTriples(updatedList: List<Triple<Uri, String, Int>>) {
+        _imageTriples.value = updatedList
+    }
+
+    fun clearImageTriples() {
+        _imageTriples.value = emptyList()
     }
 
     fun clearImageUris() {

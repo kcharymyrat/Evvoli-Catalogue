@@ -86,6 +86,7 @@ fun ProductCreateScreen(
 
     LaunchedEffect(Unit) {
         productViewModel.getMaxProductId()
+        productImageViewModel.getMaxProductImageId()
     }
 
     val launcher = rememberLauncherForActivityResult(
@@ -325,6 +326,7 @@ fun ProductCreateScreen(
                         productTitleRu = productTitleRu,
                         selectedCategory = selectedCategory
                     )
+                    println("maxProductId = $maxProductId")
                     if (isValid && imageUri != null) {
                         val newProduct = ProductEntity(
                             id = maxProductId + 1,
@@ -341,15 +343,23 @@ fun ProductCreateScreen(
                         )
                         createNewProduct(newProduct)
 
-                        imageUris.forEach { (uri, description) ->
-                            val newProductImage = ProductImageEntity(
-                                id = maxProductImageId + 1,
+                        println("imageUris = $imageUris")
+                        val newProductImages = imageUris.mapIndexed { index, (uri, description) ->
+                            val id = maxProductImageId + 1 + index
+                            println("id = $id, uri = $uri")
+                            ProductImageEntity(
+                                id = id, // Use the incremented id
                                 productId = newProduct.id,
                                 imageUrl = saveImageToInternalStorage(uri, context),
                                 description = description
                             )
+                        }
+
+                        println("newProductImages = $newProductImages")
+                        newProductImages.forEach { newProductImage ->
                             productImageViewModel.insertProductImage(newProductImage)
                         }
+
 
                         productViewModel.clearImageUris()
                         navHostController.popBackStack()

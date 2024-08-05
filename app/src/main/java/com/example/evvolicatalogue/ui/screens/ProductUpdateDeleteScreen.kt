@@ -38,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.room.PrimaryKey
 import coil.compose.rememberAsyncImagePainter
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.data.local.entities.ProductEntity
@@ -65,6 +66,11 @@ fun ProductUpdateDeleteScreen(
 
     val productWithImages by product.collectAsState()
 
+    var originalImageUri by remember { mutableStateOf<Uri?>(null) }
+    var originalAdditionalImageUris by remember { mutableStateOf<List<Triple<Uri, String, Int>>>(emptyList()) }
+    var showDialog by remember { mutableStateOf(false) }
+    var imageToDelete by remember { mutableStateOf<Uri?>(null) }
+
     LaunchedEffect(productWithImages) {
         productWithImages?.let {
             productViewModel.onProductTypeChange(it.product.type ?: "")
@@ -75,12 +81,23 @@ fun ProductUpdateDeleteScreen(
             productViewModel.onProductTitleRuChange(it.product.titleRu)
             productViewModel.onProductDescriptionChange(it.product.description ?: "")
             productViewModel.onProductDescriptionRuChange(it.product.descriptionRu ?: "")
-            productViewModel.onCategorySelected(it.product.categoryId?.let { categoryId ->
-                categoryViewModel.getCategoryById(categoryId)
-            })
-            it.product.imageUrl.let { uri -> Uri.parse(uri) }
-                ?.let { it1 -> productViewModel.onImageUriSelected(it1) }
-            productViewModel.updateImageUris(it.images.map { image -> Uri.parse(image.imageUrl) to image.description })
+            it.product.categoryId.let { categoryId ->
+                categoryViewModel.getCategoryById(categoryId)?.let { category ->
+                    productViewModel.onCategorySelected(category)
+                }
+            }
+            it.product.imageUrl.let { imageUrl ->
+                val uri = Uri.parse(imageUrl)
+                productViewModel.onImageUriSelected(uri)
+                originalImageUri = uri
+            }
+            val additionalImageUris = it.images.map { image -> Triple(Uri.parse(image.imageUrl), image.description ?: "", image.id) }
+            println("additionalImageUris = $additionalImageUris")
+            productViewModel.updateImageTriples(additionalImageUris.map { triplet -> Triple(triplet.first, triplet.second, triplet.third) }) // Update ViewModel with pair only
+            originalAdditionalImageUris = additionalImageUris
+
+            productImageViewModel.fetchProductImages(productId = it.product.id)
+            productImageViewModel.getMaxProductImageId()
         }
     }
 
@@ -95,10 +112,11 @@ fun ProductUpdateDeleteScreen(
     val selectedCategory by productViewModel.selectedCategory.collectAsState()
     val imageUri by productViewModel.imageUri.collectAsState()
     val isCodeUnique by productViewModel.isCodeUnique.collectAsState()
-    val imageUris by productViewModel.imageUris.collectAsState()
+    val imageTriples by productViewModel.imageTriples.collectAsState()
 
     val categories = categoryViewModel.categories.collectAsLazyPagingItems()
     val maxProductImageId by productImageViewModel.maxProductImageId.collectAsState()
+    val productImageById by productImageViewModel.productImageById.collectAsState()
 
     var isTitleValid by remember { mutableStateOf(true) }
     var isTitleRuValid by remember { mutableStateOf(true) }
@@ -118,7 +136,15 @@ fun ProductUpdateDeleteScreen(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         if (uri != null) {
-            productViewModel.addImageUri(uri, "")
+            val newId = productImageViewModel.getNextImageId()
+            productViewModel.addImageTriple(uri, "", newId)
+            val newProductImage = product.value?.product?.id?.let {
+                ProductImageEntity(
+                    id = newId,
+                    productId = it,
+                    imageUrl = saveImageToInternalStorage(uri, context),
+                )
+            }
         }
     }
 
@@ -176,9 +202,11 @@ fun ProductUpdateDeleteScreen(
                 Text("Please select a category", color = Color.Red)
             }
         }
+
         item {
             Spacer(modifier = Modifier.height(8.dp))
         }
+
         item {
             OutlinedTextField(
                 value = productType,
@@ -187,6 +215,7 @@ fun ProductUpdateDeleteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
+
         item {
             OutlinedTextField(
                 value = productTypeRu,
@@ -195,6 +224,7 @@ fun ProductUpdateDeleteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
+
         item {
             OutlinedTextField(
                 value = productCode,
@@ -213,6 +243,7 @@ fun ProductUpdateDeleteScreen(
                 Text("Code must be unique", color = Color.Red)
             }
         }
+
         item {
             OutlinedTextField(
                 value = productModel,
@@ -221,6 +252,7 @@ fun ProductUpdateDeleteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
+
         item {
             OutlinedTextField(
                 value = productTitle,
@@ -236,6 +268,7 @@ fun ProductUpdateDeleteScreen(
                 Text("Field cannot be blank", color = Color.Red)
             }
         }
+
         item {
             OutlinedTextField(
                 value = productTitleRu,
@@ -251,6 +284,7 @@ fun ProductUpdateDeleteScreen(
                 Text("Field cannot be blank", color = Color.Red)
             }
         }
+
         item {
             OutlinedTextField(
                 value = productDescription,
@@ -259,6 +293,7 @@ fun ProductUpdateDeleteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
+
         item {
             OutlinedTextField(
                 value = productDescriptionRu,
@@ -277,7 +312,9 @@ fun ProductUpdateDeleteScreen(
                 Image(
                     painter = rememberAsyncImagePainter(model = imageUri),
                     contentDescription = null,
-                    modifier = Modifier.size(128.dp).padding(8.dp)
+                    modifier = Modifier
+                        .size(128.dp)
+                        .padding(8.dp)
                 )
             }
 
@@ -295,37 +332,40 @@ fun ProductUpdateDeleteScreen(
         }
 
         item {
-            imageUris.forEachIndexed { index, (uri, description) ->
+            imageTriples.forEachIndexed { index, (uri, description, id) ->
+                println("$index) id = $id, uri = $uri")
+
                 Column {
                     Image(
                         painter = rememberAsyncImagePainter(model = uri),
                         contentDescription = null,
-                        modifier = Modifier.size(128.dp).padding(8.dp)
-                    )
-                    OutlinedTextField(
-                        value = description,
-                        onValueChange = { newDescription ->
-                            val updatedList = imageUris.toMutableList()
-                            updatedList[index] = uri to newDescription
-                            productViewModel.updateImageUris(updatedList)
-                        },
-                        label = { Text("Image Description") },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .size(128.dp)
+                            .padding(8.dp)
                     )
                     Button(
-                        onClick = { productViewModel.removeImageUri(uri) },
-                        modifier = Modifier.align(Alignment.End)
+                        onClick = {
+                            println("Remove clicked")
+                            productViewModel.removeImageTriple(uri)
+                            println("Remove clicked")
+                            productImageViewModel.updateCurrentProductImageById(id)
+                            println("productImageViewModel = $productImageViewModel")
+                            if (productImageById != null) {
+                                productImageViewModel.deleteProductImage(productImageById!!)
+                            }
+                        }
                     ) {
-                        Text("Remove")
+                        Text("Remove Image")
                     }
-                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
-        }
 
-        item {
-            Button(onClick = { additionalImageLauncher.launch("image/*") }) {
-                Text("Add Additional Image")
+            Button(
+                onClick = {
+                    additionalImageLauncher.launch("image/*")
+                }
+            ) {
+                Text(text = "Add Additional Image")
             }
         }
 
@@ -335,51 +375,52 @@ fun ProductUpdateDeleteScreen(
 
         item {
             Button(
-                onClick =```kotlin
-            onClick = {
-                val isValid = validateInputs(
-                    productTitle = productTitle,
-                    productTitleRu = productTitleRu,
-                    selectedCategory = selectedCategory
-                )
-                if (isValid && imageUri != null) {
-                    val updatedProduct = ProductEntity(
-                        id = productWithImages?.product?.id ?: 0,
-                        categoryId = selectedCategory!!.id,
-                        type = productType.ifBlank { null },
-                        typeRu = productTypeRu.ifBlank { null },
-                        code = productCode,
-                        model = productModel.ifBlank { null },
-                        title = productTitle,
-                        titleRu = productTitleRu,
-                        description = productDescription.ifBlank { null },
-                        descriptionRu = productDescriptionRu.ifBlank { null },
-                        imageUrl = saveImageToInternalStorage(imageUri!!, context)
+                onClick = {
+                    val isValid = validateInputs(
+                        productTitle = productTitle,
+                        productTitleRu = productTitleRu,
+                        selectedCategory = selectedCategory
                     )
-                    productViewModel.updateProduct(updatedProduct)
+                    if (isValid) {
+                        val newImageUri = if (imageUri != originalImageUri) {
+                            imageUri?.let { saveImageToInternalStorage(it, context) }
+                        } else {
+                            productWithImages?.product?.imageUrl
+                        }
 
-                    imageUris.forEach { (uri, description) ->
-                        val newProductImage = ProductImageEntity(
-                            id = maxProductImageId + 1,
-                            productId = updatedProduct.id,
-                            imageUrl = saveImageToInternalStorage(uri, context),
-                            description = description
-                        )
-                        productImageViewModel.insertProductImage(newProductImage)
+                        val updatedProduct = productWithImages?.product?.id?.let {
+                            ProductEntity(
+                                id = it,
+                                categoryId = selectedCategory!!.id,
+                                type = productType.ifBlank { null },
+                                typeRu = productTypeRu.ifBlank { null },
+                                code = productCode,
+                                model = productModel.ifBlank { null },
+                                title = productTitle,
+                                titleRu = productTitleRu,
+                                description = productDescription.ifBlank { null },
+                                descriptionRu = productDescriptionRu.ifBlank { null },
+                                imageUrl = newImageUri ?: ""
+                            )
+                        }
+                        updatedProduct.let {
+                            if (updatedProduct != null) {
+                                productViewModel.updateProduct(updatedProduct)
+                            }
+                        }
+
+                        productViewModel.clearImageTriples()
+                        navHostController.popBackStack()
+                    } else {
+                        isTitleValid = productTitle.isNotBlank()
+                        isTitleRuValid = productTitleRu.isNotBlank()
+                        isCategorySelected = selectedCategory != null
                     }
-
-                    productViewModel.clearImageUris()
-                    navHostController.popBackStack()
-                } else {
-                    isTitleValid = productTitle.isNotBlank()
-                    isTitleRuValid = productTitleRu.isNotBlank()
-                    isCategorySelected = selectedCategory != null
-                }
-            },
-            enabled = productTitle.isNotEmpty() && selectedCategory != null && imageUri != null
+                },
+                enabled = productTitle.isNotEmpty() && selectedCategory != null
             ) {
-            Text("Update Product")
-        }
+                Text("Update Product")
+            }
         }
 
         item {
@@ -425,3 +466,4 @@ private fun validateInputs(
 ): Boolean {
     return productTitle.isNotBlank() && productTitleRu.isNotBlank() && selectedCategory != null
 }
+

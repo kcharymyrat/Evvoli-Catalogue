@@ -20,6 +20,6 @@ data class ProductImageEntity(
     @PrimaryKey val id: Int,
     val productId: Int,
     val imageUrl: String,
-    val description: String? = null
+    var description: String? = null
 )
 

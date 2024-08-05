@@ -33,4 +33,8 @@ class ProductImageRepository @Inject constructor(private val productImageDao: Pr
     suspend fun getMaxProductImageId(): Int {
         return productImageDao.getMaxProductImageId()
     }
+
+    fun getProductImageById(id: Int): ProductImageEntity? {
+        return productImageDao.getProductImageById(id=id)
+    }
 }

@@ -15,6 +15,9 @@ interface ProductImageDao {
     @Query("SELECT * FROM product_images")
     fun getProductImages(): PagingSource<Int, ProductImageEntity>
 
+    @Query("SELECT * FROM product_images WHERE id = :id")
+    fun getProductImageById(id: Int): ProductImageEntity?
+
     @Query("SELECT * FROM product_images WHERE productId = :productId")
     fun getProductImagesByProductId(productId: Int): PagingSource<Int, ProductImageEntity>
 

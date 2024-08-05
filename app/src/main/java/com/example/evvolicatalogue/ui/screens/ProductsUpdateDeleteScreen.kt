@@ -149,7 +149,7 @@ fun ProductUpdateDeleteItem(
                 product = product,
                 onSeeDetailsButtonClicked = {
                     navHostController.navigate(
-                        Screen.ProductDetailScreen.route + "/${product.id}"
+                        Screen.ProductUpdateDeleteScreen.route + "/${product.id}"
                     )
                 },
             )

@@ -234,6 +234,8 @@ fun Navigation(
                 if (productId != null) {
                     println("In - LaunchedEffect(productId = ${productId.toInt()})")
                     productViewModel.getProductWithImages(id = productId.toInt())
+                    productImageViewModel.fetchProductImages(productId = productId.toInt())
+                    productImageViewModel.getMaxProductImageId()
                 }
             }
 

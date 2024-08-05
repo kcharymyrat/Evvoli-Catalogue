@@ -79,8 +79,8 @@ class CategoryRepository @Inject constructor(private val categoryDao: CategoryDa
         categoryDao.deleteCategoryItem(category)
     }
 
-    suspend fun getCategoryById(id: Int) {
-        categoryDao.getCategoryById(id)
+    suspend fun getCategoryById(id: Int): CategoryEntity? {
+       return categoryDao.getCategoryById(id)
     }
 
     fun getCategoryFlowById(id: Int): Flow<CategoryEntity?> {

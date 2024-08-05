@@ -67,6 +67,10 @@ class CategoryViewModel @Inject constructor(
         fetchCategories()
     }
 
+    suspend fun getCategoryById(id: Int): CategoryEntity? {
+        return categoryRepository.getCategoryById(id)
+    }
+
     fun getCategoryFlowById(id: Int): Flow<CategoryEntity?> {
         return categoryRepository.getCategoryFlowById(id)
     }
