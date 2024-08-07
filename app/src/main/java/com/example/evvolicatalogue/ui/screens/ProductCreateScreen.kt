@@ -360,7 +360,6 @@ fun ProductCreateScreen(
                             productImageViewModel.insertProductImage(newProductImage)
                         }
 
-
                         productViewModel.clearImageUris()
                         navHostController.popBackStack()
                     } else {

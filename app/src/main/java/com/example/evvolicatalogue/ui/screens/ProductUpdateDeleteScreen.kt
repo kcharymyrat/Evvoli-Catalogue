@@ -112,11 +112,10 @@ fun ProductUpdateDeleteScreen(
     val selectedCategory by productViewModel.selectedCategory.collectAsState()
     val imageUri by productViewModel.imageUri.collectAsState()
     val isCodeUnique by productViewModel.isCodeUnique.collectAsState()
-    val imageTriples by productViewModel.imageTriples.collectAsState()
+    val imageUris by productViewModel.imageUris.collectAsState()
 
     val categories = categoryViewModel.categories.collectAsLazyPagingItems()
     val maxProductImageId by productImageViewModel.maxProductImageId.collectAsState()
-    val productImageById by productImageViewModel.productImageById.collectAsState()
 
     var isTitleValid by remember { mutableStateOf(true) }
     var isTitleRuValid by remember { mutableStateOf(true) }
@@ -136,15 +135,7 @@ fun ProductUpdateDeleteScreen(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         if (uri != null) {
-            val newId = productImageViewModel.getNextImageId()
-            productViewModel.addImageTriple(uri, "", newId)
-            val newProductImage = product.value?.product?.id?.let {
-                ProductImageEntity(
-                    id = newId,
-                    productId = it,
-                    imageUrl = saveImageToInternalStorage(uri, context),
-                )
-            }
+            productViewModel.addImageUri(uri, "")
         }
     }
 
@@ -332,40 +323,61 @@ fun ProductUpdateDeleteScreen(
         }
 
         item {
-            imageTriples.forEachIndexed { index, (uri, description, id) ->
-                println("$index) id = $id, uri = $uri")
+            productWithImages?.images?.forEach {productImage ->
+                Column {
+                    Image(
+                        painter = rememberAsyncImagePainter(model = productImage.imageUrl),
+                        contentDescription = null,
+                        modifier = Modifier.size(128.dp).padding(8.dp)
+                    )
+                    Button(
+                        onClick = {
+                            productImageViewModel.deleteProductImage(productImage)
+                            product.value?.product?.id?.let {
+                                productImageViewModel.fetchProductImages(productId = it)
+                            }
+                        },
+                        modifier = Modifier.align(Alignment.End)
+                    ) {
+                        Text("Remove")
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+            }
+        }
 
+        item {
+            Button(onClick = { additionalImageLauncher.launch("image/*") }) {
+                Text("Add Additional Image")
+            }
+        }
+
+        item {
+            imageUris.forEachIndexed { index, (uri, description) ->
                 Column {
                     Image(
                         painter = rememberAsyncImagePainter(model = uri),
                         contentDescription = null,
-                        modifier = Modifier
-                            .size(128.dp)
-                            .padding(8.dp)
+                        modifier = Modifier.size(128.dp).padding(8.dp)
+                    )
+                    OutlinedTextField(
+                        value = description,
+                        onValueChange = { newDescription ->
+                            val updatedList = imageUris.toMutableList()
+                            updatedList[index] = uri to newDescription
+                            productViewModel.updateImageUris(updatedList)
+                        },
+                        label = { Text("Image Description") },
+                        modifier = Modifier.fillMaxWidth()
                     )
                     Button(
-                        onClick = {
-                            println("Remove clicked")
-                            productViewModel.removeImageTriple(uri)
-                            println("Remove clicked")
-                            productImageViewModel.updateCurrentProductImageById(id)
-                            println("productImageViewModel = $productImageViewModel")
-                            if (productImageById != null) {
-                                productImageViewModel.deleteProductImage(productImageById!!)
-                            }
-                        }
+                        onClick = { productViewModel.removeImageUri(uri) },
+                        modifier = Modifier.align(Alignment.End)
                     ) {
-                        Text("Remove Image")
+                        Text("Remove")
                     }
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
-            }
-
-            Button(
-                onClick = {
-                    additionalImageLauncher.launch("image/*")
-                }
-            ) {
-                Text(text = "Add Additional Image")
             }
         }
 
@@ -381,7 +393,10 @@ fun ProductUpdateDeleteScreen(
                         productTitleRu = productTitleRu,
                         selectedCategory = selectedCategory
                     )
+                    println("isValid = $isValid")
+
                     if (isValid) {
+
                         val newImageUri = if (imageUri != originalImageUri) {
                             imageUri?.let { saveImageToInternalStorage(it, context) }
                         } else {
@@ -403,9 +418,25 @@ fun ProductUpdateDeleteScreen(
                                 imageUrl = newImageUri ?: ""
                             )
                         }
+                        println("updatedProduct = $updatedProduct")
                         updatedProduct.let {
                             if (updatedProduct != null) {
                                 productViewModel.updateProduct(updatedProduct)
+
+                                println("imageUris = $imageUris")
+                                val newProductImages = imageUris.mapIndexed { index, (uri, description) ->
+                                    val id = maxProductImageId + 1 + index
+                                    println("id = $id, uri = $uri")
+                                    ProductImageEntity(
+                                        id = id, // Use the incremented id
+                                        productId = updatedProduct.id,
+                                        imageUrl = saveImageToInternalStorage(uri, context),
+                                        description = description
+                                    )
+                                }
+                                println("newProductImages = $newProductImages")
+
+                                productViewModel.clearImageUris()
                             }
                         }
 
