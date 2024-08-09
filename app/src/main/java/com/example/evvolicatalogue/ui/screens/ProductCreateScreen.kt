@@ -360,7 +360,18 @@ fun ProductCreateScreen(
                             productImageViewModel.insertProductImage(newProductImage)
                         }
 
+                        productViewModel.clearSelectedCategory()
+                        productViewModel.clearProductType()
+                        productViewModel.clearProductTypeRu()
+                        productViewModel.clearProductCode()
+                        productViewModel.clearProductModel()
+                        productViewModel.clearProductTitle()
+                        productViewModel.clearProductTitleRu()
+                        productViewModel.clearProductDescription()
+                        productViewModel.clearProductDescriptionRu()
+                        productViewModel.clearImageUri()
                         productViewModel.clearImageUris()
+
                         navHostController.popBackStack()
                     } else {
                         isTitleValid = productTitle.isNotBlank()

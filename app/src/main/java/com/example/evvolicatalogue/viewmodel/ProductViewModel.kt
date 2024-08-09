@@ -64,8 +64,6 @@ class ProductViewModel @Inject constructor(
     private val _imageUris = MutableStateFlow<List<Pair<Uri, String>>>(emptyList())
     val imageUris: StateFlow<List<Pair<Uri, String>>> get() = _imageUris
 
-    private val _imageTriples = MutableStateFlow<List<Triple<Uri, String, Int>>>(emptyList())
-    val imageTriples: StateFlow<List<Triple<Uri, String, Int>>> get() = _imageTriples
 
     init {
         fetchProducts()
@@ -184,40 +182,80 @@ class ProductViewModel @Inject constructor(
         _productTitle.value = newTitle
     }
 
+    fun clearProductTitle() {
+        _productTitle.value = ""
+    }
+
     fun onProductTitleRuChange(newTitleRu: String) {
         _productTitleRu.value = newTitleRu
+    }
+
+    fun clearProductTitleRu() {
+        _productTitleRu.value = ""
     }
 
     fun onProductDescriptionChange(newDescription: String) {
         _productDescription.value = newDescription
     }
 
+    fun clearProductDescription() {
+        _productDescription.value = ""
+    }
+
     fun onProductDescriptionRuChange(newDescriptionRu: String) {
         _productDescriptionRu.value = newDescriptionRu
+    }
+
+    fun clearProductDescriptionRu() {
+        _productDescriptionRu.value = ""
     }
 
     fun onProductTypeChange(newType: String) {
         _productType.value = newType
     }
 
+    fun clearProductType() {
+        _productType.value = ""
+    }
+
     fun onProductTypeRuChange(newTypeRu: String) {
         _productTypeRu.value = newTypeRu
+    }
+
+    fun clearProductTypeRu() {
+        _productTypeRu.value = ""
     }
 
     fun onProductCodeChange(newCode: String) {
         _productCode.value = newCode
     }
 
+    fun clearProductCode() {
+        _productCode.value = ""
+    }
+
     fun onProductModelChange(newCode: String) {
         _productModel.value = newCode
+    }
+
+    fun clearProductModel() {
+        _productModel.value = ""
     }
 
     fun onCategorySelected(category: CategoryEntity) {
         _selectedCategory.value = category
     }
 
+    fun clearSelectedCategory() {
+        _selectedCategory.value = null
+    }
+
     fun onImageUriSelected(uri: Uri) {
         _imageUri.value = uri
+    }
+
+    fun clearImageUri() {
+        _imageUri.value = null
     }
 
     fun getMaxProductId() {
@@ -242,22 +280,6 @@ class ProductViewModel @Inject constructor(
 
     fun updateImageUris(updatedList: List<Pair<Uri, String>>) {
         _imageUris.value = updatedList
-    }
-
-    fun addImageTriple(uri: Uri, description: String, id: Int) {
-        _imageTriples.value += Triple(uri, description, id)
-    }
-
-    fun removeImageTriple(uri: Uri) {
-        _imageTriples.value = _imageTriples.value.filterNot { it.first == uri }
-    }
-
-    fun updateImageTriples(updatedList: List<Triple<Uri, String, Int>>) {
-        _imageTriples.value = updatedList
-    }
-
-    fun clearImageTriples() {
-        _imageTriples.value = emptyList()
     }
 
     fun clearImageUris() {

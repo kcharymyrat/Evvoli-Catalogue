@@ -91,10 +91,6 @@ fun ProductUpdateDeleteScreen(
                 productViewModel.onImageUriSelected(uri)
                 originalImageUri = uri
             }
-            val additionalImageUris = it.images.map { image -> Triple(Uri.parse(image.imageUrl), image.description ?: "", image.id) }
-            println("additionalImageUris = $additionalImageUris")
-            productViewModel.updateImageTriples(additionalImageUris.map { triplet -> Triple(triplet.first, triplet.second, triplet.third) }) // Update ViewModel with pair only
-            originalAdditionalImageUris = additionalImageUris
 
             productImageViewModel.fetchProductImages(productId = it.product.id)
             productImageViewModel.getMaxProductImageId()
@@ -308,7 +304,6 @@ fun ProductUpdateDeleteScreen(
                         .padding(8.dp)
                 )
             }
-
             Button(onClick = { launcher.launch("image/*") }) {
                 Text(text = if (imageUri != null) "Change Main Image" else "Upload Main Image")
             }
@@ -347,12 +342,6 @@ fun ProductUpdateDeleteScreen(
         }
 
         item {
-            Button(onClick = { additionalImageLauncher.launch("image/*") }) {
-                Text("Add Additional Image")
-            }
-        }
-
-        item {
             imageUris.forEachIndexed { index, (uri, description) ->
                 Column {
                     Image(
@@ -382,6 +371,12 @@ fun ProductUpdateDeleteScreen(
         }
 
         item {
+            Button(onClick = { additionalImageLauncher.launch("image/*") }) {
+                Text("Add Additional Image")
+            }
+        }
+
+        item {
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -396,15 +391,14 @@ fun ProductUpdateDeleteScreen(
                     println("isValid = $isValid")
 
                     if (isValid) {
-
                         val newImageUri = if (imageUri != originalImageUri) {
                             imageUri?.let { saveImageToInternalStorage(it, context) }
                         } else {
                             productWithImages?.product?.imageUrl
                         }
 
-                        val updatedProduct = productWithImages?.product?.id?.let {
-                            ProductEntity(
+                        productWithImages?.product?.id?.let {
+                            val updatedProduct = ProductEntity(
                                 id = it,
                                 categoryId = selectedCategory!!.id,
                                 type = productType.ifBlank { null },
@@ -417,31 +411,39 @@ fun ProductUpdateDeleteScreen(
                                 descriptionRu = productDescriptionRu.ifBlank { null },
                                 imageUrl = newImageUri ?: ""
                             )
-                        }
-                        println("updatedProduct = $updatedProduct")
-                        updatedProduct.let {
-                            if (updatedProduct != null) {
-                                productViewModel.updateProduct(updatedProduct)
+                            productViewModel.updateProduct(updatedProduct)
 
-                                println("imageUris = $imageUris")
-                                val newProductImages = imageUris.mapIndexed { index, (uri, description) ->
-                                    val id = maxProductImageId + 1 + index
-                                    println("id = $id, uri = $uri")
-                                    ProductImageEntity(
-                                        id = id, // Use the incremented id
-                                        productId = updatedProduct.id,
-                                        imageUrl = saveImageToInternalStorage(uri, context),
-                                        description = description
-                                    )
-                                }
-                                println("newProductImages = $newProductImages")
-
-                                productViewModel.clearImageUris()
+                            val newProductImages = imageUris.mapIndexed { index, (uri, description) ->
+                                val id = maxProductImageId + 1 + index
+                                println("id = $id, uri = $uri")
+                                ProductImageEntity(
+                                    id = id, // Use the incremented id
+                                    productId = updatedProduct.id,
+                                    imageUrl = saveImageToInternalStorage(uri, context),
+                                    description = description
+                                )
                             }
+
+                            println("newProductImages = $newProductImages")
+                            newProductImages.forEach { newProductImage ->
+                                productImageViewModel.insertProductImage(newProductImage)
+                            }
+
+                            productViewModel.clearSelectedCategory()
+                            productViewModel.clearProductType()
+                            productViewModel.clearProductTypeRu()
+                            productViewModel.clearProductCode()
+                            productViewModel.clearProductModel()
+                            productViewModel.clearProductTitle()
+                            productViewModel.clearProductTitleRu()
+                            productViewModel.clearProductDescription()
+                            productViewModel.clearProductDescriptionRu()
+                            productViewModel.clearImageUri()
+                            productViewModel.clearImageUris()
+
+                            navHostController.popBackStack()
                         }
 
-                        productViewModel.clearImageTriples()
-                        navHostController.popBackStack()
                     } else {
                         isTitleValid = productTitle.isNotBlank()
                         isTitleRuValid = productTitleRu.isNotBlank()
