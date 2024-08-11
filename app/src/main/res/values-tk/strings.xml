@@ -1,49 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Evvoli Katalog</string>
     <string name="select_language">Dil Saýlaň</string>
 
     <string name="about_us">Biz Barada</string>
-    <string name="proceed_to_checkout">Sargydy taýýarlamak</string>
-    <string name="cash">Nagt</string>
-    <string name="card_terminal">Bank Karty</string>
-    <string name="payment_option">Töleg Şekili</string>
-    <string name="name">Adyňyz</string>
-    <string name="name_is_required">Adyňyzy yazmagyňyzy haýyş edýäris</string>
-    <string name="phone_number">Telefon belgiňiz</string>
-    <string name="invalid_phone_number">Dogry telefon belgiňizi yazmagyňyzy haýyş edýäris</string>
-    <string name="shipping_address">Salgyňyz</string>
-    <string name="address_is_required">Salgyňyzy yazmagyňyzy haýyş edýäris</string>
-    <string name="select_date_and_time">Eltip berme wagty</string>
-    <string name="delivery_date_is_required">Eltip berme senesini we wagtyny bellemegiňizi haýyş edýäris</string>
-    <string name="total">JEMI</string>
-    <string name="submit_order">Sargyt et</string>
-
-    <string name="order_success">Üstünlikli sargyt</string>
-    <string name="order_successful">Sargyt üstünlikli kabul edildi!</string>
-    <string name="thank_you_for_your_order_you_will_be_contacted_soon">
-        Sargyt üçin köp sag boluň.\nGyzga wagtda siz bilen habarlaşylar.
-    </string>
 
     <string name="search">Gözläň</string>
     <string name="search_icon">Gözleg nyşany</string>
-    <string name="close_icon">Ýapyň nyşany</string>
-
-    <string name="add_to_shopping_cart">Sebede goşuň</string>
-    <string name="your_cart_is_empty">Siziň sebetiňiz boş</string>
-    <string name="haven_t_added_anything_to_your_cart_yet">
-        Arabaňyza entek hiç zat goşmadyk ýaly.
-    </string>
-    <string name="start_shopping">Söwda edip başlaň</string>
+    <string name="close_icon">Ýap nyşany</string>
 
     <string name="categories">Kategoriýalar</string>
     <string name="products">Harytlar</string>
     <string name="products_search">Haryt gözlegi</string>
     <string name="product_details">Haryt maglumatlary</string>
-
-    <string name="new_category">Add New Category</string>
-    <string name="new_product">Add New Product</string>
-    <string name="new_product_image">Add New Product Image</string>
 
     <string name="evvoli_turkmenistan">Evvoli Türkmenistan</string>
     <string name="settings">Sazlamalar</string>
@@ -54,8 +24,43 @@
         Islegiňize laýyk haryt tapyp bilmedik.
     </string>
     <string name="evvoli_company_description">“Evvoli” innowasion tehnologiýa çözgütleriniň öňdebaryjy üpjünçisidir. Biziň wezipämiz, häzirki zaman önümleri we hyzmatlary arkaly sanly tehnologiýany güýçlendirmek.</string>
-    <string name="refresh">Refresh</string>
-    <string name="error_loading_data_please_refresh">Error loading data. Please refresh.</string>
-    <string name="connection_error">connection error</string>
+
+    <string name="refresh">Täzele</string>
+    <string name="error_loading_data_please_refresh">Maglumat ýüklemekde näsazlyk. Täzeläň.</string>
+    <string name="connection_error">Baglanyşyk näsazlygy</string>
+
+    <string name="new_category">Täze kategoriýa goşuň</string>
+    <string name="new_product">Täze önüm goşuň</string>
+    <string name="new_product_image">Täze önüm suratlaryny goşuň</string>
+
+    <string name="select_category">Kategoriýa saýlaň</string>
+    <string name="update_products">Harytlary üýtgetmek</string>
+    <string name="update_category">Kategoriýa üýtgetmesi</string>
+    <string name="category_name">Kategoriýanyň ady</string>
+    <string name="field_cannot_be_blank">Bu meýdança boş bolup bilmez</string>
+    <string name="category_name_must_be_unique">Kategoriýanyň ady özboluşly bolmaly</string>
+    <string name="change_image">Suraty üýtgediň</string>
+    <string name="upload_image">Surat ýükläň</string>
+    <string name="add_category">Täze kategoriýa goşuň</string>
+    <string name="delete_category">Kategoriýany poz</string>
+    <string name="are_you_sure_you_want_to_delete">Pozmak isleýäniňiz çyn my?</string>
+    <string name="delete">Poz</string>
+    <string name="cancel">Ýatyrmak</string>
+    <string name="create_new_category">Täze kategoriýa dörediň</string>
+    <string name="select_a_category">Kategoriýa saýlaň</string>
+    <string name="code_must_be_unique">Haryt kody özboluşly bolmaly</string>
+    <string name="change_main_image">Esasy suraty üýtgediň</string>
+    <string name="upload_main_image">Esasy suraty ýükläň</string>
+    <string name="additional_images">Goşmaça suratlar</string>
+    <string name="add_additional_image">Goşmaça suratlar goşuň</string>
+    <string name="add_product">Haryt goşuň</string>
+    <string name="error_with_product">Gözleg önümi bilen baglanyşykly ýalňyşlyk bar!</string>
+    <string name="home_screen">Baş sahypa</string>
+    <string name="update_product">Harydy üýtget</string>
+    <string name="delete_product">Harydy poz</string>
+    <string name="select">Saýlaň</string>
+    <string name="languages">Diller</string>
+    <string name="add_new_product">Täze haryt goşmak</string>
+    <string name="categories_update_delete">Kategoriýalary täzemek ýa-da pozmak</string>
 
 </resources>

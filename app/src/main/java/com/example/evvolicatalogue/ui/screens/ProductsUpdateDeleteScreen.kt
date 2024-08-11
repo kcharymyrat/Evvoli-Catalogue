@@ -31,6 +31,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.paging.PagingData
@@ -103,8 +104,8 @@ fun ProductUpdateDeleteList(
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
-            title = { Text("Delete Product") },
-            text = { Text("Are you sure you want to delete this product?") },
+            title = { Text(stringResource(R.string.delete))},
+            text = { Text(stringResource(R.string.are_you_sure_you_want_to_delete))},
             confirmButton = {
                 Button(
                     onClick = {
@@ -115,12 +116,12 @@ fun ProductUpdateDeleteList(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
                 ) {
-                    Text("Delete")
+                    Text(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 Button(onClick = { showDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -227,7 +228,7 @@ fun ProductsUpdateDeleteScreenButtons(
                 )
             }
         ) {
-            Text("Update Product")
+            Text(stringResource(R.string.update_product))
         }
         Button(
             colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
@@ -235,7 +236,7 @@ fun ProductsUpdateDeleteScreenButtons(
                 setShowDialog(true, product) // Show the confirmation dialog
             }
         ) {
-            Text("Delete Product")
+            Text(stringResource(R.string.delete_product))
         }
     }
 }

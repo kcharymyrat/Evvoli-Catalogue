@@ -1,6 +1,5 @@
 package com.example.evvolicatalogue.ui.screens
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -24,15 +23,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavHostController
+import com.example.evvolicatalogue.R
 import com.example.evvolicatalogue.utils.Screen
 
-// navHostController.navigate(Screen.SettingsScreen.route)
 
 @Composable
 fun SettingsScreen(navHostController: NavHostController) {
@@ -45,7 +42,7 @@ fun SettingsScreen(navHostController: NavHostController) {
     ) {
         item {
             Text(
-                text = "Select",
+                text = stringResource(R.string.select),
                 style = MaterialTheme.typography.headlineMedium
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -53,7 +50,7 @@ fun SettingsScreen(navHostController: NavHostController) {
 
         item {
             SettingOption(
-                settingsName = "Languages",
+                settingsName = stringResource(R.string.languages),
                 icon = Icons.Default.Language,
                 onSettingsSelected = {
                     navHostController.navigate(Screen.LanguageSettingsScreen.route)
@@ -63,7 +60,7 @@ fun SettingsScreen(navHostController: NavHostController) {
 
         item {
             SettingOption(
-                settingsName = "Add New Product",
+                settingsName = stringResource(R.string.add_new_product),
                 icon = Icons.Default.Add,
                 onSettingsSelected = {
                     navHostController.navigate(Screen.ProductCreateScreen.route)
@@ -73,7 +70,7 @@ fun SettingsScreen(navHostController: NavHostController) {
 
         item {
             SettingOption(
-                "Categories Update  Delete",
+                settingsName = stringResource(R.string.categories_update_delete),
                 icon = Icons.Default.Category,
                 onSettingsSelected = {
                     navHostController.navigate(Screen.CategoriesUpdateDeleteScreen.route)

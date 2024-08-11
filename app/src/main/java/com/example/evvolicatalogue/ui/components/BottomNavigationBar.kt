@@ -1,7 +1,6 @@
 package com.example.evvolicatalogue.ui.components
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
@@ -21,7 +20,6 @@ import com.example.evvolicatalogue.utils.Screen
 
 
 const val CATEGORIES = "Categories"
-const val ADD_NEW_PRODUCT = "Add new product"
 const val ABOUT_US = "About Us"
 
 sealed class BottomNavItem(val screen: Screen, val icon: ImageVector, val label: String) {

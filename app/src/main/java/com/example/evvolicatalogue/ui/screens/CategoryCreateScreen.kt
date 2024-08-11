@@ -26,9 +26,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.evvolicatalogue.R
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.viewmodel.CategoryViewModel
 import java.io.File
@@ -80,16 +82,15 @@ fun CategoryCreateScreen(
                     isNameValid = it.isNotBlank()
                     categoryViewModel.checkNameUnique(it)
                 },
-                label = { Text("Kategoriýanyň ady") },
+                label = { Text(stringResource(R.string.kategoria_ady)) },
                 isError = !isNameValid || !isNameUnique,
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isNameValid) {
-                Text("Field cannot be blank", color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red)
             } else if (!isNameUnique) {
-                Text("Name must be unique", color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.category_name_must_be_unique), color = Color.Red)
             }
-
             Spacer(modifier = Modifier.height(8.dp))
         }
         item {
@@ -100,36 +101,33 @@ fun CategoryCreateScreen(
                     isNameRuValid = it.isNotBlank()
                     categoryViewModel.checkNameRuUnique(it)
                 },
-                label = { Text("Название категории") },
+                label = { Text(stringResource(R.string.nazvaniya_kategoriyi)) },
                 isError = !isNameRuValid || !isNameRuUnique,
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isNameRuValid) {
-                Text("Field cannot be blank", color = Color.Red)
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red)
             } else if (!isNameRuUnique) {
-                Text("Name must be unique", color = Color.Red)
+                Text(stringResource(R.string.category_name_must_be_unique),  color = Color.Red)
             }
-
             Spacer(modifier = Modifier.height(8.dp))
         }
         item {
             OutlinedTextField(
                 value = categoryDescription,
                 onValueChange = categoryViewModel::onCategoryDescriptionChange,
-                label = { Text("Kategoriýa beýany") },
+                label = { Text(stringResource(R.string.kategoriya_beyany)) },
                 modifier = Modifier.fillMaxWidth()
             )
-
             Spacer(modifier = Modifier.height(8.dp))
         }
         item {
             OutlinedTextField(
                 value = categoryDescriptionRu,
                 onValueChange = categoryViewModel::onCategoryDescriptionRuChange,
-                label = { Text("Описание категории") },
+                label = { Text(stringResource(R.string.opisaniye_kategoriyi)) },
                 modifier = Modifier.fillMaxWidth()
             )
-
             Spacer(modifier = Modifier.height(8.dp))
         }
         item {
@@ -137,18 +135,20 @@ fun CategoryCreateScreen(
                 Image(
                     painter = rememberAsyncImagePainter(model = categoryImageUri),
                     contentDescription = null,
-                    modifier = Modifier.size(128.dp).padding(8.dp)
+                    modifier = Modifier
+                        .size(128.dp)
+                        .padding(8.dp)
                 )
             }
             Button(onClick = { launcher.launch("image/*") }) {
-                Text(text = if (categoryImageUri != null) "Change Image" else "Upload Image")
+                Text(
+                    text = if (categoryImageUri != null) stringResource(R.string.change_image) else stringResource(
+                    R.string.upload_image)
+                )
             }
-
             Spacer(modifier = Modifier.height(16.dp))
         }
         item {
-            println("maxCategoryId = $maxCategoryId")
-
             Button(
                 onClick = {
                     if (categoryName.isNotBlank() && categoryNameRu.isNotBlank() &&
@@ -170,7 +170,7 @@ fun CategoryCreateScreen(
                 },
                 enabled = categoryImageUri != null
             ) {
-                Text("Add Category")
+                Text(stringResource(R.string.add_category))
             }
         }
     }
@@ -190,12 +190,4 @@ private fun saveImageToInternalStorage(uri: Uri, context: Context): String {
     inputStream?.close()
     outputStream.close()
     return outputFile.absolutePath
-}
-
-
-fun validateCategoryForm(
-    name: String,
-    nameRu: String,
-): Boolean {
-    return name.isNotBlank() && nameRu.isNotBlank()
 }

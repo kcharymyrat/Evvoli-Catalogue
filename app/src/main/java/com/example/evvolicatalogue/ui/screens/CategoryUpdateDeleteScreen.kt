@@ -28,9 +28,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.evvolicatalogue.R
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.viewmodel.CategoryViewModel
 
@@ -41,10 +43,8 @@ fun CategoryUpdateDeleteScreen(
     categoryId: Int,
     modifier: Modifier = Modifier
 ) {
-    // Get the category by ID
     val category = categoryViewModel.getCategoryFlowById(categoryId).collectAsState(initial = null).value
 
-    // Fields to hold updated values
     var updatedName by remember { mutableStateOf("") }
     var updatedNameRu by remember { mutableStateOf("") }
     var updatedDescription by remember { mutableStateOf("") }
@@ -52,7 +52,6 @@ fun CategoryUpdateDeleteScreen(
     var imageUri by remember { mutableStateOf<Uri?>(null) }
     var showDialog by remember { mutableStateOf(false) }
 
-    // Launchers for selecting images
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
@@ -61,7 +60,6 @@ fun CategoryUpdateDeleteScreen(
         }
     }
 
-    // Populate the initial values when the category is loaded
     LaunchedEffect(category) {
         category?.let {
             updatedName = it.name
@@ -82,7 +80,7 @@ fun CategoryUpdateDeleteScreen(
             OutlinedTextField(
                 value = updatedName,
                 onValueChange = { updatedName = it },
-                label = { Text("Kategoriýanyň ady") },
+                label = { Text(stringResource(R.string.kategoria_ady)) },
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -90,7 +88,7 @@ fun CategoryUpdateDeleteScreen(
             OutlinedTextField(
                 value = updatedNameRu,
                 onValueChange = { updatedNameRu = it },
-                label = { Text("Название категории") },
+                label = { Text(stringResource(R.string.nazvaniya_kategoriyi)) },
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -98,7 +96,7 @@ fun CategoryUpdateDeleteScreen(
             OutlinedTextField(
                 value = updatedDescription,
                 onValueChange = { updatedDescription = it },
-                label = { Text("Kategoriýa beýany") },
+                label = { Text(stringResource(R.string.kategoriya_beyany)) },
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -106,7 +104,7 @@ fun CategoryUpdateDeleteScreen(
             OutlinedTextField(
                 value = updatedDescriptionRu,
                 onValueChange = { updatedDescriptionRu = it },
-                label = { Text("Описание категории") },
+                label = { Text(stringResource(R.string.opisaniye_kategoriyi)) },
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -115,11 +113,15 @@ fun CategoryUpdateDeleteScreen(
                 Image(
                     painter = rememberAsyncImagePainter(model = imageUri),
                     contentDescription = null,
-                    modifier = Modifier.size(128.dp).padding(8.dp)
+                    modifier = Modifier
+                        .size(128.dp)
+                        .padding(8.dp)
                 )
             }
             Button(onClick = { launcher.launch("image/*") }) {
-                Text(text = if (imageUri != null) "Change Image" else "Upload Image")
+                Text(
+                    text = if (imageUri != null) stringResource(R.string.change_image) else stringResource(R.string.upload_image)
+                )
             }
         }
         item {
@@ -143,7 +145,7 @@ fun CategoryUpdateDeleteScreen(
                         navHostController.popBackStack()
                     }
                 ) {
-                    Text("Update Category")
+                    Text(stringResource(R.string.update_category))
                 }
                 Button(
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
@@ -151,7 +153,7 @@ fun CategoryUpdateDeleteScreen(
                         showDialog = true // Show the confirmation dialog
                     }
                 ) {
-                    Text("Delete Category")
+                    Text(stringResource(R.string.delete_category))
                 }
             }
         }
@@ -161,8 +163,8 @@ fun CategoryUpdateDeleteScreen(
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
-            title = { Text("Delete Category") },
-            text = { Text("Are you sure you want to delete this category?") },
+            title = { Text(stringResource(R.string.delete_category)) },
+            text = { Text(stringResource(R.string.are_you_sure_you_want_to_delete)) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -172,12 +174,12 @@ fun CategoryUpdateDeleteScreen(
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
                 ) {
-                    Text("Delete")
+                    Text(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 Button(onClick = { showDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )

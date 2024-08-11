@@ -327,10 +327,12 @@ fun ProductUpdateDeleteScreen(
                     )
                     Button(
                         onClick = {
+                            // Remove the image from the database
                             productImageViewModel.deleteProductImage(productImage)
-                            product.value?.product?.id?.let {
-                                productImageViewModel.fetchProductImages(productId = it)
-                            }
+
+                            // Update the product state to remove the deleted image
+                            productViewModel.removeImageFromProduct(productImage)
+
                         },
                         modifier = Modifier.align(Alignment.End)
                     ) {

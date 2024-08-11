@@ -46,20 +46,6 @@ fun LanguageSelectionScreen(navHostController: NavHostController) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         LanguageOption(
-            "English",
-            "en",
-            Icons.Default.Language
-        ){
-            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"))
-            if (navHostController.previousBackStackEntry != null) {
-                navHostController.popBackStack() // Navigate back if there's a previous entry
-            } else {
-                navHostController.navigate(Screen.CategoriesScreen.route) { // Navigate to CategoriesScreen if it's the first screen
-                    popUpTo(Screen.SettingsScreen.route) { inclusive = true } // Removes LanguageSelectionScreen from the stack
-                }
-            }
-        }
-        LanguageOption(
             "Русский",
             "ru",
             Icons.Default.Language
@@ -131,11 +117,4 @@ fun LanguageOption(
     }
 }
 
-
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun LangApp() {
-//    LanguageSelectionScreen(nav)
-//}
 

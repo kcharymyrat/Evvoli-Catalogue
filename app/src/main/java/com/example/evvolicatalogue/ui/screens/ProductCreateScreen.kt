@@ -34,10 +34,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
+import com.example.evvolicatalogue.R
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.data.local.entities.ProductEntity
 import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
@@ -87,6 +89,17 @@ fun ProductCreateScreen(
     LaunchedEffect(Unit) {
         productViewModel.getMaxProductId()
         productImageViewModel.getMaxProductImageId()
+        productViewModel.clearSelectedCategory()
+        productViewModel.clearProductType()
+        productViewModel.clearProductTypeRu()
+        productViewModel.clearProductCode()
+        productViewModel.clearProductModel()
+        productViewModel.clearProductTitle()
+        productViewModel.clearProductTitleRu()
+        productViewModel.clearProductDescription()
+        productViewModel.clearProductDescriptionRu()
+        productViewModel.clearImageUri()
+        productViewModel.clearImageUris()
     }
 
     val launcher = rememberLauncherForActivityResult(
@@ -122,7 +135,7 @@ fun ProductCreateScreen(
                     }
                 ) {
                     OutlinedTextField(
-                        value = selectedCategory?.name ?: "Select Category",
+                        value = selectedCategory?.name ?: stringResource(R.string.select_category),
                         onValueChange = {},
                         readOnly = true,
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -149,14 +162,14 @@ fun ProductCreateScreen(
                             )
                         }
                         DropdownMenuItem(
-                            text = { Text("Create New Category") },
+                            text = { Text(stringResource(R.string.create_new_category)) },
                             onClick = { navHostController.navigate(Screen.CategoryCreateScreen.route) }
                         )
                     }
                 }
             }
             if (!isCategorySelected) {
-                Text("Please select a category", color = Color.Red)
+                Text(stringResource(R.string.select_a_category), color = Color.Red)
             }
         }
         item {
@@ -191,9 +204,9 @@ fun ProductCreateScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isCodeValid) {
-                Text("Field cannot be blank", color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red) // TODO: translate
             } else if (!isCodeUnique) {
-                Text("Code must be unique", color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.code_must_be_unique), color = Color.Red) // TODO: translate
             }
         }
         item {
@@ -216,7 +229,7 @@ fun ProductCreateScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isTitleValid) {
-                Text("Field cannot be blank", color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red) // TODO: translate
             }
         }
         item {
@@ -231,7 +244,7 @@ fun ProductCreateScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isTitleRuValid) {
-                Text("Field cannot be blank", color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red) // TODO: translate
             }
         }
         item {
@@ -260,12 +273,17 @@ fun ProductCreateScreen(
                 Image(
                     painter = rememberAsyncImagePainter(model = imageUri),
                     contentDescription = null,
-                    modifier = Modifier.size(128.dp).padding(8.dp)
+                    modifier = Modifier
+                        .size(128.dp)
+                        .padding(8.dp)
                 )
             }
 
             Button(onClick = { launcher.launch("image/*") }) {
-                Text(text = if (imageUri != null) "Change Main Image" else "Upload Main Image")
+                Text(text = if (imageUri != null) stringResource(R.string.change_main_image) else stringResource(
+                    R.string.upload_main_image
+                )
+                )
             }
         }
 
@@ -274,7 +292,7 @@ fun ProductCreateScreen(
         }
 
         item {
-            Text("Additional Images", style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.additional_images), style = MaterialTheme.typography.headlineSmall)
         }
 
         item {
@@ -283,23 +301,15 @@ fun ProductCreateScreen(
                     Image(
                         painter = rememberAsyncImagePainter(model = uri),
                         contentDescription = null,
-                        modifier = Modifier.size(128.dp).padding(8.dp)
-                    )
-                    OutlinedTextField(
-                        value = description,
-                        onValueChange = { newDescription ->
-                            val updatedList = imageUris.toMutableList()
-                            updatedList[index] = uri to newDescription
-                            productViewModel.updateImageUris(updatedList)
-                        },
-                        label = { Text("Image Description") },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .size(128.dp)
+                            .padding(8.dp)
                     )
                     Button(
                         onClick = { productViewModel.removeImageUri(uri) },
                         modifier = Modifier.align(Alignment.End)
                     ) {
-                        Text("Remove")
+                        Text(stringResource(R.string.delete))
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -308,7 +318,7 @@ fun ProductCreateScreen(
 
         item {
             Button(onClick = { additionalImageLauncher.launch("image/*") }) {
-                Text("Add Additional Image")
+                Text(stringResource(R.string.add_additional_image))
             }
         }
 
@@ -326,7 +336,6 @@ fun ProductCreateScreen(
                         productTitleRu = productTitleRu,
                         selectedCategory = selectedCategory
                     )
-                    println("maxProductId = $maxProductId")
                     if (isValid && imageUri != null) {
                         val newProduct = ProductEntity(
                             id = maxProductId + 1,
@@ -343,19 +352,16 @@ fun ProductCreateScreen(
                         )
                         createNewProduct(newProduct)
 
-                        println("imageUris = $imageUris")
                         val newProductImages = imageUris.mapIndexed { index, (uri, description) ->
                             val id = maxProductImageId + 1 + index
-                            println("id = $id, uri = $uri")
                             ProductImageEntity(
-                                id = id, // Use the incremented id
+                                id = id,
                                 productId = newProduct.id,
                                 imageUrl = saveImageToInternalStorage(uri, context),
                                 description = description
                             )
                         }
 
-                        println("newProductImages = $newProductImages")
                         newProductImages.forEach { newProductImage ->
                             productImageViewModel.insertProductImage(newProductImage)
                         }
@@ -381,7 +387,7 @@ fun ProductCreateScreen(
                 },
                 enabled = productTitle.isNotEmpty() && selectedCategory != null && imageUri != null
             ) {
-                Text("Add Product")
+                Text(stringResource(R.string.add_product))
             }
         }
     }

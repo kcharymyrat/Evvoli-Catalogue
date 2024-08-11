@@ -22,7 +22,6 @@ fun SearchProductsScreen(
     products: StateFlow<PagingData<ProductEntity>>,
     modifier: Modifier = Modifier,
 ) {
-    println("products = $products")
     SearchProductListDisplay(
         navHostController = navHostController,
         products = products,
@@ -47,7 +46,6 @@ fun SearchProductListDisplay(
 
         items(lazyPagingItems.itemCount) {index ->
             val product = lazyPagingItems[index]
-            println("product = $product")
             if (product != null) {
                 ProductItem(
                     navHostController = navHostController,

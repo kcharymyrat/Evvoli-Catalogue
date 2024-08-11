@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.data.local.entities.ProductEntity
+import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
 import com.example.evvolicatalogue.data.local.entities.ProductWithImages
 import com.example.evvolicatalogue.data.local.repositories.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -284,6 +285,15 @@ class ProductViewModel @Inject constructor(
 
     fun clearImageUris() {
         _imageUris.value = emptyList()
+    }
+
+    fun removeImageFromProduct(productImage: ProductImageEntity) {
+        _productWithImages.value?.let { productWithImages ->
+            val updatedImages = productWithImages.images.toMutableList().apply {
+                remove(productImage)
+            }
+            _productWithImages.value = productWithImages.copy(images = updatedImages)
+        }
     }
 
 }

@@ -4,46 +4,19 @@
     <string name="select_language">Выберите язык</string>
 
     <string name="about_us">О нас</string>
-    <string name="proceed_to_checkout">Перейти к оформлению заказа</string>
-    <string name="cash">Наличные</string>
-    <string name="card_terminal">Банковская платежная карта</string>
-    <string name="payment_option">Вариант оплаты</string>
-    <string name="name">Ваше имя</string>
-    <string name="name_is_required">Пожалуйста, введите ваше имя</string>
-    <string name="phone_number">Номер телефона</string>
-    <string name="invalid_phone_number">Пожалуйста, введите правильный номер телефона</string>
-    <string name="shipping_address">Адрес доставки</string>
-    <string name="address_is_required">Пожалуйста, введите ваш адрес доставки</string>
-    <string name="select_date_and_time">Время доставки</string>
-    <string name="delivery_date_is_required">Пожалуйста, укажите дату и время доставки</string>
-    <string name="total">ИТОГО</string>
-    <string name="submit_order">Подтвердить заказ</string>
-
-    <string name="order_success">Успешный заказ</string>
-    <string name="order_successful">Заказ успешен!</string>
-    <string name="thank_you_for_your_order_you_will_be_contacted_soon">
-        Спасибо за ваш заказ.\nС вами скоро свяжутся.
-    </string>
 
     <string name="search">Поиск</string>
     <string name="search_icon">Иконка Поиска</string>
     <string name="close_icon">Иконка Закрыть</string>
-
-    <string name="add_to_shopping_cart">Добавить в корзину</string>
-    <string name="your_cart_is_empty">Ваша корзина пуста</string>
-    <string name="haven_t_added_anything_to_your_cart_yet">
-        Похоже, вы еще ничего не добавили в корзину.
-    </string>
-    <string name="start_shopping">Начать покупки</string>
 
     <string name="categories">Категории</string>
     <string name="products">Товары</string>
     <string name="products_search">Поиск товаров</string>
     <string name="product_details">Информация о товаре</string>
 
-    <string name="new_category">Add New Category</string>
-    <string name="new_product">Add New Product</string>
-    <string name="new_product_image">Add New Product Image</string>
+    <string name="new_category">Добавить новую категорию</string>
+    <string name="new_product">Добавить новый продукт</string>
+    <string name="new_product_image">Добавить новые изображения продуктов</string>
 
     <string name="evvoli_turkmenistan">Evvoli Туркменистан</string>
     <string name="settings">Настройки</string>
@@ -54,9 +27,39 @@
         Мы не смогли найти ни одного товара, соответствующего вашему запросу.
     </string>
     <string name="evvoli_company_description">Evvoli - ведущий поставщик инновационных технологических решений. Наша миссия - расширять возможности цифровых технологий с помощью передовых продуктов и услуг.</string>
-    <string name="refresh">Refresh</string>
-    <string name="error_loading_data_please_refresh">Error loading data. Please refresh.</string>
-    <string name="connection_error">connection error</string>
 
+    <string name="refresh">Обновить</string>
+    <string name="error_loading_data_please_refresh">Ошибка загрузки данных. Пожалуйста, обновите.</string>
+    <string name="connection_error">Ошибка соединения</string>
+
+    <string name="select_category">Выберите категорию</string>
+    <string name="update_products">Модификация продуктов</string>
+    <string name="update_category">Модификация категории</string>
+    <string name="category_name">Название категории</string>
+    <string name="field_cannot_be_blank">Поле не может быть пустым</string>
+    <string name="category_name_must_be_unique">Название категории должно быть уникальным</string>
+    <string name="change_image">Изменить изображение</string>
+    <string name="upload_image">Загрузить изображение</string>
+    <string name="add_category">Добавить новую категорию</string>
+    <string name="delete_category">Удалить категорию</string>
+    <string name="are_you_sure_you_want_to_delete">Вы уверены, что хотите удалить?</string>
+    <string name="delete">Удалить</string>
+    <string name="cancel">Отменить</string>
+    <string name="create_new_category">Создать новую категорию</string>
+    <string name="select_a_category">Выберите категорию</string>
+    <string name="code_must_be_unique">Код продукта должен быть уникальным</string>
+    <string name="change_main_image">Изменить основное изображение</string>
+    <string name="upload_main_image">Загрузить основное изображение</string>
+    <string name="additional_images">Дополнительные изображения</string>
+    <string name="add_additional_image">Добавить дополнительные изображения</string>
+    <string name="add_product">Добавить продукт</string>
+    <string name="error_with_product">Произошла ошибка, связанная с извлечением продукта!</string>
+    <string name="home_screen">Главный страница</string>
+    <string name="update_product">Обновить продукт</string>
+    <string name="delete_product">Удалить продукт</string>
+    <string name="select">Выберите</string>
+    <string name="languages">Языки</string>
+    <string name="add_new_product">Добавить новый продукт</string>
+    <string name="categories_update_delete">Обновить или удалить категории</string>
 
 </resources>
