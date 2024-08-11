@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.evvolicatalogue.R
@@ -145,7 +146,7 @@ fun CategoryUpdateDeleteScreen(
                         navHostController.popBackStack()
                     }
                 ) {
-                    Text(stringResource(R.string.update_category))
+                    Text(stringResource(R.string.update_category), fontSize = 10.sp)
                 }
                 Button(
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
@@ -153,7 +154,7 @@ fun CategoryUpdateDeleteScreen(
                         showDialog = true // Show the confirmation dialog
                     }
                 ) {
-                    Text(stringResource(R.string.delete_category))
+                    Text(stringResource(R.string.delete_category), fontSize = 10.sp)
                 }
             }
         }

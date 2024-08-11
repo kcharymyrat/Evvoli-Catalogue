@@ -204,9 +204,9 @@ fun ProductCreateScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isCodeValid) {
-                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red)
             } else if (!isCodeUnique) {
-                Text(stringResource(R.string.code_must_be_unique), color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.code_must_be_unique), color = Color.Red)
             }
         }
         item {
@@ -229,7 +229,7 @@ fun ProductCreateScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isTitleValid) {
-                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red) // TODO: translate
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red)
             }
         }
         item {
@@ -292,7 +292,7 @@ fun ProductCreateScreen(
         }
 
         item {
-            Text(stringResource(R.string.additional_images), style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.additional_images))
         }
 
         item {

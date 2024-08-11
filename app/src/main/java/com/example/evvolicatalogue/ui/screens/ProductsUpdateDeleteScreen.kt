@@ -33,6 +33,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -228,7 +229,7 @@ fun ProductsUpdateDeleteScreenButtons(
                 )
             }
         ) {
-            Text(stringResource(R.string.update_product))
+            Text(stringResource(R.string.update_product), fontSize = 10.sp)
         }
         Button(
             colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
@@ -236,7 +237,7 @@ fun ProductsUpdateDeleteScreenButtons(
                 setShowDialog(true, product) // Show the confirmation dialog
             }
         ) {
-            Text(stringResource(R.string.delete_product))
+            Text(stringResource(R.string.delete_product), fontSize = 10.sp)
         }
     }
 }

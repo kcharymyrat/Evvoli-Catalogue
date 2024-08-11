@@ -35,11 +35,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.room.PrimaryKey
 import coil.compose.rememberAsyncImagePainter
+import com.example.evvolicatalogue.R
 import com.example.evvolicatalogue.data.local.entities.CategoryEntity
 import com.example.evvolicatalogue.data.local.entities.ProductEntity
 import com.example.evvolicatalogue.data.local.entities.ProductImageEntity
@@ -152,7 +154,7 @@ fun ProductUpdateDeleteScreen(
                     }
                 ) {
                     OutlinedTextField(
-                        value = selectedCategory?.name ?: "Select Category",
+                        value = selectedCategory?.name ?: stringResource(R.string.select_category),
                         onValueChange = {},
                         readOnly = true,
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -179,14 +181,14 @@ fun ProductUpdateDeleteScreen(
                             )
                         }
                         DropdownMenuItem(
-                            text = { Text("Create New Category") },
+                            text = { Text(stringResource(R.string.create_new_category)) },
                             onClick = { navHostController.navigate(Screen.CategoryCreateScreen.route) }
                         )
                     }
                 }
             }
             if (!isCategorySelected) {
-                Text("Please select a category", color = Color.Red)
+                Text(stringResource(R.string.select_a_category),  color = Color.Red)
             }
         }
 
@@ -225,9 +227,9 @@ fun ProductUpdateDeleteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isCodeValid) {
-                Text("Field cannot be blank", color = Color.Red)
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red)
             } else if (!isCodeUnique) {
-                Text("Code must be unique", color = Color.Red)
+                Text(stringResource(R.string.code_must_be_unique), color = Color.Red)
             }
         }
 
@@ -252,7 +254,7 @@ fun ProductUpdateDeleteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isTitleValid) {
-                Text("Field cannot be blank", color = Color.Red)
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red)
             }
         }
 
@@ -268,7 +270,7 @@ fun ProductUpdateDeleteScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             if (!isTitleRuValid) {
-                Text("Field cannot be blank", color = Color.Red)
+                Text(stringResource(R.string.field_cannot_be_blank), color = Color.Red)
             }
         }
 
@@ -305,7 +307,8 @@ fun ProductUpdateDeleteScreen(
                 )
             }
             Button(onClick = { launcher.launch("image/*") }) {
-                Text(text = if (imageUri != null) "Change Main Image" else "Upload Main Image")
+                Text(text = if (imageUri != null) stringResource(R.string.change_main_image) else stringResource(
+                    R.string.upload_main_image))
             }
         }
 
@@ -314,7 +317,7 @@ fun ProductUpdateDeleteScreen(
         }
 
         item {
-            Text("Additional Images", style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.additional_images))
         }
 
         item {
@@ -336,7 +339,7 @@ fun ProductUpdateDeleteScreen(
                         },
                         modifier = Modifier.align(Alignment.End)
                     ) {
-                        Text("Remove")
+                        Text(stringResource(R.string.delete))
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -344,28 +347,18 @@ fun ProductUpdateDeleteScreen(
         }
 
         item {
-            imageUris.forEachIndexed { index, (uri, description) ->
+            imageUris.forEachIndexed { _, (uri, description) ->
                 Column {
                     Image(
                         painter = rememberAsyncImagePainter(model = uri),
                         contentDescription = null,
                         modifier = Modifier.size(128.dp).padding(8.dp)
                     )
-                    OutlinedTextField(
-                        value = description,
-                        onValueChange = { newDescription ->
-                            val updatedList = imageUris.toMutableList()
-                            updatedList[index] = uri to newDescription
-                            productViewModel.updateImageUris(updatedList)
-                        },
-                        label = { Text("Image Description") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
                     Button(
                         onClick = { productViewModel.removeImageUri(uri) },
                         modifier = Modifier.align(Alignment.End)
                     ) {
-                        Text("Remove")
+                        Text(stringResource(R.string.delete))
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -374,7 +367,7 @@ fun ProductUpdateDeleteScreen(
 
         item {
             Button(onClick = { additionalImageLauncher.launch("image/*") }) {
-                Text("Add Additional Image")
+                Text(stringResource(R.string.add_additional_image))
             }
         }
 
@@ -390,7 +383,6 @@ fun ProductUpdateDeleteScreen(
                         productTitleRu = productTitleRu,
                         selectedCategory = selectedCategory
                     )
-                    println("isValid = $isValid")
 
                     if (isValid) {
                         val newImageUri = if (imageUri != originalImageUri) {
@@ -417,7 +409,6 @@ fun ProductUpdateDeleteScreen(
 
                             val newProductImages = imageUris.mapIndexed { index, (uri, description) ->
                                 val id = maxProductImageId + 1 + index
-                                println("id = $id, uri = $uri")
                                 ProductImageEntity(
                                     id = id, // Use the incremented id
                                     productId = updatedProduct.id,
@@ -426,7 +417,6 @@ fun ProductUpdateDeleteScreen(
                                 )
                             }
 
-                            println("newProductImages = $newProductImages")
                             newProductImages.forEach { newProductImage ->
                                 productImageViewModel.insertProductImage(newProductImage)
                             }
@@ -454,7 +444,7 @@ fun ProductUpdateDeleteScreen(
                 },
                 enabled = productTitle.isNotEmpty() && selectedCategory != null
             ) {
-                Text("Update Product")
+                Text(stringResource(R.string.update_product))
             }
         }
 
@@ -472,7 +462,7 @@ fun ProductUpdateDeleteScreen(
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
             ) {
-                Text("Delete Product")
+                Text(stringResource(R.string.delete_product))
             }
         }
     }

@@ -47,6 +47,7 @@ fun CategoryCreateScreen(
     val categoryDescription by categoryViewModel.categoryDescription.collectAsState()
     val categoryDescriptionRu by categoryViewModel.categoryDescriptionRu.collectAsState()
     val categoryImageUri by categoryViewModel.categoryImageUri.collectAsState()
+
     val maxCategoryId by categoryViewModel.maxCategoryId.collectAsState()
     val isNameUnique by categoryViewModel.isNameUnique.collectAsState()
     val isNameRuUnique by categoryViewModel.isNameRuUnique.collectAsState()
@@ -162,6 +163,11 @@ fun CategoryCreateScreen(
                             imageUrl = saveImageToInternalStorage(categoryImageUri!!, context)
                         )
                         categoryViewModel.insertCategory(newCategory)
+                        categoryViewModel.clearCategoryName()
+                        categoryViewModel.clearCategoryNameRu()
+                        categoryViewModel.clearCategoryDescription()
+                        categoryViewModel.clearCategoryDescriptionRu()
+                        categoryViewModel.clearCategoryImageUri()
                         navHostController.popBackStack()
                     } else {
                         isNameValid = categoryName.isNotBlank()

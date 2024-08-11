@@ -156,20 +156,40 @@ class CategoryViewModel @Inject constructor(
         _categoryName.value = newName
     }
 
+    fun clearCategoryName() {
+        _categoryName.value = ""
+    }
+
     fun onCategoryNameRuChange(newNameRu: String) {
         _categoryNameRu.value = newNameRu
+    }
+
+    fun clearCategoryNameRu() {
+        _categoryNameRu.value = ""
     }
 
     fun onCategoryDescriptionChange(newDescription: String) {
         _categoryDescription.value = newDescription
     }
 
+    fun clearCategoryDescription() {
+        _categoryDescription.value = ""
+    }
+
     fun onCategoryDescriptionRuChange(newDescriptionRu: String) {
         _categoryDescriptionRu.value = newDescriptionRu
     }
 
+    fun clearCategoryDescriptionRu() {
+        _categoryDescriptionRu.value = ""
+    }
+
     fun onCategoryImageUriSelected(uri: Uri) {
         _categoryImageUri.value = uri
+    }
+
+    fun clearCategoryImageUri() {
+        _categoryImageUri.value = null
     }
 
     fun getMaxCategoryId() {
